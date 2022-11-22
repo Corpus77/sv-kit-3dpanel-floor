@@ -1,0 +1,41 @@
+<script>
+  import { createEventDispatcher } from "svelte";
+  export let buttonText = "";
+
+  const dispatch = createEventDispatcher();
+  const fillAll = (btn) => {
+    dispatch("fillAll", btn);
+  };
+</script>
+
+<button
+  class="btn-header non-activeapp"
+  on:click={function (e) {
+    fillAll(this);
+  }}>{buttonText}</button
+>
+
+<style>
+  button {
+    font-weight: bolder;
+
+    color: rgb(186, 235, 97);
+    background-color: rgb(56, 52, 52);
+    border-radius: 5px;
+    border: none;
+  }
+  .non-activeapp {
+    color: wheat;
+    background-color: rgb(56, 52, 52);
+    border-radius: 5px;
+    border: none;
+  }
+  @media only screen and (max-device-width: 480px) {
+    button {
+      font-size: smaller;
+    }
+    .non-activeapp {
+      font-size: smaller;
+    }
+  }
+</style>
