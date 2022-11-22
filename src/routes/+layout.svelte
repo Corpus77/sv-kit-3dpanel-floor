@@ -1,11 +1,18 @@
 <nav>
-	<a href="/"><h2>Home</h2></a>
-	<a href="/floorwalls"><h2>Floor & Walls</h2></a>
+	<a href="/"><p>Home</p></a>
+	<a href="/floorwalls"><p>Floor & Walls</p></a>
+	<a href="/onewall"> One wall</a>
 </nav>
-<slot />
+<slot/>
 
 <style>
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
 	nav {
+		height: 3vh;
 		display: flex;
 		gap: 1%;
 	}
