@@ -1,5 +1,5 @@
 <script>
-	import retSurfaces from '$lib/logic/retSurfaces.js'
+	import { walls, floor, ceil, allPanels, panel, panelFloor, panelCeil, panelSize } from '$lib/logic/retSurfaces.js'
 	import Modal from '$lib/components/Modal.svelte';
 	import { onMount } from 'svelte';
 	import Buttonall from '$lib/components/Buttonall.svelte';
@@ -13,44 +13,25 @@
 	let url = '';
 	let urlWall = './textures/';
 	let urlFloor = './textures/floor/';
-	// FIXME:
-
-	// Get surface type panels array
-	function allPanels() {
-		return document.querySelectorAll('.allPanels');
-	}
-	function panel() {
-		return document.querySelectorAll('.panel');
-	}
-	function panelFloor() {
-		return document.querySelectorAll('.panel-floor');
-	}
-	function panelCeil() {
-		return document.querySelectorAll('.panel-ceil');
-	}
-	// Calculating panel size
-	function panelSize(surface) {
-		return surface[0].offsetHeight / 4 - 0.4;
-	}
-	// FIXME:
+	
 	// ----------------------------------------------
 	function panelChoice(event) {
 		url = event.detail;
 		if (fillAllFlag && globalSurface == 'wall') {
-			fillAll(retSurfaces.walls());
+			fillAll(walls());
 			url = event.detail;
 		} else if (fillAllFlag && globalSurface == 'floor') {
-			fillAll(retSurfaces.floor());
+			fillAll(floor());
 			url = event.detail;
 		} else if (!fillAllFlag && globalSurface == 'wall') {
-			retSurfaces.walls().forEach((item) => {
+			walls().forEach((item) => {
 				item.onclick = function (e) {
 					url = urlWall + event.detail;
 					e.target.style.backgroundImage = `url(${url})`;
 				};
 			});
 		} else if (!fillAllFlag && globalSurface == 'floor') {
-			retSurfaces.floor().forEach((item) => {
+			floor().forEach((item) => {
 				item.onclick = function (e) {
 					url = urlFloor + event.detail;
 					e.target.style.backgroundImage = `url(${url})`;
@@ -61,9 +42,9 @@
 		else if (fillAllFlag && globalSurface == 'ceil') {
 			url = event.detail;
 
-			fillAll(retSurfaces.ceil());
+			fillAll(ceil());
 		} else if (!fillAllFlag && globalSurface == 'ceil') {
-			retSurfaces.ceil().forEach((item) => {
+			ceil().forEach((item) => {
 				item.onclick = function (e) {
 					url = urlWall + event.detail;
 					e.target.style.backgroundImage = `url(${url})`;
@@ -99,8 +80,8 @@
 	}
 
 	function styleCommonPanels(toCreate) {
-		toCreate.style.width = panelSize(retSurfaces.walls()) + 'px';
-		toCreate.style.height = panelSize(retSurfaces.walls()) + 'px';
+		toCreate.style.width = panelSize(walls()) + 'px';
+		toCreate.style.height = panelSize(walls()) + 'px';
 		toCreate.style.backgroundSize = 'contain';
 		toCreate.classList.add('allPanels');
 
@@ -163,7 +144,7 @@
 	}
 
 	function initWallPanelAdd() {
-		retSurfaces.walls().forEach((item) => {
+		walls().forEach((item) => {
 			for (let i = 0; i < 165; i++) {
 				let panel = document.createElement('div');
 				styleCommonPanels(panel);
@@ -175,7 +156,7 @@
 		});
 	}
 	function initFloorPanelAdd() {
-		retSurfaces.floor().forEach((item) => {
+		floor().forEach((item) => {
 			for (let i = 0; i < 165; i++) {
 				let panel = document.createElement('div');
 				styleCommonPanels(panel);
@@ -187,7 +168,7 @@
 		});
 	}
 	function initCeilPanelAdd() {
-		retSurfaces.ceil().forEach((item) => {
+		ceil().forEach((item) => {
 			for (let i = 0; i < 165; i++) {
 				let panel = document.createElement('div');
 				styleCommonPanels(panel);
@@ -198,7 +179,7 @@
 			}
 		});
 	}
-
+	export {panelChoice, fillAll, removePanels, styleCommonPanels, addPanel, btnHeaderActive,initWallPanelAdd, initFloorPanelAdd, initCeilPanelAdd}
 	//_______________________________
 	onMount(() => {
 		btnHeaderArr = document.querySelectorAll('.btn-header');
@@ -211,8 +192,8 @@
 		//----------------------
 		window.onresize = function () {
 			allPanels().forEach((item) => {
-				item.style.width = panelSize(retSurfaces.walls()) + 'px';
-				item.style.height = panelSize(retSurfaces.walls()) + 'px';
+				item.style.width = panelSize(walls()) + 'px';
+				item.style.height = panelSize(walls()) + 'px';
 			});
 		};
 	});

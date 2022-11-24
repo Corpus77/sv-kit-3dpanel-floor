@@ -4,6 +4,31 @@
 	import Buttonall from '$lib/components/Buttonall.svelte';
 	import Buttonone from '$lib/components/Buttonone.svelte';
 	import Buttonclear from '$lib/components/Buttonclear.svelte';
+    import {styleCommonPanels, initWallPanelAdd} from '$lib/logic/functions';
+    //----------------------------------------
+    let modalVisible = false;
+	let fillAllFlag = true;
+
+	let globalSurface = 'wall';
+	let btnHeaderArr;
+	let url = '';
+	let urlWall = './textures/';
+
+    onMount(() => {
+		btnHeaderArr = document.querySelectorAll('.btn-header');
+
+		//----- initial add panels
+		initWallPanelAdd();
+		
+
+		//----------------------
+		// window.onresize = function () {
+		// 	allPanels().forEach((item) => {
+		// 		item.style.width = panelSize(walls()) + 'px';
+		// 		item.style.height = panelSize(walls()) + 'px';
+		// 	});
+		// };
+	});
 </script>
 
 <div class="container">
@@ -48,8 +73,13 @@
         border: 1px solid black;
     }
     .wall {
+        display: flex;
+        
+        flex-wrap: wrap;
         width: 90%;
         height: 90%;
         border: 1px solid black;
+        overflow: hidden;
     }
+    
 </style>
