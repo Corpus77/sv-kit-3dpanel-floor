@@ -81,8 +81,7 @@ function styleCommonPanels(toCreate) {
 	toCreate.style.height = panelSize(walls()) + 'px';
 	toCreate.style.backgroundSize = 'contain';
 	toCreate.classList.add('allPanels');
-	// FIXME: temporary
-	toCreate.style.border="1px solid black";
+	
 
 	allPanels().forEach((item) => {
 		item.style.transition = '1.5s';
@@ -154,30 +153,30 @@ function initWallPanelAdd() {
 		}
 	});
 }
-// function initFloorPanelAdd() {
-// 	floor().forEach((item) => {
-// 		for (let i = 0; i < 165; i++) {
-// 			let panel = document.createElement('div');
-// 			styleCommonPanels(panel);
+function initFloorPanelAdd() {
+	floor().forEach((item) => {
+		for (let i = 0; i < 165; i++) {
+			let panel = document.createElement('div');
+			styleCommonPanels(panel);
 
-// 			panel.classList.add('panel-floor');
+			panel.classList.add('panel-floor');
 
-// 			item.append(panel);
-// 		}
-// 	});
-// }
-// function initCeilPanelAdd() {
-// 	ceil().forEach((item) => {
-// 		for (let i = 0; i < 165; i++) {
-// 			let panel = document.createElement('div');
-// 			styleCommonPanels(panel);
+			item.append(panel);
+		}
+	});
+}
+function initCeilPanelAdd() {
+	ceil().forEach((item) => {
+		for (let i = 0; i < 165; i++) {
+			let panel = document.createElement('div');
+			styleCommonPanels(panel);
 
-// 			panel.classList.add('panel-ceil');
+			panel.classList.add('panel-ceil');
 
-// 			item.append(panel);
-// 		}
-// 	});
-// }
+			item.append(panel);
+		}
+	});
+}
 export {
 	// panelChoice,
 	// fillAll,
@@ -186,7 +185,7 @@ export {
 	// addPanel,
 	// btnHeaderActive,
 	initWallPanelAdd,
-	// initFloorPanelAdd,
-	// initCeilPanelAdd,
+	initFloorPanelAdd,
+	initCeilPanelAdd,
   // btnHeader
 };

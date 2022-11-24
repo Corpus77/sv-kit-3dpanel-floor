@@ -5,6 +5,7 @@
 	import Buttonall from '$lib/components/Buttonall.svelte';
 	import Buttonone from '$lib/components/Buttonone.svelte';
 	import Buttonclear from '$lib/components/Buttonclear.svelte';
+	import {styleCommonPanels, initWallPanelAdd,initFloorPanelAdd, initCeilPanelAdd} from '$lib/logic/functions';
 	let modalVisible = false;
 	let fillAllFlag = true;
 
@@ -79,28 +80,7 @@
 		});
 	}
 
-	function styleCommonPanels(toCreate) {
-		toCreate.style.width = panelSize(walls()) + 'px';
-		toCreate.style.height = panelSize(walls()) + 'px';
-		toCreate.style.backgroundSize = 'contain';
-		toCreate.classList.add('allPanels');
-
-		allPanels().forEach((item) => {
-			item.style.transition = '1.5s';
-			let counter = 2;
-			item.oncontextmenu = function (e) {
-				e.preventDefault();
-
-				if (counter % 2 == 0) {
-					console.log('menu');
-					item.style.transform = 'rotate(90deg)';
-				} else {
-					item.style.transform = 'rotate(0deg)';
-				}
-				counter++;
-			};
-		});
-	}
+	
 
 	function addPanel(wallsArg) {
 		wallsArg.forEach((item) => {
@@ -143,43 +123,10 @@
 		}, 10);
 	}
 
-	function initWallPanelAdd() {
-		walls().forEach((item) => {
-			for (let i = 0; i < 165; i++) {
-				let panel = document.createElement('div');
-				styleCommonPanels(panel);
-
-				panel.classList.add('panel');
-
-				item.append(panel);
-			}
-		});
-	}
-	function initFloorPanelAdd() {
-		floor().forEach((item) => {
-			for (let i = 0; i < 165; i++) {
-				let panel = document.createElement('div');
-				styleCommonPanels(panel);
-
-				panel.classList.add('panel-floor');
-
-				item.append(panel);
-			}
-		});
-	}
-	function initCeilPanelAdd() {
-		ceil().forEach((item) => {
-			for (let i = 0; i < 165; i++) {
-				let panel = document.createElement('div');
-				styleCommonPanels(panel);
-
-				panel.classList.add('panel-ceil');
-
-				item.append(panel);
-			}
-		});
-	}
-	export {panelChoice, fillAll, removePanels, styleCommonPanels, addPanel, btnHeaderActive,initWallPanelAdd, initFloorPanelAdd, initCeilPanelAdd}
+	
+	
+	
+	
 	//_______________________________
 	onMount(() => {
 		btnHeaderArr = document.querySelectorAll('.btn-header');
