@@ -1,11 +1,27 @@
 <script>
-	import { walls, floor, ceil, allPanels, panel, panelFloor, panelCeil, panelSize } from '$lib/logic/retSurfaces.js'
+	import {
+		walls,
+		floor,
+		ceil,
+		allPanels,
+		panel,
+		panelFloor,
+		panelCeil,
+		panelSize
+	} from '$lib/logic/retSurfaces.js';
 	import Modal from '$lib/components/Modal.svelte';
 	import { onMount } from 'svelte';
 	import Buttonall from '$lib/components/Buttonall.svelte';
 	import Buttonone from '$lib/components/Buttonone.svelte';
 	import Buttonclear from '$lib/components/Buttonclear.svelte';
-	import {styleCommonPanels, initWallPanelAdd,initFloorPanelAdd, initCeilPanelAdd} from '$lib/logic/functions';
+	import {
+		styleCommonPanels,
+		initWallPanelAdd,
+		initFloorPanelAdd,
+		initCeilPanelAdd,
+		removePanels,
+		
+	} from '$lib/logic/functions';
 	let modalVisible = false;
 	let fillAllFlag = true;
 
@@ -14,7 +30,7 @@
 	let url = '';
 	let urlWall = './textures/';
 	let urlFloor = './textures/floor/';
-	
+
 	// ----------------------------------------------
 	function panelChoice(event) {
 		url = event.detail;
@@ -74,12 +90,6 @@
 		}
 	}
 	//----------------------------------------------
-	function removePanels(surface) {
-		surface.forEach((item) => {
-			item.remove();
-		});
-	}
-
 	
 
 	function addPanel(wallsArg) {
@@ -107,7 +117,7 @@
 			}
 		});
 	}
-	// ?hlefje
+	// --------------------------------
 	function btnHeaderActive(event) {
 		setTimeout(function () {
 			if (modalVisible) {
@@ -123,10 +133,6 @@
 		}, 10);
 	}
 
-	
-	
-	
-	
 	//_______________________________
 	onMount(() => {
 		btnHeaderArr = document.querySelectorAll('.btn-header');
@@ -155,12 +161,12 @@
 					buttonText="На все стены"
 					on:fillAll={(event) => {
 						modalVisible = !modalVisible;
-
 						globalSurface = 'wall';
 						fillAllFlag = true;
-
 						btnHeaderActive(event.detail);
 					}}
+
+
 				/>
 				<Buttonclear
 					buttonText="Очистить стены"
