@@ -2,14 +2,12 @@
 	import Modal from '$lib/components/Modal.svelte';
 	import {
 		walls,
-		floor,
-		ceil,
 		allPanels,
 		panel,
-		panelFloor,
-		panelCeil,
 		panelSize
 	} from '$lib/logic/retSurfaces.js';
+		
+		
 	import { onMount } from 'svelte';
 	import Buttonall from '$lib/components/Buttonall.svelte';
 	import Buttonone from '$lib/components/Buttonone.svelte';

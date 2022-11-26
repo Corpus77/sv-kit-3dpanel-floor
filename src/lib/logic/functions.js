@@ -19,7 +19,8 @@ function styleCommonPanels(toCreate) {
 	toCreate.style.height = panelSize(walls()) + 'px';
 	toCreate.style.backgroundSize = 'contain';
 	toCreate.classList.add('allPanels');
-	// toCreate.style.border = '1px solid black'
+	// FIXME:
+	toCreate.style.border = '1px solid black';
 
 	allPanels().forEach((item) => {
 		item.style.transition = '1.5s';

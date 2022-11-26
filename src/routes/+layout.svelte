@@ -2,6 +2,7 @@
 	<a href="/"><p>Home</p></a>
 	<a href="/floorwalls"><p>Floor & Walls</p></a>
 	<a href="/onewall"> One wall</a>
+	<a href="/twoparts"> two parts</a>
 </nav>
 <slot/>
 
