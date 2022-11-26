@@ -16,6 +16,8 @@
 	let url = '';
 	let urlWall = './textures/';
 	//----------------------------------
+	let wall_1_panels;
+	let wall_2_panels;
 	//__________________________________________
 	function panelChoice(event) {
 		url = event.detail;
@@ -51,18 +53,25 @@
 	}
 	//________________________________________
 	function fillAll(surface) {
-		// if (blockFlag) {
-		// 	removePanels((document.querySelector('.wall_1').childNodes));
-		// 	console.log(blockFlag);
-		// 	console.log(document.querySelector('.wall_1').childNodes);
-		// } else {
-		// 	removePanels((document.querySelector('.wall_2').childNodes));
-		// 	console.log(blockFlag);
-    //   console.log(document.querySelector('.wall_2').childNodes);
-		// }
-		// removePanels(panel());
+		if (blockFlag) {
+			removePanels(wall_1_panels);
+			console.log(blockFlag);
+			console.log(wall_1_panels);
+
+			addPanel(surface);
+			// console.log(document.querySelector('.wall_1').childNodes);
+		} else {
+			removePanels(wall_2_panels);
+			console.log(blockFlag);
+			console.log(wall_2_panels);
+
+			addPanel(surface);
+
+      // console.log(document.querySelector('.wall_2').childNodes);
+		}
+		//removePanels(panel());
     
-		addPanel(surface);
+		
 	}
 
 	//__________________________________________
@@ -83,9 +92,15 @@
 	//-----------------------------------------
 	onMount(() => {
 		btnHeaderArr = document.querySelectorAll('.btn-header');
-
+		
+		
 		//----- initial add panels
-		initWallPanelAdd();
+		initWallPanelAdd()
+		//----- separate array panels of 2 walls, after init.
+		wall_1_panels = Array.from (document.querySelector('.wall_1').children)
+		//Array.from (document.getElementsByClassName('wall_1')[0].children)
+		wall_2_panels = Array.from (document.querySelector('.wall_2').children)
+		//Array.from (document.getElementsByClassName('wall_2')[0].children);
 
 		//----------------------
 		window.onresize = function () {
@@ -153,8 +168,8 @@
 	}
 	.header {
 		display: flex;
-		justify-content: space-around;
-		align-items: center;
+		justify-content: space-between;
+		align-items: baseline;
 		flex-wrap: wrap;
 		width: 90vw;
 		height: 19%;
