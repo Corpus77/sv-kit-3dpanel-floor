@@ -7,6 +7,7 @@
 	import Buttonone from '$lib/components/Buttonone.svelte';
 	import Buttonclear from '$lib/components/Buttonclear.svelte';
 	import { initWallPanelAdd, styleCommonPanels, removePanels } from '$lib/logic/functions';
+	
 	//----------------------------------------
 	let modalVisible = false;
 	let fillAllFlag = true;
@@ -18,7 +19,16 @@
 	//----------------------------------
 	let wall_1_panels;
 	let wall_2_panels;
+	//----------------------------------
+	let proportionValue = 50;
+	function wall_1Ret() {
+		return document.querySelector('.wall_1');
+	}
 	//__________________________________________
+	function wallSeperateVars () {
+		wall_1_panels = Array.from (document.getElementsByClassName('wall_1')[0].children);
+		wall_2_panels = Array.from (document.getElementsByClassName('wall_2')[0].children);
+	}
 	function panelChoice(event) {
 		url = event.detail;
 		if (fillAllFlag && blockFlag && globalSurface == 'wall') {
@@ -53,28 +63,19 @@
 	}
 	//________________________________________
 	function fillAll(surface) {
+		wallSeperateVars();
 		if (blockFlag) {
-			removePanels(wall_1_panels);
-			console.log(blockFlag);
-			console.log(wall_1_panels);
-
-			addPanel(surface);
-			// console.log(document.querySelector('.wall_1').childNodes);
-		} else {
 			removePanels(wall_2_panels);
-			console.log(blockFlag);
-			console.log(wall_2_panels);
-
-			addPanel(surface);
-
-      // console.log(document.querySelector('.wall_2').childNodes);
+			
+		} else {
+			
+			removePanels(wall_1_panels);
+			
 		}
-		//removePanels(panel());
-    
-		
+		addPanel(surface);
 	}
-
-	//__________________________________________
+      
+		//__________________________________________
 	function btnHeaderActive(event) {
 		setTimeout(function () {
 			if (modalVisible) {
@@ -93,16 +94,10 @@
 	onMount(() => {
 		btnHeaderArr = document.querySelectorAll('.btn-header');
 		
-		
 		//----- initial add panels
 		initWallPanelAdd()
 		//----- separate array panels of 2 walls, after init.
-		wall_1_panels = Array.from (document.querySelector('.wall_1').children)
-		//Array.from (document.getElementsByClassName('wall_1')[0].children)
-		wall_2_panels = Array.from (document.querySelector('.wall_2').children)
-		//Array.from (document.getElementsByClassName('wall_2')[0].children);
-
-		//----------------------
+		wallSeperateVars();
 		window.onresize = function () {
 			allPanels().forEach((item) => {
 				item.style.width = panelSize(walls()) + 'px';
@@ -126,9 +121,20 @@
 					btnHeaderActive(event.detail);
 				}}
 			/>
-			<Buttonone buttonText="Одна панель" />
-			<Buttonclear buttonText="Очистить стену" />
+			
+			<Buttonclear buttonText="Очистить стену"
+			on:clearAll={(event) => {
+				wallSeperateVars();
+				removePanels(wall_1_panels);
+				initWallPanelAdd();
+			}} />
 		</div>
+		<Buttonone buttonText="Одна панель"
+			on:onePanel={(event) => {
+				modalVisible = !modalVisible;
+				fillAllFlag = false;
+				btnHeaderActive(event.detail);
+			}} />
 		<div class="btn_wrapper btn_wrapper2">
 			<p>Стена 2</p>
 			<Buttonall
@@ -140,13 +146,20 @@
 					btnHeaderActive(event.detail);
 				}}
 			/>
-			<Buttonone buttonText="Одна панель" />
-			<Buttonclear buttonText="Очистить стену" />
+			
+			<Buttonclear buttonText="Очистить стену"
+			on:clearAll={(event) => {
+				wallSeperateVars();
+				removePanels(wall_2_panels);
+				initWallPanelAdd();
+			}}/>
 		</div>
 
-		<div class="range">
+		<div class="range" >
 			<span>Пропорция</span>
-			<input type="range" class="proportion" min="0" max="100" />
+			<input type="range" class="proportion" min="50" max="100"  bind:value = {proportionValue} on:input = "{
+			wall_1Ret().style.minWidth = proportionValue + '%'}"
+				 />
 		</div>
 
 		<button class="teeth">Зубцы</button>
@@ -198,7 +211,7 @@
 		justify-content: space-around;
 		align-items: center;
 		gap: 5px;
-		width: 100vw;
+		width: 98vw;
 		height: 93vh;
 		background-color: darkgrey;
 	}
@@ -220,21 +233,16 @@
 
 	.wall {
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		flex-wrap: wrap;
 		width: 50%;
 		height: 100%;
 		background-size: 20%;
-		border: 1px solid black;
+		/* border: 1px solid black; */
 		overflow: hidden;
 	}
-	.wall_2 {
-		background-size: auto;
-	}
-	.wall_1 {
-		flex-direction: row-reverse;
-		background-size: auto;
-	}
+	
+	
 	.teeth_block {
 		display: none;
 	}
