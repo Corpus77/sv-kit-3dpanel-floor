@@ -7,7 +7,7 @@
 	import Buttonone from '$lib/components/Buttonone.svelte';
 	import Buttonclear from '$lib/components/Buttonclear.svelte';
 	import { initWallPanelAdd, styleCommonPanels, removePanels } from '$lib/logic/functions';
-	
+
 	//----------------------------------------
 	let modalVisible = false;
 	let fillAllFlag = true;
@@ -25,9 +25,9 @@
 		return document.querySelector('.wall_1');
 	}
 	//__________________________________________
-	function wallSeperateVars () {
-		wall_1_panels = Array.from (document.getElementsByClassName('wall_1')[0].children);
-		wall_2_panels = Array.from (document.getElementsByClassName('wall_2')[0].children);
+	function wallSeperateVars() {
+		wall_1_panels = Array.from(document.getElementsByClassName('wall_1')[0].children);
+		wall_2_panels = Array.from(document.getElementsByClassName('wall_2')[0].children);
 	}
 	function panelChoice(event) {
 		url = event.detail;
@@ -54,7 +54,7 @@
 			for (let i = 0; i < 165; i++) {
 				let panel = document.createElement('div');
 				styleCommonPanels(panel);
-        
+
 				panel.classList.add('panel');
 				panel.style.backgroundImage = `url(${urlWall}${url}`;
 				item.append(panel);
@@ -66,16 +66,13 @@
 		wallSeperateVars();
 		if (blockFlag) {
 			removePanels(wall_2_panels);
-			
 		} else {
-			
 			removePanels(wall_1_panels);
-			
 		}
 		addPanel(surface);
 	}
-      
-		//__________________________________________
+
+	//__________________________________________
 	function btnHeaderActive(event) {
 		setTimeout(function () {
 			if (modalVisible) {
@@ -90,12 +87,23 @@
 			});
 		}, 10);
 	}
-	//-----------------------------------------
+
+	//--------------------------------------------
+	function teeth_blockRet() {
+		return document.querySelector('.teeth_block');
+	}
+	//--------------------------------------------
+	function bricksRet() {
+		return document.querySelectorAll('.brick');
+	}
+	//--------------------------------------------
 	onMount(() => {
+		teeth_blockRet().classList.remove('teeth_active');
+
 		btnHeaderArr = document.querySelectorAll('.btn-header');
-		
+
 		//----- initial add panels
-		initWallPanelAdd()
+		initWallPanelAdd();
 		//----- separate array panels of 2 walls, after init.
 		wallSeperateVars();
 		window.onresize = function () {
@@ -121,20 +129,24 @@
 					btnHeaderActive(event.detail);
 				}}
 			/>
-			
-			<Buttonclear buttonText="Очистить стену"
-			on:clearAll={(event) => {
-				wallSeperateVars();
-				removePanels(wall_1_panels);
-				initWallPanelAdd();
-			}} />
+
+			<Buttonclear
+				buttonText="Очистить стену"
+				on:clearAll={(event) => {
+					wallSeperateVars();
+					removePanels(wall_1_panels);
+					initWallPanelAdd();
+				}}
+			/>
 		</div>
-		<Buttonone buttonText="Одна панель"
+		<Buttonone
+			buttonText="Одна панель"
 			on:onePanel={(event) => {
 				modalVisible = !modalVisible;
 				fillAllFlag = false;
 				btnHeaderActive(event.detail);
-			}} />
+			}}
+		/>
 		<div class="btn_wrapper btn_wrapper2">
 			<p>Стена 2</p>
 			<Buttonall
@@ -146,27 +158,66 @@
 					btnHeaderActive(event.detail);
 				}}
 			/>
-			
-			<Buttonclear buttonText="Очистить стену"
-			on:clearAll={(event) => {
-				wallSeperateVars();
-				removePanels(wall_2_panels);
-				initWallPanelAdd();
-			}}/>
+
+			<Buttonclear
+				buttonText="Очистить стену"
+				on:clearAll={(event) => {
+					wallSeperateVars();
+					removePanels(wall_2_panels);
+					initWallPanelAdd();
+				}}
+			/>
 		</div>
 
-		<div class="range" >
+		<div class="range">
 			<span>Пропорция</span>
-			<input type="range" class="proportion" min="50" max="100"  bind:value = {proportionValue} on:input = "{
-			wall_1Ret().style.minWidth = proportionValue + '%'}"
-				 />
+			<input
+				type="range"
+				class="proportion"
+				min="50"
+				max="100"
+				bind:value={proportionValue}
+				on:input={(wall_1Ret().style.minWidth = proportionValue + '%')}
+			/>
 		</div>
 
-		<button class="teeth">Зубцы</button>
+		<button
+			class="teeth"
+			on:click={function () {
+				bricksRet().forEach((item) => {
+					item.remove();
+				});
+				teeth_blockRet().classList.toggle('teeth_active');
+				let counter = 1;
+				wallSeperateVars();
+				for (let i = 0; i < 40; i++) {
+					const tooth = document.createElement('div');
+					tooth.style.height = 3 + '%';
+					
+					tooth.classList.add('brick');
+					// tooth.style.border = '1px solid black';
+					teeth_blockRet().append(tooth);
+					//**********
+
+					if (url) {
+						if (counter % 2 == 0) {
+							tooth.style.backgroundImage = wall_1_panels[0].style.backgroundImage;
+							
+							 
+						} else {
+							tooth.style.backgroundImage = wall_2_panels[0].style.backgroundImage;
+							
+							
+						}
+						counter++;
+					}
+				}
+			}}>Зубцы</button
+		>
 	</div>
 	<div class="container-wall">
 		<div class="wall wall_1" />
-		<div class="teeth_block" />
+		<div class="teeth_block teeth_active" />
 		<div class="wall wall_2" />
 	</div>
 	{#if modalVisible}
@@ -188,7 +239,7 @@
 		height: 19%;
 		margin-bottom: 1%;
 		border: 1px solid black;
-		/* transform: translateX(-11%); */
+		
 	}
 	.btn_wrapper {
 		display: flex;
@@ -241,10 +292,22 @@
 		/* border: 1px solid black; */
 		overflow: hidden;
 	}
-	
-	
+
 	.teeth_block {
 		display: none;
+		max-width: 3%;
+		height: 100%;
+
+		/* border: 1px solid black; */
+	}
+	.teeth_active {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		width: 3vw;
+		height: 100%;
+		/* border: 1px solid black; */
+		flex-shrink: 0;
 	}
 	.teeth_brick {
 		width: 100%;
