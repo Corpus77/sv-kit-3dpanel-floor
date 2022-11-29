@@ -1,6 +1,6 @@
 <script>
 	import Modal from '$lib/components/Modal.svelte';
-	import { walls, allPanels, panel, panelSize } from '$lib/logic/retSurfaces.js';
+	import { walls, allPanels, panel, panelSize, wall_1Ret } from '$lib/logic/retSurfaces.js';
 
 	import { onMount } from 'svelte';
 	import Buttonall from '$lib/components/Buttonall.svelte';
@@ -14,6 +14,7 @@
 	let globalSurface = 'wall';
 	let btnHeaderArr;
 	let blockFlag = false;
+	let horizontalFlag = false
 	let url = '';
 	let urlWall = './textures/';
 	//----------------------------------
@@ -21,16 +22,17 @@
 	let wall_2_panels;
 	//----------------------------------
 	let proportionValue = 50;
-	function wall_1Ret() {
-		return document.querySelector('.wall_1');
-	}
+
 	//__________________________________________
 	function wallSeperateVars() {
 		wall_1_panels = Array.from(document.getElementsByClassName('wall_1')[0].children);
 		wall_2_panels = Array.from(document.getElementsByClassName('wall_2')[0].children);
 	}
 	function panelChoice(event) {
+		teeth_blockRet().classList.remove('teeth_active');
+
 		url = event.detail;
+
 		if (fillAllFlag && blockFlag && globalSurface == 'wall') {
 			fillAll(document.querySelectorAll('.wall_2'));
 			url = event.detail;
@@ -45,6 +47,7 @@
 				};
 			});
 		}
+
 		modalVisible = false;
 		fillAllFlag = false;
 	}
@@ -87,6 +90,7 @@
 			});
 		}, 10);
 	}
+	//___________________________________________
 
 	//--------------------------------------------
 	function teeth_blockRet() {
@@ -98,8 +102,23 @@
 	}
 	//--------------------------------------------
 	onMount(() => {
+		// remove classes to toggle
 		teeth_blockRet().classList.remove('teeth_active');
-
+		walls().forEach((item) => {
+			item.classList.remove('wall_horizontal')
+		})
+		document.querySelector('.container-wall').classList.remove('horizontal');
+		//-----------------------------------------
+		document.querySelector('.orientation').onclick = () => {
+			horizontalFlag = !horizontalFlag;
+			document.querySelector('.container-wall').classList.toggle('horizontal');
+			walls().forEach((item) => {
+			item.classList.toggle('wall_horizontal')
+		});
+		teeth_blockRet().classList.remove('teeth_active');
+		}
+		//-------------------------------------------
+		
 		btnHeaderArr = document.querySelectorAll('.btn-header');
 
 		//----- initial add panels
@@ -136,6 +155,7 @@
 					wallSeperateVars();
 					removePanels(wall_1_panels);
 					initWallPanelAdd();
+					teeth_blockRet().classList.remove('teeth_active');
 				}}
 			/>
 		</div>
@@ -165,6 +185,7 @@
 					wallSeperateVars();
 					removePanels(wall_2_panels);
 					initWallPanelAdd();
+					teeth_blockRet().classList.remove('teeth_active');
 				}}
 			/>
 		</div>
@@ -184,7 +205,8 @@
 		<button
 			class="teeth"
 			on:click={function () {
-				bricksRet().forEach((item) => {
+				if(!horizontalFlag) {
+					bricksRet().forEach((item) => {
 					item.remove();
 				});
 				teeth_blockRet().classList.toggle('teeth_active');
@@ -193,7 +215,7 @@
 				for (let i = 0; i < 40; i++) {
 					const tooth = document.createElement('div');
 					tooth.style.height = 3 + '%';
-					
+
 					tooth.classList.add('brick');
 					// tooth.style.border = '1px solid black';
 					teeth_blockRet().append(tooth);
@@ -202,23 +224,22 @@
 					if (url) {
 						if (counter % 2 == 0) {
 							tooth.style.backgroundImage = wall_1_panels[0].style.backgroundImage;
-							
-							 
 						} else {
 							tooth.style.backgroundImage = wall_2_panels[0].style.backgroundImage;
-							
-							
 						}
 						counter++;
 					}
 				}
+				}
+
+				
 			}}>Зубцы</button
 		>
 	</div>
-	<div class="container-wall">
-		<div class="wall wall_1" />
-		<div class="teeth_block teeth_active" />
-		<div class="wall wall_2" />
+	<div class="container-wall horizontal">
+		<div class="wall wall_1 wall_horizontal" />
+		<div class="teeth_block teeth_active " />
+		<div class="wall wall_2 wall_horizontal" />
 	</div>
 	{#if modalVisible}
 		<Modal {globalSurface} on:panelChoice={panelChoice} />
@@ -233,19 +254,26 @@
 	.header {
 		display: flex;
 		justify-content: space-between;
-		align-items: baseline;
+		align-items: center;
 		flex-wrap: wrap;
 		width: 90vw;
 		height: 19%;
+		padding: .5%;
 		margin-bottom: 1%;
-		border: 1px solid black;
-		
+		background-color: rgb(136, 136, 126);
+		/* border: 1px solid black; */
 	}
 	.btn_wrapper {
 		display: flex;
 		flex-direction: column;
 		gap: 5px;
-		height: 30%;
+		height: auto;
+		
+		/* border: 1px solid black; */
+	}
+	p {
+		font-size: 1.7vw ;
+		font-weight: bold;
 	}
 	button {
 		padding: 0.2%;
@@ -292,14 +320,18 @@
 		/* border: 1px solid black; */
 		overflow: hidden;
 	}
-
+	.wall_horizontal {
+		width: 100%;
+		height: 50%;
+	}
 	.teeth_block {
 		display: none;
 		max-width: 3%;
 		height: 100%;
-
+		flex-shrink: 0;
 		/* border: 1px solid black; */
 	}
+	
 	.teeth_active {
 		display: flex;
 		flex-direction: column;
@@ -307,66 +339,25 @@
 		width: 3vw;
 		height: 100%;
 		/* border: 1px solid black; */
-		flex-shrink: 0;
+		
 	}
-	
-
-	
 
 	.proportion {
 		margin-left: 3%;
 	}
 	.range {
 		display: flex;
-		margin: 10px;
-		font-size: 1.3vw;
-		color: darkred;
+		/* margin: 10px; */
+		font-size: 1.7vw;
+		/* color: darkred; */
 	}
 	input {
 		cursor: pointer;
 	}
-	/* webcommon-------------------- */
-	.choiceAppear {
-		display: flex !important;
-		flex-wrap: wrap;
-		justify-content: center;
-		overflow: scroll;
-	}
-	.winChoice {
-		display: none;
-		position: absolute;
-		width: 60%;
-		height: 80%;
-		right: 2%;
-		top: 15%;
-		background-color: blanchedalmond;
-		border: 1px solid black;
-	}
-	.example_container {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		margin: 2%;
-		width: 25%;
-		height: auto;
-		cursor: pointer;
-	}
-	.item_paragr {
-		color: black;
-		font-size: 1em;
-	}
-	img {
-		width: 100%;
-		height: 100%;
-		object-fit: contain;
-	}
+	
 
 	/* media request */
 	@media screen and (max-width: 830px) {
-		.item_paragr,
-		span {
-			font-size: 0.7em;
-		}
+		
 	}
 </style>

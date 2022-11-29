@@ -26,5 +26,8 @@ function panelCeil() {
 function panelSize(surface) {
 	return surface[0].offsetHeight / 4 - 0.4;
 }
+function wall_1Ret() {
+	return document.querySelector('.wall_1');
+}
 
-export { walls, floor, ceil, allPanels, panel, panelFloor, panelCeil, panelSize };
+export { walls, floor, ceil, allPanels, panel, panelFloor, panelCeil, panelSize, wall_1Ret };
