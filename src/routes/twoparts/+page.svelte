@@ -309,17 +309,9 @@
 		/* border: 1px solid black; */
 		flex-shrink: 0;
 	}
-	.teeth_brick {
-		width: 100%;
-		height: 3%;
-	}
+	
 
-	.disp_teeth {
-		display: flex;
-		flex-direction: column;
-		width: 3%;
-		height: 100%;
-	}
+	
 
 	.proportion {
 		margin-left: 3%;
