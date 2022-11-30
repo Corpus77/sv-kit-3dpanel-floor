@@ -47,7 +47,10 @@
 			walls().forEach((item) => {
 				item.onclick = function (e) {
 					url = urlWall + event.detail;
-					e.target.style.backgroundImage = `url(${url})`;
+					if(e.target.classList.contains('panel')) {
+						e.target.style.backgroundImage = `url(${url})`;
+					}
+					
 				};
 			});
 		}

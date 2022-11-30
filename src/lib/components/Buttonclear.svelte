@@ -23,6 +23,7 @@
     background-color: rgb(56, 52, 52);
     border-radius: 5px;
     border: none;
+    cursor: pointer;
   }
   @media only screen and (max-device-width: 480px) {
     button {

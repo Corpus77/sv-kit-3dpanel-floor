@@ -1,4 +1,5 @@
 <script>
+	
 	import Modal from '$lib/components/Modal.svelte';
 	import { walls, allPanels, panel, panelSize, wall_1Ret } from '$lib/logic/retSurfaces.js';
 
@@ -7,6 +8,7 @@
 	import Buttonone from '$lib/components/Buttonone.svelte';
 	import Buttonclear from '$lib/components/Buttonclear.svelte';
 	import { initWallPanelAdd, styleCommonPanels, removePanels } from '$lib/logic/functions';
+	
 
 	//----------------------------------------
 	let modalVisible = false;
@@ -21,7 +23,7 @@
 	let wall_1_panels;
 	let wall_2_panels;
 	//----------------------------------
-	let proportionValue = 50;
+	let proportionValue = '50';
 
 	//__________________________________________
 	function wallSeperateVars() {
@@ -43,7 +45,10 @@
 			walls().forEach((item) => {
 				item.onclick = function (e) {
 					url = urlWall + event.detail;
-					e.target.style.backgroundImage = `url(${url})`;
+					if(e.target.classList.contains('panel')) {
+						e.target.style.backgroundImage = `url(${url})`;
+					}
+					
 				};
 			});
 		}
@@ -101,17 +106,22 @@
 		return document.querySelectorAll('.brick');
 	}
 	//--------------------------------------------
+	function contWallRet() {
+		return document.querySelectorAll('.container-wall')
+	}
+	//--------------------------------------------
 	onMount(() => {
 		// remove classes to toggle
 		teeth_blockRet().classList.remove('teeth_active');
 		walls().forEach((item) => {
 			item.classList.remove('wall_horizontal')
 		})
-		document.querySelector('.container-wall').classList.remove('horizontal');
+		
+		contWallRet()[0].classList.remove('horizontal');
 		//-----------------------------------------
 		document.querySelector('.orientation').onclick = () => {
 			horizontalFlag = !horizontalFlag;
-			document.querySelector('.container-wall').classList.toggle('horizontal');
+			contWallRet()[0].classList.toggle('horizontal');
 			walls().forEach((item) => {
 			item.classList.toggle('wall_horizontal')
 		});
@@ -126,10 +136,18 @@
 		//----- separate array panels of 2 walls, after init.
 		wallSeperateVars();
 		window.onresize = function () {
-			allPanels().forEach((item) => {
+			if(!horizontalFlag) {
+				allPanels().forEach((item) => {
 				item.style.width = panelSize(walls()) + 'px';
 				item.style.height = panelSize(walls()) + 'px';
 			});
+			} else {
+				allPanels().forEach((item) => {
+				item.style.width = panelSize(contWallRet()) + 'px';
+				item.style.height = panelSize(contWallRet()) + 'px';
+			});
+			}
+			
 		};
 	});
 </script>
@@ -195,10 +213,16 @@
 			<input
 				type="range"
 				class="proportion"
-				min="50"
-				max="100"
+				min= '50'
+				max= '100'
 				bind:value={proportionValue}
-				on:input={(wall_1Ret().style.minWidth = proportionValue + '%')}
+				on:input={function() {
+					if(!horizontalFlag) {
+						wall_1Ret().style.minWidth = proportionValue + '%';
+					} else {
+						wall_1Ret().style.minHeight = proportionValue + '%'
+					}
+					;}}
 			/>
 		</div>
 
@@ -253,7 +277,7 @@
 	}
 	.header {
 		display: flex;
-		justify-content: space-between;
+		justify-content: space-around;
 		align-items: center;
 		flex-wrap: wrap;
 		width: 90vw;
@@ -267,8 +291,10 @@
 		display: flex;
 		flex-direction: column;
 		gap: 5px;
+		padding: 5px;
 		height: auto;
-		
+		box-shadow: 2px 2px 2px;
+		background-color: rgb(104, 103, 103);
 		/* border: 1px solid black; */
 	}
 	p {
@@ -278,9 +304,12 @@
 	button {
 		padding: 0.2%;
 		font-weight: bolder;
+		
 		letter-spacing: 0.1em;
 		margin: 0.2em;
-		border: 2px solid darkgoldenrod;
+		
+		border: none;
+		border-radius: 5px;
 		cursor: pointer;
 	}
 
@@ -289,7 +318,7 @@
 		flex-direction: column;
 		justify-content: space-around;
 		align-items: center;
-		gap: 5px;
+		
 		width: 98vw;
 		height: 93vh;
 		background-color: darkgrey;
@@ -300,14 +329,15 @@
 		justify-content: center;
 		align-items: center;
 		width: 90vw;
-		height: 79%;
-		border: 1px solid black;
+		height: 75%;
+		box-shadow: -2px 2px 3px;
+		/* border: 1px solid black; */
 	}
 
 	.horizontal {
 		flex-direction: column;
-		justify-content: center;
-		align-items: center;
+		/* justify-content: center;
+		align-items: center; */
 	}
 
 	.wall {
@@ -321,6 +351,8 @@
 		overflow: hidden;
 	}
 	.wall_horizontal {
+		flex-direction: row;
+		
 		width: 100%;
 		height: 50%;
 	}
@@ -329,6 +361,7 @@
 		max-width: 3%;
 		height: 100%;
 		flex-shrink: 0;
+		
 		/* border: 1px solid black; */
 	}
 	
