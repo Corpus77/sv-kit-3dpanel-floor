@@ -3,6 +3,7 @@
 	<a href="/floorwalls"><p>Floor & Walls</p></a>
 	<a href="/onewall"> One wall</a>
 	<a href="/twoparts"> two parts</a>
+	<a href="/roombrick"> roombrick</a>
 </nav>
 <slot/>
 

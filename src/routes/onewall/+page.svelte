@@ -36,6 +36,7 @@
 	function fillAll(surface) {
 		removePanels(panel());
 		addPanel(surface);
+
 	}
 	//________________________________________
 	function panelChoice(event) {
