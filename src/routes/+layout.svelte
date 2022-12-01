@@ -1,9 +1,9 @@
 <nav>
-	<a href="/"><p>Home</p></a>
-	<a href="/floorwalls"><p>Floor & Walls</p></a>
-	<a href="/onewall"> One wall</a>
-	<a href="/twoparts"> two parts</a>
-	<a href="/roombrick"> roombrick</a>
+	<a href="/">Начало</a>
+	<a href="/floorwalls">Потолок/стены/пол</a>
+	<a href="/onewall"> Одна стена</a>
+	<a href="/twoparts"> Две части стены</a>
+	<a href="/roombrick"> По кирпичику </a>
 </nav>
 <slot/>
 
@@ -14,8 +14,10 @@
 		box-sizing: border-box;
 	}
 	nav {
-		height: 3vh;
 		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		height: 6vh;
 		gap: 1%;
 	}
 </style>

@@ -94,7 +94,7 @@
 	<header>
 		<div class="buttonWrapper">
 			<Buttonall
-				buttonText="На все стены"
+				buttonText="На всю стену"
 				on:fillAll={(event) => {
 					modalVisible = !modalVisible;
 					fillAllFlag = true;
@@ -110,7 +110,7 @@
 				}}
 			/>
 			<Buttonclear
-				buttonText="Очистить стены"
+				buttonText="Очистить стену"
 				on:clearAll={(event) => {
 					removePanels(panel());
 					initWallPanelAdd();
@@ -137,8 +137,8 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		width: 98vw;
-		height: 94vh;
+		width: 94vw;
+		height: 91vh;
 		/* border: 1px solid black; */
 	}
 	header {

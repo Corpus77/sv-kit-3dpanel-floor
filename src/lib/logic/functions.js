@@ -77,6 +77,7 @@ function initCeilPanelAdd() {
 		}
 	});
 }
+
 export {
 	
 	removePanels,

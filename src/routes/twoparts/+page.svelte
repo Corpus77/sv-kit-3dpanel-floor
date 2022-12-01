@@ -307,7 +307,7 @@
 		
 		letter-spacing: 0.1em;
 		margin: 0.2em;
-		
+		z-index: 10;
 		border: none;
 		border-radius: 5px;
 		cursor: pointer;
@@ -320,7 +320,7 @@
 		align-items: center;
 		
 		width: 98vw;
-		height: 93vh;
+		height: 91vh;
 		background-color: darkgrey;
 	}
 	.container-wall {
@@ -377,6 +377,7 @@
 
 	.proportion {
 		margin-left: 3%;
+		z-index:10;
 	}
 	.range {
 		display: flex;

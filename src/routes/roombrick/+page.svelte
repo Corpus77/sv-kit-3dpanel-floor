@@ -57,7 +57,7 @@
 	//______________________________________________________
 	onMount(() => {
 		btnHeaderArr = document.querySelectorAll('.btn-header');
-		//add bricks to the wall
+  // add bricks to the wall
 		for (let i = 0; i < 400; i++) {
 			let brick = document.createElement('div');
 			brick.className = 'panel';
@@ -84,7 +84,7 @@
 <div class="container">
 	<header>
 		<Buttonall
-			buttonText="На все стены"
+			buttonText="На все кирпичи"
 			on:fillAll={(event) => {
 				modalVisible = !modalVisible;
 				fillAllFlag = true;
@@ -92,7 +92,7 @@
 			}}
 		/>
 		<Buttonone
-			buttonText="Одна панель"
+			buttonText="Один кирпич"
 			on:onePanel={(event) => {
 				modalVisible = !modalVisible;
 				fillAllFlag = false;
@@ -101,7 +101,7 @@
 		/>
 
 		<Buttonclear
-			buttonText="Очистить стены"
+			buttonText="Очистить стену"
 			on:clearAll={(event) => {
 				panel().forEach((item) => {
 					item.style.background = 'none';
@@ -122,7 +122,7 @@
 		justify-content: center;
 		align-items: center;
 		width: 99vw;
-		height: 98vh;
+		height: 91vh;
 		background: grey;
 		border: 1px solid grey;
 	}
@@ -130,7 +130,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		width: 80%;
-		height: 70%;
+		height: 75%;
 		margin-top: 1%;
 		border: 1px solid black;
 		background: lightgrey;
