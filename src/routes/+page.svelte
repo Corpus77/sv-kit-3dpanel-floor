@@ -15,7 +15,9 @@
 			modalVisible = !modalVisible;
 			globalSurface = 'wall';
 		}}
-	> <h1 class="title">На стены</h1>  </div>
+	>
+		<h1 class="title">На стены</h1>
+	</div>
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div
 		class="img floor"
@@ -23,7 +25,9 @@
 			modalVisible = !modalVisible;
 			globalSurface = 'floor';
 		}}
-	> <h1 class="title">На пол</h1>  </div>
+	>
+		<h1 class="title">На пол</h1>
+	</div>
 </div>
 {#if modalVisible}
 	<Modal {globalSurface} on:panelChoice={panelChoice} />
@@ -49,10 +53,10 @@
 		border: 1px solid black;
 	}
 	.wall {
-		background: url('./textures/stonesand.jpg');
+		background: url('/textures/stonesand.jpg');
 	}
 	.floor {
-		background: url('./textures/floor/f-grass.jpg');
+		background: url('/textures/floor/f-grass.jpg');
 	}
 	.title {
 		color: white;
