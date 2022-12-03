@@ -1,31 +1,59 @@
 <script>
+	import { onMount } from 'svelte';
 	import Modal from '$lib/components/Modal.svelte';
 	let modalVisible = false;
 	let globalSurface;
-	function panelChoice() {
-		modalVisible = !modalVisible;
+	let url;
+	let urlWall = '/textures/';
+	let urlFloor = '/textures/floor/';
+	function divRet(surface) {
+		return document.querySelector(`.${surface}`)
 	}
+	function squareMake() {
+		divRet('wall').style.height = divRet('wall').offsetWidth +'px'
+		divRet('floor').style.height = divRet('wall').offsetWidth +'px'
+	}
+	function panelChoice(event) {
+		modalVisible = !modalVisible;
+		url = event.detail;
+		if(globalSurface == 'wall') {
+			divRet('wall').firstChild.setAttribute('src', `${urlWall}${url}` )
+			
+		} else {
+			divRet('floor').firstChild.setAttribute('src', `${urlFloor}${url}` )
+		}
+			
+	}
+	onMount(() => {
+		squareMake();
+		window.onresize = () => {
+			squareMake(); 
+		}
+	})	
 </script>
 
 <div class="root">
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div
-		class="img wall"
+		class="imgContainer wall"
+		
 		on:click={function () {
 			modalVisible = !modalVisible;
 			globalSurface = 'wall';
+			
 		}}
-	>
-		<h1 class="title">На стены</h1>
+	> <img src="/textures/stonesand.jpg" alt="">
+		<h1 class="title">На стеныили потолок</h1>
 	</div>
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div
-		class="img floor"
+		class="imgContainer floor"
 		on:click={function () {
 			modalVisible = !modalVisible;
 			globalSurface = 'floor';
 		}}
 	>
+	<img src="/textures/floor/f-grass.jpg" alt="">
 		<h1 class="title">На пол</h1>
 	</div>
 </div>
@@ -42,23 +70,37 @@
 		gap: 3vw;
 		height: 94vh;
 	}
-	.img {
+	.imgContainer {
+		cursor: pointer;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: baseline;
 		align-items: center;
 		width: 30vw;
-		height: 30vh;
-		box-shadow: 5px 5px 6px;
-		border: 1px solid black;
+		background-size:cover;
+		
 	}
-	.wall {
-		background: url('/textures/stonesand.jpg');
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		box-shadow: 8px 8px 16px;
 	}
-	.floor {
-		background: url('/textures/floor/f-grass.jpg');
-	}
+		
+	
 	.title {
 		color: white;
+		text-shadow: 2px 2px 4px black;;
+	}
+
+	@media only screen and (max-height: 500px) {
+		.title {
+			font-size: 1em;
+		}
+	}
+	@media only screen and (max-width: 500px) {
+		.title {
+			font-size: 1em;
+		}
 	}
 </style>

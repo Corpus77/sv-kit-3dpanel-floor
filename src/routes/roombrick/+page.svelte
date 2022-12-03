@@ -56,8 +56,9 @@
 	}
 	//______________________________________________________
 	onMount(() => {
+		
 		btnHeaderArr = document.querySelectorAll('.btn-header');
-  // add bricks to the wall
+		// add bricks to the wall
 		for (let i = 0; i < 400; i++) {
 			let brick = document.createElement('div');
 			brick.className = 'panel';

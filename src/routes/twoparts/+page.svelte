@@ -1,5 +1,4 @@
 <script>
-	
 	import Modal from '$lib/components/Modal.svelte';
 	import { walls, allPanels, panel, panelSize, wall_1Ret } from '$lib/logic/retSurfaces.js';
 
@@ -8,7 +7,6 @@
 	import Buttonone from '$lib/components/Buttonone.svelte';
 	import Buttonclear from '$lib/components/Buttonclear.svelte';
 	import { initWallPanelAdd, styleCommonPanels, removePanels } from '$lib/logic/functions';
-	
 
 	//----------------------------------------
 	let modalVisible = false;
@@ -16,7 +14,7 @@
 	let globalSurface = 'wall';
 	let btnHeaderArr;
 	let blockFlag = false;
-	let horizontalFlag = false
+	let horizontalFlag = false;
 	let url = '';
 	let urlWall = './textures/';
 	//----------------------------------
@@ -45,10 +43,9 @@
 			walls().forEach((item) => {
 				item.onclick = function (e) {
 					url = urlWall + event.detail;
-					if(e.target.classList.contains('panel')) {
+					if (e.target.classList.contains('panel')) {
 						e.target.style.backgroundImage = `url(${url})`;
 					}
-					
 				};
 			});
 		}
@@ -107,28 +104,28 @@
 	}
 	//--------------------------------------------
 	function contWallRet() {
-		return document.querySelectorAll('.container-wall')
+		return document.querySelectorAll('.container-wall');
 	}
 	//--------------------------------------------
 	onMount(() => {
 		// remove classes to toggle
 		teeth_blockRet().classList.remove('teeth_active');
 		walls().forEach((item) => {
-			item.classList.remove('wall_horizontal')
-		})
-		
+			item.classList.remove('wall_horizontal');
+		});
+
 		contWallRet()[0].classList.remove('horizontal');
 		//-----------------------------------------
 		document.querySelector('.orientation').onclick = () => {
 			horizontalFlag = !horizontalFlag;
 			contWallRet()[0].classList.toggle('horizontal');
 			walls().forEach((item) => {
-			item.classList.toggle('wall_horizontal')
-		});
-		teeth_blockRet().classList.remove('teeth_active');
-		}
+				item.classList.toggle('wall_horizontal');
+			});
+			teeth_blockRet().classList.remove('teeth_active');
+		};
 		//-------------------------------------------
-		
+
 		btnHeaderArr = document.querySelectorAll('.btn-header');
 
 		//----- initial add panels
@@ -136,25 +133,24 @@
 		//----- separate array panels of 2 walls, after init.
 		wallSeperateVars();
 		window.onresize = function () {
-			if(!horizontalFlag) {
+			if (!horizontalFlag) {
 				allPanels().forEach((item) => {
-				item.style.width = panelSize(walls()) + 'px';
-				item.style.height = panelSize(walls()) + 'px';
-			});
+					item.style.width = panelSize(walls()) + 'px';
+					item.style.height = panelSize(walls()) + 'px';
+				});
 			} else {
 				allPanels().forEach((item) => {
-				item.style.width = panelSize(contWallRet()) + 'px';
-				item.style.height = panelSize(contWallRet()) + 'px';
-			});
+					item.style.width = panelSize(contWallRet()) + 'px';
+					item.style.height = panelSize(contWallRet()) + 'px';
+				});
 			}
-			
 		};
 	});
 </script>
 
 <div class="container">
 	<div class="header">
-		<button class="orientation">Вертикально/Горизонтально</button>
+		<button class="orientation">Положение</button>
 		<div class="btn_wrapper btn_wrapper1">
 			<p>Стена 1</p>
 			<Buttonall
@@ -213,50 +209,48 @@
 			<input
 				type="range"
 				class="proportion"
-				min= '50'
-				max= '100'
+				min="50"
+				max="100"
 				bind:value={proportionValue}
-				on:input={function() {
-					if(!horizontalFlag) {
+				on:input={function () {
+					if (!horizontalFlag) {
 						wall_1Ret().style.minWidth = proportionValue + '%';
 					} else {
-						wall_1Ret().style.minHeight = proportionValue + '%'
+						wall_1Ret().style.minHeight = proportionValue + '%';
 					}
-					;}}
+				}}
 			/>
 		</div>
 
 		<button
 			class="teeth"
 			on:click={function () {
-				if(!horizontalFlag) {
+				if (!horizontalFlag) {
 					bricksRet().forEach((item) => {
-					item.remove();
-				});
-				teeth_blockRet().classList.toggle('teeth_active');
-				let counter = 1;
-				wallSeperateVars();
-				for (let i = 0; i < 40; i++) {
-					const tooth = document.createElement('div');
-					tooth.style.height = 3 + '%';
+						item.remove();
+					});
+					teeth_blockRet().classList.toggle('teeth_active');
+					let counter = 1;
+					wallSeperateVars();
+					for (let i = 0; i < 40; i++) {
+						const tooth = document.createElement('div');
+						tooth.style.height = 3 + '%';
 
-					tooth.classList.add('brick');
-					// tooth.style.border = '1px solid black';
-					teeth_blockRet().append(tooth);
-					//**********
+						tooth.classList.add('brick');
+						// tooth.style.border = '1px solid black';
+						teeth_blockRet().append(tooth);
+						//**********
 
-					if (url) {
-						if (counter % 2 == 0) {
-							tooth.style.backgroundImage = wall_1_panels[0].style.backgroundImage;
-						} else {
-							tooth.style.backgroundImage = wall_2_panels[0].style.backgroundImage;
+						if (url) {
+							if (counter % 2 == 0) {
+								tooth.style.backgroundImage = wall_1_panels[0].style.backgroundImage;
+							} else {
+								tooth.style.backgroundImage = wall_2_panels[0].style.backgroundImage;
+							}
+							counter++;
 						}
-						counter++;
 					}
 				}
-				}
-
-				
 			}}>Зубцы</button
 		>
 	</div>
@@ -282,7 +276,7 @@
 		flex-wrap: wrap;
 		width: 90vw;
 		height: 19%;
-		padding: .5%;
+		padding: 0.5%;
 		margin-bottom: 1%;
 		background-color: rgb(136, 136, 126);
 		/* border: 1px solid black; */
@@ -298,13 +292,13 @@
 		/* border: 1px solid black; */
 	}
 	p {
-		font-size: 1.7vw ;
+		font-size: 1.7vw;
 		font-weight: bold;
 	}
 	button {
 		padding: 0.2%;
 		font-weight: bolder;
-		
+
 		letter-spacing: 0.1em;
 		margin: 0.2em;
 		z-index: 10;
@@ -318,7 +312,7 @@
 		flex-direction: column;
 		justify-content: space-around;
 		align-items: center;
-		
+
 		width: 98vw;
 		height: 91vh;
 		background-color: darkgrey;
@@ -352,7 +346,7 @@
 	}
 	.wall_horizontal {
 		flex-direction: row;
-		
+
 		width: 100%;
 		height: 50%;
 	}
@@ -361,10 +355,10 @@
 		max-width: 3%;
 		height: 100%;
 		flex-shrink: 0;
-		
+
 		/* border: 1px solid black; */
 	}
-	
+
 	.teeth_active {
 		display: flex;
 		flex-direction: column;
@@ -372,12 +366,11 @@
 		width: 3vw;
 		height: 100%;
 		/* border: 1px solid black; */
-		
 	}
 
 	.proportion {
 		margin-left: 3%;
-		z-index:10;
+		z-index: 10;
 	}
 	.range {
 		display: flex;
@@ -388,10 +381,15 @@
 	input {
 		cursor: pointer;
 	}
-	
 
 	/* media request */
-	@media screen and (max-width: 830px) {
-		
+	@media only screen and (max-width: 538px) {
+		.header {
+			flex-direction: column;
+		}
+		p {
+			font-size: .7em;
+		}
 	}
+		
 </style>

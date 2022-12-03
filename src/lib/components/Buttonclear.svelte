@@ -25,12 +25,17 @@
     border: none;
     cursor: pointer;
   }
-  @media only screen and (max-device-width: 480px) {
+  @media only screen and (max-width: 480px) {
     button {
-      font-size: smaller;
+      font-size: .7em;
+      font-weight:lighter;
     }
-    .non-activeapp {
-      font-size: smaller;
+    
+  }
+  @media only screen and (max-height: 440px) {
+    button {
+      font-size: .7em;
+      font-weight:lighter;
     }
   }
 </style>
