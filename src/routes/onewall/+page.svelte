@@ -128,16 +128,18 @@
 
 <style>
 	* {
-		margin: 0;
+		margin: 0 auto;
 		padding: 0;
 		box-sizing: border-box;
 	}
+	
 	.container {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		width: 94vw;
+
+		/* width: 94vw; */
 		height: 91vh;
 		/* border: 1px solid black; */
 	}

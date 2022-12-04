@@ -288,8 +288,8 @@
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
-		width: 98vw;
-		height: 94vh;
+		/* width: 98vw; */
+		height: 92vh;
 		background-color: black;
 		overflow: hidden;
 	}

@@ -43,7 +43,7 @@
 			
 		}}
 	> <img src="/textures/stonesand.jpg" alt="">
-		<h1 class="title">На стеныили потолок</h1>
+		<h1 class="title">На стены или потолок</h1>
 	</div>
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div
