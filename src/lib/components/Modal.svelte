@@ -16,7 +16,7 @@
 		filenamesVinilWall
 	} from '../filenames.js';
 	import { filenamesPuzzles, filenamesVinil, filenamesPuzzlesButton } from '../filenamesfloor';
-
+	import {filenamesPlintus} from '../filenamesplintus'
 	export let globalSurface;
 	// -------------------------------------------------
 	function active(button, typePanel, surfaceArray) {
@@ -114,6 +114,14 @@
 			imgArr: filenamesVinil
 		}
 	];
+	let plintusArray = [
+		{
+			type: 'gluePlintus',
+			visible: false,
+			title: 'Самоклеющийся плинтус',
+			imgArr: filenamesPlintus
+		}
+	]
 </script>
 
 <div class="container" transition:slide={{ delay: 100, duration: 500 }}>
@@ -147,6 +155,18 @@
 					class="btn non-active"
 					on:click={(e) => {
 						active(e.target, item, wallArray);
+						item.visible = !item.visible;
+					}}
+					>{item.title}
+				</button>
+			{/each}
+			<!--! for plintus -->
+		{:else if globalSurface == 'plintusUp' || 'plintusDown'}
+			{#each plintusArray as item, index}
+				<button
+					class="btn non-active"
+					on:click={(e) => {
+						active(e.target, item, plintusArray);
 						item.visible = !item.visible;
 					}}
 					>{item.title}
@@ -208,6 +228,26 @@
 						}}
 					>
 						<img src="./textures/{filename.url}" alt="" loading="lazy" />
+						<span class="title">{filename.title}</span>
+						<span class="size">{filename.size} mm</span>
+					</div>
+				{/each}
+			{/if}
+		{/each}
+		<!--! for plintus -->
+		{:else if globalSurface == 'plintusUp' || 'plintusDown'}
+		{#each plintusArray as item}
+			{#if item.visible}
+				{#each item.imgArr as filename}
+					<!-- svelte-ignore a11y-click-events-have-key-events -->
+					<div
+						transition:scale={{ delay: 200, duration: 500, easing: linear }}
+						class="divImg"
+						on:click={() => {
+							panelChoice(filename.url);
+						}}
+					>
+						<img src="./textures/plintus/{filename.url}" alt="" loading="lazy" />
 						<span class="title">{filename.title}</span>
 						<span class="size">{filename.size} mm</span>
 					</div>

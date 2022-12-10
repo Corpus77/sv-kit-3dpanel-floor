@@ -1,10 +1,4 @@
-import {
-	walls,
-	floor,
-	ceil,
-	allPanels,
-	panelSize
-} from '$lib/logic/retSurfaces.js';
+import { walls, floor, ceil, allPanels, panelSize } from '$lib/logic/retSurfaces.js';
 
 // ----------------------------------------------
 
@@ -38,8 +32,6 @@ function styleCommonPanels(toCreate) {
 		};
 	});
 }
-
-
 
 function initWallPanelAdd() {
 	walls().forEach((item) => {
@@ -77,15 +69,24 @@ function initCeilPanelAdd() {
 		}
 	});
 }
-
+//* Filling plintus
+function fillPlintus(surface) {
+	const plintus = document.querySelector(`.${surface}`);
+	for (let i = 0; i <= 5; i++) {
+		const plintusItem = document.createElement('div');
+		plintusItem.classList.add('panel');
+		plintusItem.style.width = plintus.offsetWidth / 4 + 'px';
+		
+		// plintusItem.style.border = '1px solid black';
+		
+		plintus.append(plintusItem);
+	}
+}
 export {
-	
 	removePanels,
 	styleCommonPanels,
-	
-	
 	initWallPanelAdd,
 	initFloorPanelAdd,
 	initCeilPanelAdd,
- 
+	fillPlintus
 };

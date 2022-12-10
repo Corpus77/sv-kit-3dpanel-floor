@@ -9,6 +9,7 @@ function ceil() {
 	return document.querySelectorAll('.ceil');
 }
 
+
 // Get surface type panels array
 function allPanels() {
 	return document.querySelectorAll('.allPanels');
@@ -30,4 +31,22 @@ function wall_1Ret() {
 	return document.querySelector('.wall_1');
 }
 
-export { walls, floor, ceil, allPanels, panel, panelFloor, panelCeil, panelSize, wall_1Ret };
+function plintusUp() {
+	return document.querySelectorAll('.plintusUp');
+}
+function plintusDown() {
+	return document.querySelectorAll('.plintusDown');
+}
+
+export {
+	walls,
+	floor,
+	ceil,
+	allPanels,
+	panel,
+	panelFloor,
+	panelCeil,
+	panelSize,
+	wall_1Ret,
+	plintusUp, plintusDown
+};
