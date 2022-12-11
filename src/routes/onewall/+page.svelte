@@ -21,7 +21,8 @@
 		initWallPanelAdd,
 		styleCommonPanels,
 		removePanels,
-		fillPlintus
+		btnRemoveActive,
+		btnHeaderActive
 	} from '$lib/logic/functions';
 	//----------------------------------------
 	let modalVisible = false;
@@ -89,20 +90,9 @@
 		fillAllFlag = false;
 	}
 	//__________________________________________
-	function btnHeaderActive(event) {
-		setTimeout(function () {
-			if (modalVisible) {
-				event.classList.remove('non-activeapp');
-			} else {
-				event.classList.add('non-activeapp');
-			}
-			btnHeaderArr.forEach((item) => {
-				if (item != event) {
-					item.classList.add('non-activeapp');
-				}
-			});
-		}, 10);
-	}
+	
+	
+	
 	//-----------------------------------------
 	onMount(() => {
 		btnHeaderArr = document.querySelectorAll('.btn-header');
@@ -129,7 +119,8 @@
 					modalVisible = !modalVisible;
 					fillAllFlag = true;
 					globalSurface = 'wall';
-					btnHeaderActive(event.detail);
+					btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
+					plintusDownFlag = plintusUpFlag = false;
 				}}
 			/>
 			<Buttonone
@@ -138,21 +129,24 @@
 					modalVisible = !modalVisible;
 					fillAllFlag = false;
 					globalSurface = 'wall';
-					btnHeaderActive(event.detail);
+					//btnHeaderActive(event.detail);
+					btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
+					plintusDownFlag = plintusUpFlag = false;
 				}}
 			/>
 			<!-- TODO: -->
 			<Buttonplintusup
 				buttonText="Плинтус верх"
 				on:plintusup={function (event) {
-					console.dir(event.detail);
 					if (event.detail.classList.contains('non-activeapp')) {
 						modalVisible = !modalVisible;
 						fillAllFlag = true;
 						globalSurface = 'plintusUp';
-						btnHeaderActive(event.detail);
+						//btnHeaderActive(event.detail);
+						btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
 					} else {
 						plintusUpFlag = false;
+						btnRemoveActive(btnHeaderArr);
 					}
 				}}
 			/>
@@ -160,14 +154,15 @@
 			<Buttonplintusdown
 				buttonText="Плинтус вниз"
 				on:plintusdown={function (event) {
-					console.dir(event.detail);
 					if (event.detail.classList.contains('non-activeapp')) {
 						modalVisible = !modalVisible;
 						fillAllFlag = true;
 						globalSurface = 'plintusDown';
-						btnHeaderActive(event.detail);
+						//btnHeaderActive(event.detail);
+						btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
 					} else {
 						plintusDownFlag = false;
+						btnRemoveActive(btnHeaderArr);
 					}
 				}}
 			/>
@@ -176,6 +171,7 @@
 				on:clearAll={(event) => {
 					removePanels(panel());
 					initWallPanelAdd();
+					plintusDownFlag = plintusUpFlag = false;
 				}}
 			/>
 		</div>

@@ -69,6 +69,22 @@ function initCeilPanelAdd() {
 		}
 	});
 }
+
+function btnHeaderActive(btn, modal, btnHeaderArr) {
+	setTimeout(function () {
+		if (modal) {
+			btn.classList.remove('non-activeapp');
+		} else {
+			btn.classList.add('non-activeapp');
+		}
+		btnHeaderArr.forEach((item) => {
+			if (item != btn) {
+				item.classList.add('non-activeapp');
+			}
+		});
+	}, 10);
+}
+
 //* Filling plintus
 function fillPlintus(surface) {
 	const plintus = document.querySelector(`.${surface}`);
@@ -76,11 +92,17 @@ function fillPlintus(surface) {
 		const plintusItem = document.createElement('div');
 		plintusItem.classList.add('panel');
 		plintusItem.style.width = plintus.offsetWidth / 4 + 'px';
-		
+
 		// plintusItem.style.border = '1px solid black';
-		
+
 		plintus.append(plintusItem);
 	}
+}
+//! For plintus
+function btnRemoveActive(btnHeaderArr) {
+	btnHeaderArr.forEach((item) => {
+		item.classList.add('non-activeapp');
+	});
 }
 export {
 	removePanels,
@@ -88,5 +110,7 @@ export {
 	initWallPanelAdd,
 	initFloorPanelAdd,
 	initCeilPanelAdd,
-	fillPlintus
+	fillPlintus,
+	btnRemoveActive,
+	btnHeaderActive
 };

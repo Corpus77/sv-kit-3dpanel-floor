@@ -4,7 +4,7 @@
 	import Buttonall from '$lib/components/Buttonall.svelte';
 	import Buttonone from '$lib/components/Buttonone.svelte';
 	import Buttonclear from '$lib/components/Buttonclear.svelte';
-
+	import {btnHeaderActive} from '$lib/logic/functions.js'
 	import { walls, panel } from '$lib/logic/retSurfaces.js';
 	let modalVisible = false;
 	let fillAllFlag = true;
@@ -40,20 +40,7 @@
 		fillAllFlag = false;
 	}
 	//__________________________________________
-	function btnHeaderActive(event) {
-		setTimeout(function () {
-			if (modalVisible) {
-				event.classList.remove('non-activeapp');
-			} else {
-				event.classList.add('non-activeapp');
-			}
-			btnHeaderArr.forEach((item) => {
-				if (item != event) {
-					item.classList.add('non-activeapp');
-				}
-			});
-		}, 10);
-	}
+	
 	//______________________________________________________
 	onMount(() => {
 		
@@ -89,7 +76,7 @@
 			on:fillAll={(event) => {
 				modalVisible = !modalVisible;
 				fillAllFlag = true;
-				btnHeaderActive(event.detail);
+				btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
 			}}
 		/>
 		<Buttonone
@@ -97,7 +84,7 @@
 			on:onePanel={(event) => {
 				modalVisible = !modalVisible;
 				fillAllFlag = false;
-				btnHeaderActive(event.detail);
+				btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
 			}}
 		/>
 

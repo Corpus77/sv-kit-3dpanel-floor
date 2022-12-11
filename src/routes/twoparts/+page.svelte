@@ -6,7 +6,7 @@
 	import Buttonall from '$lib/components/Buttonall.svelte';
 	import Buttonone from '$lib/components/Buttonone.svelte';
 	import Buttonclear from '$lib/components/Buttonclear.svelte';
-	import { initWallPanelAdd, styleCommonPanels, removePanels } from '$lib/logic/functions';
+	import { initWallPanelAdd, styleCommonPanels, removePanels, btnHeaderActive } from '$lib/logic/functions';
 
 	//----------------------------------------
 	let modalVisible = false;
@@ -78,20 +78,20 @@
 	}
 
 	//__________________________________________
-	function btnHeaderActive(event) {
-		setTimeout(function () {
-			if (modalVisible) {
-				event.classList.remove('non-activeapp');
-			} else {
-				event.classList.add('non-activeapp');
-			}
-			btnHeaderArr.forEach((item) => {
-				if (item != event) {
-					item.classList.add('non-activeapp');
-				}
-			});
-		}, 10);
-	}
+	// function btnHeaderActive(event) {
+	// 	setTimeout(function () {
+	// 		if (modalVisible) {
+	// 			event.classList.remove('non-activeapp');
+	// 		} else {
+	// 			event.classList.add('non-activeapp');
+	// 		}
+	// 		btnHeaderArr.forEach((item) => {
+	// 			if (item != event) {
+	// 				item.classList.add('non-activeapp');
+	// 			}
+	// 		});
+	// 	}, 10);
+	// }
 	//___________________________________________
 
 	//--------------------------------------------
@@ -159,7 +159,7 @@
 					modalVisible = !modalVisible;
 					fillAllFlag = true;
 					blockFlag = false;
-					btnHeaderActive(event.detail);
+					btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
 				}}
 			/>
 
@@ -178,7 +178,7 @@
 			on:onePanel={(event) => {
 				modalVisible = !modalVisible;
 				fillAllFlag = false;
-				btnHeaderActive(event.detail);
+				btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
 			}}
 		/>
 		<div class="btn_wrapper btn_wrapper2">
@@ -189,7 +189,7 @@
 					modalVisible = !modalVisible;
 					fillAllFlag = true;
 					blockFlag = true;
-					btnHeaderActive(event.detail);
+					btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
 				}}
 			/>
 

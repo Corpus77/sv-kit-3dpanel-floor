@@ -20,7 +20,7 @@
 		initFloorPanelAdd,
 		initCeilPanelAdd,
 		removePanels,
-		
+		btnHeaderActive
 	} from '$lib/logic/functions';
 	let modalVisible = false;
 	let fillAllFlag = true;
@@ -124,20 +124,7 @@
 		});
 	}
 	// --------------------------------
-	function btnHeaderActive(event) {
-		setTimeout(function () {
-			if (modalVisible) {
-				event.classList.remove('non-activeapp');
-			} else {
-				event.classList.add('non-activeapp');
-			}
-			btnHeaderArr.forEach((item) => {
-				if (item != event) {
-					item.classList.add('non-activeapp');
-				}
-			});
-		}, 10);
-	}
+	
 
 	//_______________________________
 	onMount(() => {
@@ -169,7 +156,7 @@
 						modalVisible = !modalVisible;
 						globalSurface = 'wall';
 						fillAllFlag = true;
-						btnHeaderActive(event.detail);
+						btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
 					}}
 
 
@@ -189,7 +176,7 @@
 
 						globalSurface = 'wall';
 						fillAllFlag = false;
-						btnHeaderActive(event.detail);
+						btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
 					}}
 				/>
 			</div>
@@ -206,7 +193,7 @@
 						globalSurface = 'ceil';
 						fillAllFlag = true;
 
-						btnHeaderActive(event.detail);
+						btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
 					}}
 				/>
 				<Buttonclear
@@ -224,7 +211,7 @@
 
 						globalSurface = 'ceil';
 						fillAllFlag = false;
-						btnHeaderActive(event.detail);
+						btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
 					}}
 				/>
 			</div>
@@ -240,7 +227,7 @@
 
 						globalSurface = 'floor';
 						fillAllFlag = true;
-						btnHeaderActive(event.detail);
+						btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
 					}}
 				/>
 				<Buttonclear
@@ -257,7 +244,7 @@
 
 						globalSurface = 'floor';
 						fillAllFlag = false;
-						btnHeaderActive(event.detail);
+						btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
 					}}
 				/>
 			</div>
