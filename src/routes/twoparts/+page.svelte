@@ -6,11 +6,23 @@
 	import Buttonall from '$lib/components/Buttonall.svelte';
 	import Buttonone from '$lib/components/Buttonone.svelte';
 	import Buttonclear from '$lib/components/Buttonclear.svelte';
-	import { initWallPanelAdd, styleCommonPanels, removePanels, btnHeaderActive } from '$lib/logic/functions';
+	import Buttonplintusup from '$lib/components/Buttonplintusup.svelte';
+	import Buttonplintusdown from '$lib/components/Buttonplintusdown.svelte';
+	import Plintusup from '$lib/components/Plintusup.svelte';
+	import Plintusdown from '$lib/components/Plintusdown.svelte';
+	import {
+		initWallPanelAdd,
+		styleCommonPanels,
+		removePanels,
+		btnHeaderActive,
+		btnRemoveActive
+	} from '$lib/logic/functions';
 
 	//----------------------------------------
 	let modalVisible = false;
 	let fillAllFlag = true;
+	let plintusUpFlag = false;
+	let plintusDownFlag = false;
 	let globalSurface = 'wall';
 	let btnHeaderArr;
 	let blockFlag = false;
@@ -49,6 +61,24 @@
 				};
 			});
 		}
+		//TODO:
+		else if (fillAllFlag && globalSurface == 'plintusUp') {
+			plintusUpFlag = true;
+			url = event.detail;
+			setTimeout(() => {
+				document.querySelector('.plintusUp').childNodes.forEach((item) => {
+					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
+				});
+			});
+		} else if (fillAllFlag && globalSurface == 'plintusDown') {
+			plintusDownFlag = true;
+			url = event.detail;
+			setTimeout(() => {
+				document.querySelector('.plintusDown').childNodes.forEach((item) => {
+					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
+				});
+			});
+		}
 
 		modalVisible = false;
 		fillAllFlag = false;
@@ -78,21 +108,6 @@
 	}
 
 	//__________________________________________
-	// function btnHeaderActive(event) {
-	// 	setTimeout(function () {
-	// 		if (modalVisible) {
-	// 			event.classList.remove('non-activeapp');
-	// 		} else {
-	// 			event.classList.add('non-activeapp');
-	// 		}
-	// 		btnHeaderArr.forEach((item) => {
-	// 			if (item != event) {
-	// 				item.classList.add('non-activeapp');
-	// 			}
-	// 		});
-	// 	}, 10);
-	// }
-	//___________________________________________
 
 	//--------------------------------------------
 	function teeth_blockRet() {
@@ -159,7 +174,40 @@
 					modalVisible = !modalVisible;
 					fillAllFlag = true;
 					blockFlag = false;
-					btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
+					globalSurface = 'wall';
+					btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
+				}}
+			/>
+			<!-- TODO:  Plintus section-->
+			<Buttonplintusup
+				buttonText="Плинтус верх"
+				on:plintusup={function (event) {
+					if (event.detail.classList.contains('non-activeapp')) {
+						modalVisible = !modalVisible;
+						fillAllFlag = true;
+						globalSurface = 'plintusUp';
+						//btnHeaderActive(event.detail);
+						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
+					} else {
+						plintusUpFlag = false;
+						btnRemoveActive(btnHeaderArr);
+					}
+				}}
+			/>
+
+			<Buttonplintusdown
+				buttonText="Плинтус вниз"
+				on:plintusdown={function (event) {
+					if (event.detail.classList.contains('non-activeapp')) {
+						modalVisible = !modalVisible;
+						fillAllFlag = true;
+						globalSurface = 'plintusDown';
+						//btnHeaderActive(event.detail);
+						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
+					} else {
+						plintusDownFlag = false;
+						btnRemoveActive(btnHeaderArr);
+					}
 				}}
 			/>
 
@@ -178,7 +226,8 @@
 			on:onePanel={(event) => {
 				modalVisible = !modalVisible;
 				fillAllFlag = false;
-				btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
+				globalSurface = 'wall';
+				btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 			}}
 		/>
 		<div class="btn_wrapper btn_wrapper2">
@@ -189,7 +238,40 @@
 					modalVisible = !modalVisible;
 					fillAllFlag = true;
 					blockFlag = true;
-					btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
+					globalSurface = 'wall';
+					btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
+				}}
+			/>
+			<!-- TODO:  Plintus section-->
+			<Buttonplintusup
+				buttonText="Плинтус верх"
+				on:plintusup={function (event) {
+					if (event.detail.classList.contains('non-activeapp')) {
+						modalVisible = !modalVisible;
+						fillAllFlag = true;
+						globalSurface = 'plintusUp';
+						//btnHeaderActive(event.detail);
+						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
+					} else {
+						plintusUpFlag = false;
+						btnRemoveActive(btnHeaderArr);
+					}
+				}}
+			/>
+
+			<Buttonplintusdown
+				buttonText="Плинтус вниз"
+				on:plintusdown={function (event) {
+					if (event.detail.classList.contains('non-activeapp')) {
+						modalVisible = !modalVisible;
+						fillAllFlag = true;
+						globalSurface = 'plintusDown';
+						//btnHeaderActive(event.detail);
+						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
+					} else {
+						plintusDownFlag = false;
+						btnRemoveActive(btnHeaderArr);
+					}
 				}}
 			/>
 
@@ -240,12 +322,12 @@
 						// tooth.style.border = '1px solid black';
 						teeth_blockRet().append(tooth);
 						//**********
-
+						
 						if (url) {
 							if (counter % 2 == 0) {
-								tooth.style.backgroundImage = wall_1_panels[0].style.backgroundImage;
+								tooth.style.backgroundImage = wall_1_panels[1].style.backgroundImage;
 							} else {
-								tooth.style.backgroundImage = wall_2_panels[0].style.backgroundImage;
+								tooth.style.backgroundImage = wall_2_panels[1].style.backgroundImage;
 							}
 							counter++;
 						}
@@ -255,9 +337,23 @@
 		>
 	</div>
 	<div class="container-wall horizontal">
-		<div class="wall wall_1 wall_horizontal" />
+		<div class="wall wall_1 wall_horizontal">
+			{#if plintusUpFlag}
+				<Plintusup />
+			{/if}
+			{#if plintusDownFlag}
+				<Plintusdown />
+			{/if}
+		</div>
 		<div class="teeth_block teeth_active " />
-		<div class="wall wall_2 wall_horizontal" />
+		<div class="wall wall_2 wall_horizontal">
+			{#if plintusUpFlag}
+				<Plintusup />
+			{/if}
+			{#if plintusDownFlag}
+				<Plintusdown />
+			{/if}
+		</div>
 	</div>
 	{#if modalVisible}
 		<Modal {globalSurface} on:panelChoice={panelChoice} />
@@ -326,8 +422,6 @@
 		cursor: pointer;
 	}
 
-	
-
 	.horizontal {
 		flex-direction: column;
 		/* justify-content: center;
@@ -335,6 +429,7 @@
 	}
 
 	.wall {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		flex-wrap: wrap;
