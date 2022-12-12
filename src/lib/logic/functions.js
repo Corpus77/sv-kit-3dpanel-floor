@@ -84,7 +84,12 @@ function btnHeaderActive(btn, modal, btnHeaderArr) {
 		});
 	}, 10);
 }
-
+function btnRemoveActive(btnHeaderArr) {
+	btnHeaderArr.forEach((item) => {
+		item.classList.add('non-activeapp');
+	});
+}
+//! For plintus
 //* Filling plintus
 function fillPlintus(surface) {
 	const plintus = document.querySelector(`.${surface}`);
@@ -98,12 +103,7 @@ function fillPlintus(surface) {
 		plintus.append(plintusItem);
 	}
 }
-//! For plintus
-function btnRemoveActive(btnHeaderArr) {
-	btnHeaderArr.forEach((item) => {
-		item.classList.add('non-activeapp');
-	});
-}
+
 export {
 	removePanels,
 	styleCommonPanels,

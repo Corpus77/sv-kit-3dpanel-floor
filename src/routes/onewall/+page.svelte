@@ -22,7 +22,8 @@
 		styleCommonPanels,
 		removePanels,
 		btnRemoveActive,
-		btnHeaderActive
+		btnHeaderActive,
+		
 	} from '$lib/logic/functions';
 	//----------------------------------------
 	let modalVisible = false;
@@ -134,7 +135,7 @@
 					plintusDownFlag = plintusUpFlag = false;
 				}}
 			/>
-			<!-- TODO: -->
+			<!-- TODO:  Plintus section-->
 			<Buttonplintusup
 				buttonText="Плинтус верх"
 				on:plintusup={function (event) {
