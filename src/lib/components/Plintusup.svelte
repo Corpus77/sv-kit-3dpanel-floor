@@ -10,7 +10,7 @@
 	});
 </script>
 
-<div class=" plintus plintusUp" />
+<div class="plintus plintusUp" />
 
 <style>
 	.plintusUp {

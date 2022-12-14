@@ -48,10 +48,16 @@
 		if (fillAllFlag && blockFlag && globalSurface == 'wall') {
 			fillAll(document.querySelectorAll('.wall_2'));
 			url = event.detail;
+			//! ----------------
+			plintusUpFlag = plintusDownFlag = false;
 		} else if (fillAllFlag && !blockFlag && globalSurface == 'wall') {
+			//! ----------------
+			plintusUpFlag = plintusDownFlag = false;
 			fillAll(document.querySelectorAll('.wall_1'));
 			url = event.detail;
 		} else if (!fillAllFlag && globalSurface == 'wall') {
+			//! ----------------
+			plintusUpFlag = plintusDownFlag = false;
 			walls().forEach((item) => {
 				item.onclick = function (e) {
 					url = urlWall + event.detail;
@@ -62,21 +68,25 @@
 			});
 		}
 		//TODO:
-		else if (fillAllFlag && globalSurface == 'plintusUp') {
+		else if (globalSurface == 'plintusUp') {
+			//fillAllFlag &&
 			plintusUpFlag = true;
 			url = event.detail;
 			setTimeout(() => {
+				console.log(document.querySelector('.plintusUp'));
 				document.querySelector('.plintusUp').childNodes.forEach((item) => {
 					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
-				});
+				}, 100);
 			});
-		} else if (fillAllFlag && globalSurface == 'plintusDown') {
+		} else if (globalSurface == 'plintusDown') {
+			//fillAllFlag &&
 			plintusDownFlag = true;
 			url = event.detail;
 			setTimeout(() => {
+				console.log(document.querySelector('.plintusUp'));
 				document.querySelector('.plintusDown').childNodes.forEach((item) => {
 					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
-				});
+				}, 100);
 			});
 		}
 
@@ -186,7 +196,7 @@
 						modalVisible = !modalVisible;
 						fillAllFlag = true;
 						globalSurface = 'plintusUp';
-						//btnHeaderActive(event.detail);
+
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					} else {
 						plintusUpFlag = false;
@@ -202,7 +212,7 @@
 						modalVisible = !modalVisible;
 						fillAllFlag = true;
 						globalSurface = 'plintusDown';
-						//btnHeaderActive(event.detail);
+
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					} else {
 						plintusDownFlag = false;
@@ -227,6 +237,7 @@
 				modalVisible = !modalVisible;
 				fillAllFlag = false;
 				globalSurface = 'wall';
+				plintusUpFlag = plintusDownFlag = false;
 				btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 			}}
 		/>
@@ -239,6 +250,7 @@
 					fillAllFlag = true;
 					blockFlag = true;
 					globalSurface = 'wall';
+					plintusUpFlag = plintusDownFlag = false;
 					btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 				}}
 			/>
@@ -250,7 +262,7 @@
 						modalVisible = !modalVisible;
 						fillAllFlag = true;
 						globalSurface = 'plintusUp';
-						//btnHeaderActive(event.detail);
+
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					} else {
 						plintusUpFlag = false;
@@ -266,7 +278,7 @@
 						modalVisible = !modalVisible;
 						fillAllFlag = true;
 						globalSurface = 'plintusDown';
-						//btnHeaderActive(event.detail);
+
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					} else {
 						plintusDownFlag = false;
@@ -322,7 +334,7 @@
 						// tooth.style.border = '1px solid black';
 						teeth_blockRet().append(tooth);
 						//**********
-						
+
 						if (url) {
 							if (counter % 2 == 0) {
 								tooth.style.backgroundImage = wall_1_panels[1].style.backgroundImage;
