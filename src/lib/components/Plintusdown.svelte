@@ -9,7 +9,8 @@
 		fillPlintus(thisPlintus);
 	});
 </script>
- <div class="plintus plintusDown"></div>
+ <div class="plintusDown"></div>
+ <!-- //plintus  -->
 <style>
   .plintusDown {
     display: flex;

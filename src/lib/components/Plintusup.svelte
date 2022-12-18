@@ -10,8 +10,8 @@
 	});
 </script>
 
-<div class="plintus plintusUp" />
-
+<div class=" plintusUp" />
+<!-- //plintus -->
 <style>
 	.plintusUp {
 		display: flex;

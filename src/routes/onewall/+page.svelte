@@ -143,7 +143,7 @@
 						modalVisible = !modalVisible;
 						fillAllFlag = true;
 						globalSurface = 'plintusUp';
-						//btnHeaderActive(event.detail);
+						
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
 					} else {
 						plintusUpFlag = false;
@@ -159,7 +159,7 @@
 						modalVisible = !modalVisible;
 						fillAllFlag = true;
 						globalSurface = 'plintusDown';
-						//btnHeaderActive(event.detail);
+						
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
 					} else {
 						plintusDownFlag = false;

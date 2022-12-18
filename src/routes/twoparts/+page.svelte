@@ -23,6 +23,8 @@
 	let fillAllFlag = true;
 	let plintusUpFlag = false;
 	let plintusDownFlag = false;
+	let plintusUpFlag2 = false;
+	let plintusDownFlag2 = false;
 	let globalSurface = 'wall';
 	let btnHeaderArr;
 	let blockFlag = false;
@@ -34,7 +36,14 @@
 	let wall_2_panels;
 	//----------------------------------
 	let proportionValue = '50';
-
+	//TODO: Function console flags
+	function consFlags() {
+		console.log('plintusUpFlag = ' + plintusUpFlag);
+		console.log('plintusDownFlag = ' + plintusDownFlag);
+		console.log('plintusUpFlag2 = ' + plintusUpFlag2);
+		console.log('plintusDownFlag2 = ' + plintusDownFlag2);
+		console.log('____________________________');
+	}
 	//__________________________________________
 	function wallSeperateVars() {
 		wall_1_panels = Array.from(document.getElementsByClassName('wall_1')[0].children);
@@ -49,15 +58,15 @@
 			fillAll(document.querySelectorAll('.wall_2'));
 			url = event.detail;
 			//! ----------------
-			plintusUpFlag = plintusDownFlag = false;
+			//plintusUpFlag = plintusDownFlag = false;
 		} else if (fillAllFlag && !blockFlag && globalSurface == 'wall') {
 			//! ----------------
-			plintusUpFlag = plintusDownFlag = false;
+			//plintusUpFlag = plintusDownFlag = false;
 			fillAll(document.querySelectorAll('.wall_1'));
 			url = event.detail;
 		} else if (!fillAllFlag && globalSurface == 'wall') {
 			//! ----------------
-			plintusUpFlag = plintusDownFlag = false;
+			//plintusUpFlag = plintusDownFlag = false;
 			walls().forEach((item) => {
 				item.onclick = function (e) {
 					url = urlWall + event.detail;
@@ -70,20 +79,18 @@
 		//TODO:
 		else if (globalSurface == 'plintusUp') {
 			//fillAllFlag &&
-			plintusUpFlag = true;
+			//plintusUpFlag = true;
 			url = event.detail;
 			setTimeout(() => {
-				console.log(document.querySelector('.plintusUp'));
 				document.querySelector('.plintusUp').childNodes.forEach((item) => {
 					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
 				}, 100);
 			});
 		} else if (globalSurface == 'plintusDown') {
 			//fillAllFlag &&
-			plintusDownFlag = true;
+			//plintusDownFlag = true;
 			url = event.detail;
 			setTimeout(() => {
-				console.log(document.querySelector('.plintusUp'));
 				document.querySelector('.plintusDown').childNodes.forEach((item) => {
 					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
 				}, 100);
@@ -186,6 +193,7 @@
 					blockFlag = false;
 					globalSurface = 'wall';
 					btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
+					consFlags();
 				}}
 			/>
 			<!-- TODO:  Plintus section-->
@@ -194,14 +202,16 @@
 				on:plintusup={function (event) {
 					if (event.detail.classList.contains('non-activeapp')) {
 						modalVisible = !modalVisible;
-						fillAllFlag = true;
+						//fillAllFlag = true;
 						globalSurface = 'plintusUp';
 
+						plintusUpFlag = true;
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					} else {
 						plintusUpFlag = false;
 						btnRemoveActive(btnHeaderArr);
 					}
+					consFlags();
 				}}
 			/>
 
@@ -210,14 +220,15 @@
 				on:plintusdown={function (event) {
 					if (event.detail.classList.contains('non-activeapp')) {
 						modalVisible = !modalVisible;
-						fillAllFlag = true;
-						globalSurface = 'plintusDown';
 
+						globalSurface = 'plintusDown';
+						plintusDownFlag = true;
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					} else {
 						plintusDownFlag = false;
 						btnRemoveActive(btnHeaderArr);
 					}
+					consFlags();
 				}}
 			/>
 
@@ -228,6 +239,7 @@
 					removePanels(wall_1_panels);
 					initWallPanelAdd();
 					teeth_blockRet().classList.remove('teeth_active');
+					consFlags();
 				}}
 			/>
 		</div>
@@ -237,8 +249,9 @@
 				modalVisible = !modalVisible;
 				fillAllFlag = false;
 				globalSurface = 'wall';
-				plintusUpFlag = plintusDownFlag = false;
+				//plintusUpFlag = plintusDownFlag = false;
 				btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
+				consFlags();
 			}}
 		/>
 		<div class="btn_wrapper btn_wrapper2">
@@ -250,8 +263,9 @@
 					fillAllFlag = true;
 					blockFlag = true;
 					globalSurface = 'wall';
-					plintusUpFlag = plintusDownFlag = false;
+					//plintusUpFlag = plintusDownFlag = false;
 					btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
+					consFlags();
 				}}
 			/>
 			<!-- TODO:  Plintus section-->
@@ -262,12 +276,13 @@
 						modalVisible = !modalVisible;
 						fillAllFlag = true;
 						globalSurface = 'plintusUp';
-
+						plintusUpFlag2 = true;
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					} else {
-						plintusUpFlag = false;
+						plintusUpFlag2 = false;
 						btnRemoveActive(btnHeaderArr);
 					}
+					consFlags();
 				}}
 			/>
 
@@ -278,12 +293,13 @@
 						modalVisible = !modalVisible;
 						fillAllFlag = true;
 						globalSurface = 'plintusDown';
-
+						plintusDownFlag2 = true;
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					} else {
-						plintusDownFlag = false;
+						plintusDownFlag2 = false;
 						btnRemoveActive(btnHeaderArr);
 					}
+					consFlags();
 				}}
 			/>
 
@@ -294,6 +310,7 @@
 					removePanels(wall_2_panels);
 					initWallPanelAdd();
 					teeth_blockRet().classList.remove('teeth_active');
+					consFlags();
 				}}
 			/>
 		</div>
@@ -359,10 +376,10 @@
 		</div>
 		<div class="teeth_block teeth_active " />
 		<div class="wall wall_2 wall_horizontal">
-			{#if plintusUpFlag}
+			{#if plintusUpFlag2}
 				<Plintusup />
 			{/if}
-			{#if plintusDownFlag}
+			{#if plintusDownFlag2}
 				<Plintusdown />
 			{/if}
 		</div>
