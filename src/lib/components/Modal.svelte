@@ -270,7 +270,7 @@
 		justify-content: space-around;
 		gap: 1em;
 		width: 45%;
-		height: 82%;
+		height: 72%;
 		background-color: grey;
 		border: 1px solid black;
 		z-index: 20;

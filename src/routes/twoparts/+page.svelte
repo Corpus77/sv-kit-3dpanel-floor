@@ -49,6 +49,9 @@
 		wall_1_panels = Array.from(document.getElementsByClassName('wall_1')[0].children);
 		wall_2_panels = Array.from(document.getElementsByClassName('wall_2')[0].children);
 	}
+	function allPlintusFalse() {
+		plintusUpFlag = plintusDownFlag = plintusUpFlag2 = plintusDownFlag2 = false;
+	}
 	function panelChoice(event) {
 		teeth_blockRet().classList.remove('teeth_active');
 
@@ -58,10 +61,12 @@
 			fillAll(document.querySelectorAll('.wall_2'));
 			url = event.detail;
 			//! ----------------
-			//plintusUpFlag = plintusDownFlag = false;
+
+			allPlintusFalse();
 		} else if (fillAllFlag && !blockFlag && globalSurface == 'wall') {
 			//! ----------------
-			//plintusUpFlag = plintusDownFlag = false;
+
+			allPlintusFalse();
 			fillAll(document.querySelectorAll('.wall_1'));
 			url = event.detail;
 		} else if (!fillAllFlag && globalSurface == 'wall') {
@@ -77,21 +82,24 @@
 			});
 		}
 		//TODO:
-		else if (globalSurface == 'plintusUp') {
-			//fillAllFlag &&
-			//plintusUpFlag = true;
+		else if (
+			globalSurface == 'plintusUp' &&
+			(plintusUpFlag || plintusDownFlag || plintusUpFlag2 || plintusDownFlag2)
+		) {
 			url = event.detail;
 			setTimeout(() => {
-				document.querySelector('.plintusUp').childNodes.forEach((item) => {
+				Array.from( document.querySelector('.plintusUp').children).forEach((item) => {
 					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
 				}, 100);
 			});
-		} else if (globalSurface == 'plintusDown') {
-			//fillAllFlag &&
-			//plintusDownFlag = true;
+		} else if (
+			globalSurface == 'plintusDown' &&
+			(plintusUpFlag || plintusDownFlag || plintusUpFlag2 || plintusDownFlag2)
+		) {
 			url = event.detail;
 			setTimeout(() => {
-				document.querySelector('.plintusDown').childNodes.forEach((item) => {
+				
+				Array.from( document.querySelector('.plintusDown').children).forEach((item) => {
 					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
 				}, 100);
 			});
@@ -193,6 +201,7 @@
 					blockFlag = false;
 					globalSurface = 'wall';
 					btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
+					allPlintusFalse();
 					consFlags();
 				}}
 			/>
@@ -209,6 +218,9 @@
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					} else {
 						plintusUpFlag = false;
+						//FIXME: is this a problem?
+						modalVisible = !modalVisible;
+
 						btnRemoveActive(btnHeaderArr);
 					}
 					consFlags();
@@ -226,6 +238,9 @@
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					} else {
 						plintusDownFlag = false;
+						//FIXME: is this a problem?
+						modalVisible = !modalVisible;
+
 						btnRemoveActive(btnHeaderArr);
 					}
 					consFlags();
@@ -239,6 +254,7 @@
 					removePanels(wall_1_panels);
 					initWallPanelAdd();
 					teeth_blockRet().classList.remove('teeth_active');
+					allPlintusFalse();
 					consFlags();
 				}}
 			/>
@@ -263,8 +279,9 @@
 					fillAllFlag = true;
 					blockFlag = true;
 					globalSurface = 'wall';
-					//plintusUpFlag = plintusDownFlag = false;
+
 					btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
+					allPlintusFalse();
 					consFlags();
 				}}
 			/>
@@ -280,6 +297,9 @@
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					} else {
 						plintusUpFlag2 = false;
+						//FIXME: is this a problem?
+						modalVisible = !modalVisible;
+
 						btnRemoveActive(btnHeaderArr);
 					}
 					consFlags();
@@ -297,6 +317,9 @@
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					} else {
 						plintusDownFlag2 = false;
+						//FIXME: is this a problem?
+						modalVisible = !modalVisible;
+
 						btnRemoveActive(btnHeaderArr);
 					}
 					consFlags();
@@ -310,6 +333,7 @@
 					removePanels(wall_2_panels);
 					initWallPanelAdd();
 					teeth_blockRet().classList.remove('teeth_active');
+					allPlintusFalse();
 					consFlags();
 				}}
 			/>
@@ -458,7 +482,6 @@
 	}
 
 	.wall {
-		position: relative;
 		display: flex;
 		flex-direction: column;
 		flex-wrap: wrap;
@@ -467,6 +490,10 @@
 		background-size: 20%;
 		/* border: 1px solid black; */
 		overflow: hidden;
+	}
+	.wall_1,
+	.wall_2 {
+		position: relative;
 	}
 	.wall_horizontal {
 		flex-direction: row;

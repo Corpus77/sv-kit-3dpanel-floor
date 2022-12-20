@@ -98,7 +98,7 @@ function fillPlintus(surface) {
 		plintusItem.classList.add('panel');
 		plintusItem.style.width = plintus.offsetWidth / 4 + 'px';
 
-		// plintusItem.style.border = '1px solid black';
+		//  plintusItem.style.border = '1px solid black';
 
 		plintus.append(plintusItem);
 	}
