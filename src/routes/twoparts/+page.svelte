@@ -219,7 +219,7 @@
 				on:plintusup={function (event) {
 					if (event.detail.classList.contains('non-activeapp')) {
 						modalVisible = true;
-						
+
 						globalSurface = 'plintusUp';
 
 						plintusUpFlag = true;
@@ -261,11 +261,12 @@
 					modalVisible = false;
 
 					allPlintusFalse();
-					wallSeperateVars();
-					removePanels(wall_1_panels);
-					initWallPanelAdd();
-					teeth_blockRet().classList.remove('teeth_active');
-					// consFlags();
+					setTimeout(() => {
+						wallSeperateVars();
+						removePanels(wall_1_panels);
+						initWallPanelAdd();
+						teeth_blockRet().classList.remove('teeth_active');
+					},0);
 				}}
 			/>
 		</div>
@@ -339,17 +340,15 @@
 			<Buttonclear
 				buttonText="Очистить стену"
 				on:clearAll={(event) => {
-					
-						modalVisible = false;
+					modalVisible = false;
 
-						allPlintusFalse();
+					allPlintusFalse();
+					setTimeout(() => {
 						wallSeperateVars();
 						removePanels(wall_2_panels);
 						initWallPanelAdd();
 						teeth_blockRet().classList.remove('teeth_active');
-					
-
-					// consFlags();
+					}, 0);
 				}}
 			/>
 		</div>
