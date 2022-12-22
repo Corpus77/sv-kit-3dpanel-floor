@@ -1,20 +1,10 @@
-<script>
-	import { fillPlintus } from '$lib/logic/functions.js';
-	import { onMount } from 'svelte';
-
-	onMount(() => {
-		// const thisPlintus = 'plintusDown';
-		// fillPlintus(thisPlintus);
-	});
-</script>
-
 <div class="plintusDown">
-	<div class="panel" ></div>
-	<div class="panel" ></div>
-	<div class="panel" ></div>
-	<div class="panel" ></div>
-	<div class="panel" ></div>
-	<div class="panel" ></div>
+	<div class="pl"/>
+	<div class="pl"/>
+	<div class="pl"/>
+	<div class="pl"/>
+	<div class="pl"/>
+	<div class="pl"/>
 </div>
 
 <style>
@@ -28,7 +18,7 @@
 		/* border: 1px solid black; */
 		z-index: 10;
 	}
-	.panel {
+	.pl {
 		width: 30%;
 		/* border: 1px solid black; */
 	}

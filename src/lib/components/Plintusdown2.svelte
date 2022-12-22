@@ -1,4 +1,4 @@
-<div class="plintusUp">
+<div class="plintusDown2">
 	<div class="pl"/>
 	<div class="pl"/>
 	<div class="pl"/>
@@ -8,11 +8,11 @@
 </div>
 
 <style>
-	.plintusUp {
+	.plintusDown2 {
 		display: flex;
-		align-items: stretch;
+
 		position: absolute;
-		top: 0px;
+		bottom: 0px;
 		width: 100%;
 		height: 3%;
 		/* border: 1px solid black; */

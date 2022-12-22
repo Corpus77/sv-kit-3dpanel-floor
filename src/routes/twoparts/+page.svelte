@@ -10,6 +10,9 @@
 	import Buttonplintusdown from '$lib/components/Buttonplintusdown.svelte';
 	import Plintusup from '$lib/components/Plintusup.svelte';
 	import Plintusdown from '$lib/components/Plintusdown.svelte';
+	import Plintusup2 from '../../lib/components/Plintusup2.svelte';
+	import Plintusdown2 from '../../lib/components/Plintusdown2.svelte';
+
 	import {
 		initWallPanelAdd,
 		styleCommonPanels,
@@ -61,17 +64,14 @@
 			fillAll(document.querySelectorAll('.wall_2'));
 			url = event.detail;
 			//! ----------------
-
-			allPlintusFalse();
 		} else if (fillAllFlag && !blockFlag && globalSurface == 'wall') {
 			//! ----------------
 
-			allPlintusFalse();
 			fillAll(document.querySelectorAll('.wall_1'));
 			url = event.detail;
 		} else if (!fillAllFlag && globalSurface == 'wall') {
 			//! ----------------
-			//plintusUpFlag = plintusDownFlag = false;
+
 			walls().forEach((item) => {
 				item.onclick = function (e) {
 					url = urlWall + event.detail;
@@ -82,24 +82,32 @@
 			});
 		}
 		//TODO:
-		else if (
-			globalSurface == 'plintusUp' &&
-			(plintusUpFlag || plintusDownFlag || plintusUpFlag2 || plintusDownFlag2)
-		) {
+		else if (globalSurface == 'plintusUp') {
 			url = event.detail;
 			setTimeout(() => {
-				Array.from( document.querySelector('.plintusUp').children).forEach((item) => {
+				Array.from(document.querySelector('.plintusUp').children).forEach((item) => {
 					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
 				}, 100);
 			});
-		} else if (
-			globalSurface == 'plintusDown' &&
-			(plintusUpFlag || plintusDownFlag || plintusUpFlag2 || plintusDownFlag2)
-		) {
+		} else if (globalSurface == 'plintusDown') {
 			url = event.detail;
 			setTimeout(() => {
-				
-				Array.from( document.querySelector('.plintusDown').children).forEach((item) => {
+				Array.from(document.querySelector('.plintusDown').children).forEach((item) => {
+					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
+				}, 100);
+			});
+			//__________ Plintus2 __________________
+		} else if (globalSurface == 'plintusUp2') {
+			url = event.detail;
+			setTimeout(() => {
+				Array.from(document.querySelector('.plintusUp2').children).forEach((item) => {
+					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
+				}, 100);
+			});
+		} else if (globalSurface == 'plintusDown2') {
+			url = event.detail;
+			setTimeout(() => {
+				Array.from(document.querySelector('.plintusDown2').children).forEach((item) => {
 					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
 				}, 100);
 			});
@@ -202,7 +210,7 @@
 					globalSurface = 'wall';
 					btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					allPlintusFalse();
-					consFlags();
+					// consFlags();
 				}}
 			/>
 			<!-- TODO:  Plintus section-->
@@ -210,20 +218,20 @@
 				buttonText="Плинтус верх"
 				on:plintusup={function (event) {
 					if (event.detail.classList.contains('non-activeapp')) {
-						modalVisible = !modalVisible;
-						//fillAllFlag = true;
+						modalVisible = true;
+						
 						globalSurface = 'plintusUp';
 
 						plintusUpFlag = true;
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					} else {
 						plintusUpFlag = false;
-						//FIXME: is this a problem?
-						modalVisible = !modalVisible;
+
+						modalVisible = false;
 
 						btnRemoveActive(btnHeaderArr);
 					}
-					consFlags();
+					// consFlags();
 				}}
 			/>
 
@@ -231,31 +239,33 @@
 				buttonText="Плинтус вниз"
 				on:plintusdown={function (event) {
 					if (event.detail.classList.contains('non-activeapp')) {
-						modalVisible = !modalVisible;
+						modalVisible = true;
 
 						globalSurface = 'plintusDown';
 						plintusDownFlag = true;
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					} else {
 						plintusDownFlag = false;
-						//FIXME: is this a problem?
-						modalVisible = !modalVisible;
+
+						modalVisible = false;
 
 						btnRemoveActive(btnHeaderArr);
 					}
-					consFlags();
+					// consFlags();
 				}}
 			/>
 
 			<Buttonclear
 				buttonText="Очистить стену"
 				on:clearAll={(event) => {
+					modalVisible = false;
+
+					allPlintusFalse();
 					wallSeperateVars();
 					removePanels(wall_1_panels);
 					initWallPanelAdd();
 					teeth_blockRet().classList.remove('teeth_active');
-					allPlintusFalse();
-					consFlags();
+					// consFlags();
 				}}
 			/>
 		</div>
@@ -265,9 +275,9 @@
 				modalVisible = !modalVisible;
 				fillAllFlag = false;
 				globalSurface = 'wall';
-				//plintusUpFlag = plintusDownFlag = false;
+
 				btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
-				consFlags();
+				// consFlags();
 			}}
 		/>
 		<div class="btn_wrapper btn_wrapper2">
@@ -282,7 +292,7 @@
 
 					btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					allPlintusFalse();
-					consFlags();
+					// consFlags();
 				}}
 			/>
 			<!-- TODO:  Plintus section-->
@@ -290,19 +300,19 @@
 				buttonText="Плинтус верх"
 				on:plintusup={function (event) {
 					if (event.detail.classList.contains('non-activeapp')) {
-						modalVisible = !modalVisible;
+						modalVisible = true;
 						fillAllFlag = true;
-						globalSurface = 'plintusUp';
+						globalSurface = 'plintusUp2';
 						plintusUpFlag2 = true;
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					} else {
 						plintusUpFlag2 = false;
-						//FIXME: is this a problem?
-						modalVisible = !modalVisible;
+
+						modalVisible = false;
 
 						btnRemoveActive(btnHeaderArr);
 					}
-					consFlags();
+					// consFlags();
 				}}
 			/>
 
@@ -310,31 +320,36 @@
 				buttonText="Плинтус вниз"
 				on:plintusdown={function (event) {
 					if (event.detail.classList.contains('non-activeapp')) {
-						modalVisible = !modalVisible;
+						modalVisible = true;
 						fillAllFlag = true;
-						globalSurface = 'plintusDown';
+						globalSurface = 'plintusDown2';
 						plintusDownFlag2 = true;
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					} else {
 						plintusDownFlag2 = false;
-						//FIXME: is this a problem?
-						modalVisible = !modalVisible;
+
+						modalVisible = false;
 
 						btnRemoveActive(btnHeaderArr);
 					}
-					consFlags();
+					// consFlags();
 				}}
 			/>
 
 			<Buttonclear
 				buttonText="Очистить стену"
 				on:clearAll={(event) => {
-					wallSeperateVars();
-					removePanels(wall_2_panels);
-					initWallPanelAdd();
-					teeth_blockRet().classList.remove('teeth_active');
-					allPlintusFalse();
-					consFlags();
+					
+						modalVisible = false;
+
+						allPlintusFalse();
+						wallSeperateVars();
+						removePanels(wall_2_panels);
+						initWallPanelAdd();
+						teeth_blockRet().classList.remove('teeth_active');
+					
+
+					// consFlags();
 				}}
 			/>
 		</div>
@@ -401,10 +416,10 @@
 		<div class="teeth_block teeth_active " />
 		<div class="wall wall_2 wall_horizontal">
 			{#if plintusUpFlag2}
-				<Plintusup />
+				<Plintusup2 />
 			{/if}
 			{#if plintusDownFlag2}
-				<Plintusdown />
+				<Plintusdown2 />
 			{/if}
 		</div>
 	</div>
