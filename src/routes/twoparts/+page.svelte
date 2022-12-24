@@ -171,6 +171,21 @@
 				item.classList.toggle('wall_horizontal');
 			});
 			teeth_blockRet().classList.remove('teeth_active');
+			//________________________________________
+			if (horizontalFlag) {
+				
+				allPanels().forEach((item) => {
+					item.style.width = (walls()[0].offsetWidth - 3) / 10 + 'px';
+					item.style.height = (walls()[0].offsetWidth - 3) / 10 + 'px';
+				});
+			} else {
+				
+				allPanels().forEach((item) => {
+					item.style.width = panelSize(walls()) + 'px';
+					item.style.height = panelSize(walls()) + 'px';
+				})
+				
+			}
 		};
 		//-------------------------------------------
 
@@ -187,9 +202,10 @@
 					item.style.height = panelSize(walls()) + 'px';
 				});
 			} else {
+				
 				allPanels().forEach((item) => {
-					item.style.width = panelSize(contWallRet()) + 'px';
-					item.style.height = panelSize(contWallRet()) + 'px';
+					item.style.width = (walls()[0].offsetWidth - 3) / 10 + 'px';
+					item.style.height = (walls()[0].offsetWidth - 3) / 10 + 'px';
 				});
 			}
 		};
@@ -266,7 +282,7 @@
 						removePanels(wall_1_panels);
 						initWallPanelAdd();
 						teeth_blockRet().classList.remove('teeth_active');
-					},0);
+					}, 0);
 				}}
 			/>
 		</div>
