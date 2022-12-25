@@ -572,4 +572,9 @@
 			font-size: 0.7em;
 		}
 	}
+	@media only screen and (max-height: 600px) {
+		.btn_wrapper {
+			z-index: 20;
+		}	
+	}
 </style>
