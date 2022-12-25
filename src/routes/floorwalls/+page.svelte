@@ -14,24 +14,52 @@
 	import Buttonall from '$lib/components/Buttonall.svelte';
 	import Buttonone from '$lib/components/Buttonone.svelte';
 	import Buttonclear from '$lib/components/Buttonclear.svelte';
+	import Buttonplintusup from '$lib/components/Buttonplintusup.svelte';
+	import Buttonplintusdown from '$lib/components/Buttonplintusdown.svelte';
+	import Plintusup from '$lib/components/Plintusup.svelte';
+	import Plintusdown from '$lib/components/Plintusdown.svelte';
+	import Plintusup2 from '../../lib/components/Plintusup2.svelte';
+	import Plintusdown2 from '../../lib/components/Plintusdown2.svelte';
 	import {
 		styleCommonPanels,
 		initWallPanelAdd,
 		initFloorPanelAdd,
 		initCeilPanelAdd,
 		removePanels,
-		btnHeaderActive
+		btnHeaderActive,
+		btnRemoveActive
 	} from '$lib/logic/functions';
 	let modalVisible = false;
 	let fillAllFlag = true;
-
+	let modalPlintusVisible = false;
+	let plintusUpFlag = false;
+	let plintusDownFlag = false;
+	let plintusUpFlag2 = false;
+	let plintusDownFlag2 = false;
 	let globalSurface;
 	let btnHeaderArr;
 	let url = '';
 	let urlWall = './textures/';
 	let urlFloor = './textures/floor/';
 
-	// ----------------------------------------------
+	let wall_1_panels;
+	let wall_2_panels;
+	// TODO: functions to refactor  ---------------------------
+	function consFlags() {
+		console.log('plintusUpFlag = ' + plintusUpFlag);
+		console.log('plintusDownFlag = ' + plintusDownFlag);
+		console.log('plintusUpFlag2 = ' + plintusUpFlag2);
+		console.log('plintusDownFlag2 = ' + plintusDownFlag2);
+		console.log('____________________________');
+	}
+	function wallSeperateVars() {
+		wall_1_panels = Array.from(document.getElementsByClassName('wall_1')[0].children);
+		wall_2_panels = Array.from(document.getElementsByClassName('wall_2')[0].children);
+	}
+	function allPlintusFalse() {
+		plintusUpFlag = plintusDownFlag = plintusUpFlag2 = plintusDownFlag2 = false;
+	}
+	// TODO: functions to refactor  ---------------------------
 	function panelChoice(event) {
 		url = event.detail;
 		if (fillAllFlag && globalSurface == 'wall') {
@@ -44,7 +72,7 @@
 			walls().forEach((item) => {
 				item.onclick = function (e) {
 					url = urlWall + event.detail;
-					if(e.target.classList.contains('panel')) {
+					if (e.target.classList.contains('panel')) {
 						e.target.style.backgroundImage = `url(${url})`;
 					}
 				};
@@ -53,7 +81,7 @@
 			floor().forEach((item) => {
 				item.onclick = function (e) {
 					url = urlFloor + event.detail;
-					if(e.target.classList.contains('panel-floor')) {
+					if (e.target.classList.contains('panel-floor')) {
 						e.target.style.backgroundImage = `url(${url})`;
 					}
 				};
@@ -68,11 +96,45 @@
 			ceil().forEach((item) => {
 				item.onclick = function (e) {
 					url = urlWall + event.detail;
-					if(e.target.classList.contains('panel-ceil')) {
+					if (e.target.classList.contains('panel-ceil')) {
 						e.target.style.backgroundImage = `url(${url})`;
 					}
 				};
 			});
+		} //TODO: plintus try
+		else if (globalSurface == 'plintusUp') {
+			url = event.detail;
+			setTimeout(() => {
+				Array.from(document.querySelector('.plintusUp').children).forEach((item) => {
+					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
+				}, 100);
+			});
+			modalPlintusVisible = false;
+		} else if (globalSurface == 'plintusDown') {
+			url = event.detail;
+			setTimeout(() => {
+				Array.from(document.querySelector('.plintusDown').children).forEach((item) => {
+					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
+				}, 100);
+			});
+			modalPlintusVisible = false;
+			//__________ Plintus2 __________________
+		} else if (globalSurface == 'plintusUp2') {
+			url = event.detail;
+			setTimeout(() => {
+				Array.from(document.querySelector('.plintusUp2').children).forEach((item) => {
+					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
+				}, 100);
+			});
+			modalPlintusVisible = false;
+		} else if (globalSurface == 'plintusDown2') {
+			url = event.detail;
+			setTimeout(() => {
+				Array.from(document.querySelector('.plintusDown2').children).forEach((item) => {
+					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
+				}, 100);
+			});
+			modalPlintusVisible = false;
 		}
 		modalVisible = false;
 		fillAllFlag = false;
@@ -96,7 +158,6 @@
 		}
 	}
 	//----------------------------------------------
-	
 
 	function addPanel(wallsArg) {
 		wallsArg.forEach((item) => {
@@ -124,7 +185,6 @@
 		});
 	}
 	// --------------------------------
-	
 
 	//_______________________________
 	onMount(() => {
@@ -146,9 +206,119 @@
 </script>
 
 <div class="container">
+	<!-- ! modalPlintusVisible-->
+	{#if modalPlintusVisible}
+		<div class="modalPlintusVisible">
+			<div class="wallButtons wall1Buttons">
+				<p>Левая стена</p>
+				<Buttonplintusup
+					buttonText="Плинтус верх"
+					on:plintusup={function (event) {
+						//---
+						btnHeaderArr = document.querySelectorAll('.btn-header');
+						//---
+						if (event.detail.classList.contains('non-activeapp')) {
+							modalVisible = true;
+
+							globalSurface = 'plintusUp';
+
+							plintusUpFlag = true;
+							btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
+						} else {
+							plintusUpFlag = false;
+
+							modalVisible = false;
+
+							btnRemoveActive(btnHeaderArr);
+						}
+						// consFlags();
+					}}
+				/>
+
+				<Buttonplintusdown
+					buttonText="Плинтус вниз"
+					on:plintusdown={function (event) {
+						//---
+						btnHeaderArr = document.querySelectorAll('.btn-header');
+						//---
+						if (event.detail.classList.contains('non-activeapp')) {
+							modalVisible = true;
+
+							globalSurface = 'plintusDown';
+							plintusDownFlag = true;
+							btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
+						} else {
+							plintusDownFlag = false;
+
+							modalVisible = false;
+
+							btnRemoveActive(btnHeaderArr);
+						}
+						// consFlags();
+					}}
+				/>
+			</div>
+			<div class="wallButtons wall2Buttons">
+				<p>Правая стена</p>
+				<Buttonplintusup
+					buttonText="Плинтус верх"
+					on:plintusup={function (event) {
+						//---
+						btnHeaderArr = document.querySelectorAll('.btn-header');
+						//---
+						if (event.detail.classList.contains('non-activeapp')) {
+							modalVisible = true;
+							fillAllFlag = true;
+							globalSurface = 'plintusUp2';
+							plintusUpFlag2 = true;
+							btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
+						} else {
+							plintusUpFlag2 = false;
+
+							modalVisible = false;
+
+							btnRemoveActive(btnHeaderArr);
+						}
+						// consFlags();
+					}}
+				/>
+
+				<Buttonplintusdown
+					buttonText="Плинтус вниз"
+					on:plintusdown={function (event) {
+						//---
+						btnHeaderArr = document.querySelectorAll('.btn-header');
+						//---
+						if (event.detail.classList.contains('non-activeapp')) {
+							modalVisible = true;
+							fillAllFlag = true;
+							globalSurface = 'plintusDown2';
+							plintusDownFlag2 = true;
+							btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
+						} else {
+							plintusDownFlag2 = false;
+
+							modalVisible = false;
+
+							btnRemoveActive(btnHeaderArr);
+						}
+						// consFlags();
+					}}
+				/>
+			</div>
+		</div>
+	{/if}
+	<!-- ! modalPlintusVisible-->
 	<header>
 		<div class="wallHeader">
 			<h4>Стены</h4>
+			<button
+				class="callPlintus"
+				on:click={() => {
+					modalPlintusVisible = !modalPlintusVisible;
+					console.log('plintus');
+				}}>Плинтус</button
+			>
 			<div class="buttonWrapper">
 				<Buttonall
 					buttonText="На все стены"
@@ -156,16 +326,15 @@
 						modalVisible = !modalVisible;
 						globalSurface = 'wall';
 						fillAllFlag = true;
-						btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
+						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					}}
-
-
 				/>
 				<Buttonclear
 					buttonText="Очистить стены"
 					on:clearAll={(event) => {
 						removePanels(panel());
 						initWallPanelAdd();
+						allPlintusFalse();
 					}}
 				/>
 
@@ -176,7 +345,7 @@
 
 						globalSurface = 'wall';
 						fillAllFlag = false;
-						btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
+						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					}}
 				/>
 			</div>
@@ -193,7 +362,7 @@
 						globalSurface = 'ceil';
 						fillAllFlag = true;
 
-						btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
+						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					}}
 				/>
 				<Buttonclear
@@ -211,7 +380,7 @@
 
 						globalSurface = 'ceil';
 						fillAllFlag = false;
-						btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
+						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					}}
 				/>
 			</div>
@@ -227,7 +396,7 @@
 
 						globalSurface = 'floor';
 						fillAllFlag = true;
-						btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
+						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					}}
 				/>
 				<Buttonclear
@@ -244,7 +413,7 @@
 
 						globalSurface = 'floor';
 						fillAllFlag = false;
-						btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
+						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					}}
 				/>
 			</div>
@@ -253,8 +422,22 @@
 
 	<div class="roomContainer">
 		<div class="ceil" />
-		<div class="wall wall1" />
-		<div class="wall wall2" />
+		<div class="wall wall_1">
+			{#if plintusUpFlag}
+				<Plintusup />
+			{/if}
+			{#if plintusDownFlag}
+				<Plintusdown />
+			{/if}
+		</div>
+		<div class="wall wall_2">
+			{#if plintusUpFlag2}
+				<Plintusup2 />
+			{/if}
+			{#if plintusDownFlag2}
+				<Plintusdown2 />
+			{/if}
+		</div>
 		<div class="floor" />
 	</div>
 
@@ -271,6 +454,7 @@
 	}
 
 	.container {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -313,6 +497,29 @@
 
 		justify-content: space-around;
 	}
+	.modalPlintusVisible {
+		position: absolute;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		width: 40%;
+		height: 15%;
+		left: 10%;
+		top: 15%;
+		background-color: aquamarine;
+		z-index: 100;
+	}
+	.wallButtons {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		height: 90%;
+		width: 45%;
+		background-color: rgb(54, 246, 182);
+		/* border: 1px solid black; */
+	}
+
 	.roomContainer {
 		position: relative;
 		perspective: 1250px;
@@ -337,8 +544,8 @@
 
 		z-index: 3;
 	}
-	.wall1,
-	.wall2 {
+	.wall_1,
+	.wall_2 {
 		position: relative;
 		display: flex;
 		flex-direction: column;
@@ -353,12 +560,12 @@
 		z-index: 5;
 	}
 
-	.wall1 {
+	.wall_1 {
 		transform: skewY(-25deg);
 		align-items: flex-start;
 		border-right: 1px solid black;
 	}
-	.wall2 {
+	.wall_2 {
 		transform: skewY(25deg);
 		border-left: 1px solid black;
 	}

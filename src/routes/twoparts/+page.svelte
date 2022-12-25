@@ -81,7 +81,7 @@
 				};
 			});
 		}
-		//TODO:
+		//TODO: plintus done
 		else if (globalSurface == 'plintusUp') {
 			url = event.detail;
 			setTimeout(() => {
