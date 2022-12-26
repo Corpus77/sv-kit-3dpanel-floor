@@ -1,4 +1,6 @@
 <script>
+	import { slide, scale, fly, fade } from 'svelte/transition';
+	import { linear } from 'svelte/easing';
 	import {
 		walls,
 		floor,
@@ -208,9 +210,10 @@
 <div class="container">
 	<!-- ! modalPlintusVisible-->
 	{#if modalPlintusVisible}
-		<div class="modalPlintusVisible">
-			<div class="wallButtons wall1Buttons">
-				<p>Левая стена</p>
+		<div class="modalPlintusVisible" transition:slide={{ delay: 100, duration: 500 }}>
+			<div class="wallButtons wall1Buttons"  
+			transition:fade={{ delay: 250, duration: 500 }}>
+				<p transition:scale={{ delay: 500, duration: 500 }}>Левая стена</p>
 				<Buttonplintusup
 					buttonText="Плинтус верх"
 					on:plintusup={function (event) {
@@ -258,9 +261,9 @@
 					}}
 				/>
 			</div>
-			<div class="wallButtons wall2Buttons">
-				<p>Правая стена</p>
-				<Buttonplintusup
+			<div class="wallButtons wall2Buttons"   transition:fade={{ delay: 250, duration: 500 }}>
+				<p transition:scale={{ delay: 500, duration: 500 }} >Правая стена</p>
+				<Buttonplintusup 
 					buttonText="Плинтус верх"
 					on:plintusup={function (event) {
 						//---
@@ -308,7 +311,7 @@
 			</div>
 		</div>
 	{/if}
-	<!-- ! modalPlintusVisible-->
+	<!-- ! modalPlintusVisible end -->
 	<header>
 		<div class="wallHeader">
 			<h4>Стены</h4>
@@ -506,7 +509,8 @@
 		height: 15%;
 		left: 10%;
 		top: 15%;
-		background-color: aquamarine;
+		background-color: rgba(127, 255, 212, 0.481);
+		box-shadow: 4px 4px 4px wheat;
 		z-index: 100;
 	}
 	.wallButtons {
@@ -516,8 +520,16 @@
 		align-items: center;
 		height: 90%;
 		width: 45%;
-		background-color: rgb(54, 246, 182);
+		background-color: rgba(54, 246, 182, 0.507);
+		box-shadow: 4px 4px 4px;
 		/* border: 1px solid black; */
+	}
+	.callPlintus {
+		padding: 1px 5px 1px 5px;
+		border: none;
+		border-radius: 4px;
+		font-weight: bold;
+		background: rgb(178, 174, 174);
 	}
 
 	.roomContainer {
