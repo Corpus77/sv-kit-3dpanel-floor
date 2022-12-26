@@ -54,9 +54,8 @@
 		console.log('plintusDownFlag2 = ' + plintusDownFlag2);
 		console.log('____________________________');
 	}
-	function wallSeperateVars() {
-		wall_1_panels = Array.from(document.getElementsByClassName('wall_1')[0].children);
-		wall_2_panels = Array.from(document.getElementsByClassName('wall_2')[0].children);
+	function noModalPlintus() {
+		modalPlintusVisible = false
 	}
 	function allPlintusFalse() {
 		plintusUpFlag = plintusDownFlag = plintusUpFlag2 = plintusDownFlag2 = false;
@@ -111,7 +110,7 @@
 					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
 				}, 100);
 			});
-			modalPlintusVisible = false;
+			noModalPlintus();
 		} else if (globalSurface == 'plintusDown') {
 			url = event.detail;
 			setTimeout(() => {
@@ -119,7 +118,7 @@
 					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
 				}, 100);
 			});
-			modalPlintusVisible = false;
+			noModalPlintus();
 			//__________ Plintus2 __________________
 		} else if (globalSurface == 'plintusUp2') {
 			url = event.detail;
@@ -128,7 +127,7 @@
 					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
 				}, 100);
 			});
-			modalPlintusVisible = false;
+			noModalPlintus();
 		} else if (globalSurface == 'plintusDown2') {
 			url = event.detail;
 			setTimeout(() => {
@@ -136,7 +135,7 @@
 					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
 				}, 100);
 			});
-			modalPlintusVisible = false;
+			noModalPlintus();
 		}
 		modalVisible = false;
 		fillAllFlag = false;
@@ -329,6 +328,7 @@
 						modalVisible = !modalVisible;
 						globalSurface = 'wall';
 						fillAllFlag = true;
+						noModalPlintus();
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					}}
 				/>
@@ -338,6 +338,7 @@
 						removePanels(panel());
 						initWallPanelAdd();
 						allPlintusFalse();
+						noModalPlintus();
 					}}
 				/>
 
@@ -348,6 +349,7 @@
 
 						globalSurface = 'wall';
 						fillAllFlag = false;
+						noModalPlintus();
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					}}
 				/>
@@ -364,7 +366,7 @@
 
 						globalSurface = 'ceil';
 						fillAllFlag = true;
-
+						noModalPlintus();
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					}}
 				/>
@@ -373,6 +375,7 @@
 					on:clearAll={(event) => {
 						removePanels(panelCeil());
 						initCeilPanelAdd();
+						noModalPlintus();
 					}}
 				/>
 
@@ -383,6 +386,7 @@
 
 						globalSurface = 'ceil';
 						fillAllFlag = false;
+						noModalPlintus();
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					}}
 				/>
@@ -399,6 +403,7 @@
 
 						globalSurface = 'floor';
 						fillAllFlag = true;
+						noModalPlintus();
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					}}
 				/>
@@ -407,6 +412,7 @@
 					on:clearAll={(event) => {
 						removePanels(panelFloor());
 						initFloorPanelAdd();
+						noModalPlintus();
 					}}
 				/>
 				<Buttonone
@@ -416,6 +422,7 @@
 
 						globalSurface = 'floor';
 						fillAllFlag = false;
+						noModalPlintus();
 						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					}}
 				/>
@@ -607,10 +614,21 @@
 		.roomContainer {
 			width: 70%;
 		}
+		.modalPlintusVisible {
+			width: 32%;
+			height: 30%;
+			top:20%;
+			left: 1%;
+		}
 	}
 	@media only screen and (max-width: 480px) {
 		.buttonWrapper {
 			flex-direction: column;
+		}
+		.modalPlintusVisible {
+			width: 55%;
+			top:0.5%;
+			left: 40%;
 		}
 	}
 </style>

@@ -330,6 +330,10 @@
 		.size {
 			font-weight: lighter;
 		}
+		.btn {
+			font-weight: bold;
+			font-size: 0.7em;
+		}
 	}
 	@media only screen and (max-height: 480px) {
 		.btn {
