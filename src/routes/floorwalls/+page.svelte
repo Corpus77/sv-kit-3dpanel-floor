@@ -108,7 +108,7 @@
 			setTimeout(() => {
 				Array.from(document.querySelector('.plintusUp').children).forEach((item) => {
 					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
-				}, 100);
+				});
 			});
 			noModalPlintus();
 		} else if (globalSurface == 'plintusDown') {
@@ -116,7 +116,7 @@
 			setTimeout(() => {
 				Array.from(document.querySelector('.plintusDown').children).forEach((item) => {
 					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
-				}, 100);
+				});
 			});
 			noModalPlintus();
 			//__________ Plintus2 __________________

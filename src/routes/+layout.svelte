@@ -21,6 +21,7 @@
 	<a href="/onewall"> Одна стена</a>
 	<a href="/twoparts"> Две части стены</a>
 	<a href="/roombrick"> По кирпичику </a>
+	<a href="/frames"> * </a>
 </nav>
 <slot/>
 

@@ -30,6 +30,8 @@ function styleCommonPanels(toCreate) {
 			}
 			counter++;
 		};
+		
+		
 	});
 }
 

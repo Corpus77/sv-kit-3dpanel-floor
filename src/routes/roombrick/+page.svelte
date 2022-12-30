@@ -47,7 +47,7 @@
 			plintusUpFlag = true;
 			url = event.detail;
 			setTimeout(() => {
-				document.querySelector('.plintusUp').childNodes.forEach((item) => {
+				Array.from(document.querySelector('.plintusUp').children).forEach((item) => {
 					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
 				});
 			});
@@ -55,7 +55,7 @@
 			plintusDownFlag = true;
 			url = event.detail;
 			setTimeout(() => {
-				document.querySelector('.plintusDown').childNodes.forEach((item) => {
+				Array.from(document.querySelector('.plintusDown').children).forEach((item) => {
 					item.style.backgroundImage = `url('./textures/plintus/${url}')`;
 				});
 			});

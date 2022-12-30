@@ -1,13 +1,6 @@
 <script>
 	import Modal from '$lib/components/Modal.svelte';
-	import {
-		walls,
-		allPanels,
-		panel,
-		panelSize
-		// plintusUp,
-		// plintusDown
-	} from '$lib/logic/retSurfaces.js';
+	import { walls, allPanels, panel, panelSize } from '$lib/logic/retSurfaces.js';
 
 	import { onMount } from 'svelte';
 	import Buttonall from '$lib/components/Buttonall.svelte';
@@ -22,8 +15,7 @@
 		styleCommonPanels,
 		removePanels,
 		btnRemoveActive,
-		btnHeaderActive,
-		
+		btnHeaderActive
 	} from '$lib/logic/functions';
 	//----------------------------------------
 	let modalVisible = false;
@@ -61,10 +53,18 @@
 		} else if (!fillAllFlag && globalSurface == 'wall') {
 			walls().forEach((item) => {
 				item.onclick = function (e) {
-					url = urlWall + event.detail;
-					if (e.target.classList.contains('panel')) {
-						e.target.style.backgroundImage = `url(${url})`;
+          setTimeout(() => {
+            console.log(e.detail);
+          //TODO: !!!! this differ 'click' from 'dblclick'!!!! TODO:
+					if (e.detail !== 2) {
+           
+						url = urlWall + event.detail;
+						if (e.target.classList.contains('panel')) {
+							e.target.style.backgroundImage = `url(${url})`;
+						}
 					}
+          },100)
+          
 				};
 			});
 		}
@@ -91,9 +91,7 @@
 		fillAllFlag = false;
 	}
 	//__________________________________________
-	
-	
-	
+
 	//-----------------------------------------
 	onMount(() => {
 		btnHeaderArr = document.querySelectorAll('.btn-header');
@@ -120,7 +118,7 @@
 					modalVisible = !modalVisible;
 					fillAllFlag = true;
 					globalSurface = 'wall';
-					btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
+					btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					plintusDownFlag = plintusUpFlag = false;
 				}}
 			/>
@@ -131,7 +129,7 @@
 					fillAllFlag = false;
 					globalSurface = 'wall';
 					//btnHeaderActive(event.detail);
-					btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
+					btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					plintusDownFlag = plintusUpFlag = false;
 				}}
 			/>
@@ -143,8 +141,8 @@
 						modalVisible = !modalVisible;
 						fillAllFlag = true;
 						globalSurface = 'plintusUp';
-						
-						btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
+
+						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					} else {
 						plintusUpFlag = false;
 						btnRemoveActive(btnHeaderArr);
@@ -159,8 +157,8 @@
 						modalVisible = !modalVisible;
 						fillAllFlag = true;
 						globalSurface = 'plintusDown';
-						
-						btnHeaderActive(event.detail, modalVisible, btnHeaderArr );
+
+						btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 					} else {
 						plintusDownFlag = false;
 						btnRemoveActive(btnHeaderArr);
@@ -215,7 +213,7 @@
 		align-items: center;
 		width: 100%;
 		height: 10%;
-		background-color: rgba(47, 79, 79, 0.507);
+		background-color: rgba(60, 249, 57, 0.507);
 		/* border: 1px solid black; */
 	}
 	.buttonWrapper {
