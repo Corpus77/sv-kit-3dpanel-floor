@@ -10,6 +10,7 @@
 	import Buttonplintusdown from '$lib/components/Buttonplintusdown.svelte';
 	import Plintusup from '$lib/components/Plintusup.svelte';
 	import Plintusdown from '$lib/components/Plintusdown.svelte';
+	import Instr from '../../lib/components/Instr.svelte';
 	import {
 		initWallPanelAdd,
 		styleCommonPanels,
@@ -19,11 +20,16 @@
 	} from '$lib/logic/functions';
 	//----------------------------------------
 	let modalVisible = false;
+	let instrVisible = false;
 	let fillAllFlag = true;
 	let plintusUpFlag = false;
 	let plintusDownFlag = false;
+
 	let globalSurface = 'wall';
 	let btnHeaderArr;
+
+	let side;
+
 	let url = '';
 	let urlWall = './textures/';
 
@@ -34,6 +40,7 @@
 				let panel = document.createElement('div');
 				styleCommonPanels(panel);
 				panel.classList.add('panel');
+				panel.style.position = 'relative';
 				panel.style.backgroundImage = `url(${urlWall}${url}`;
 				item.append(panel);
 			}
@@ -53,20 +60,47 @@
 		} else if (!fillAllFlag && globalSurface == 'wall') {
 			walls().forEach((item) => {
 				item.onclick = function (e) {
-          setTimeout(() => {
-            console.log(e.detail);
-          //TODO: !!!! this differ 'click' from 'dblclick'!!!! TODO:
-					if (e.detail !== 2) {
-           
-						url = urlWall + event.detail;
-						if (e.target.classList.contains('panel')) {
-							e.target.style.backgroundImage = `url(${url})`;
+					setTimeout(() => {
+						console.log(e.detail);
+						//TODO: !!!! this differ 'click' from 'dblclick'!!!! TODO:
+						if (e.detail !== 2) {
+							url = urlWall + event.detail;
+							if (e.target.classList.contains('panel')) {
+								e.target.style.backgroundImage = `url(${url})`;
+								// console.log(e.target);
+							}
+							//FIXME:
+						} else {
+							if (e.target.classList.contains('panel')) {
+								e.target.classList.toggle('frame');
+								if (e.target.classList.contains('frame')) {
+									//add all side plintus
+									let top = document.createElement('div');
+									let bottom = document.createElement('div');
+									let left = document.createElement('div');
+									let right = document.createElement('div');
+									top.classList.add('top');
+									bottom.classList.add('bottom');
+									left.classList.add('left');
+									right.classList.add('right');
+									e.target.append(top, bottom, left, right);
+									//
+									e.target.childNodes.forEach((item) => {
+										item.onclick = (e) => {
+											globalSurface = 'frame';
+											modalVisible = true;
+											side = e.target;
+										};
+									});
+								}
+								// console.log(e.target);
+							}
 						}
-					}
-          },100)
-          
+					}, 100);
 				};
 			});
+		} else if (globalSurface == 'frame') {
+			side.style.background = `url('./textures/plintus/${url}')`;
 		}
 		//TODO:
 		else if (fillAllFlag && globalSurface == 'plintusUp') {
@@ -174,8 +208,13 @@
 				}}
 			/>
 		</div>
+		<button class="btnInstr" on:click={() => instrVisible = !instrVisible}>Инструкция</button>
 	</header>
 	<div class="wallContainer">
+		<!-- FIXME:  text of instruction-->
+		{#if instrVisible}
+			<Instr instrText = 'dfgdfhdfh'></Instr>
+		{/if}
 		<div class="wall">
 			{#if plintusUpFlag}
 				<Plintusup />
@@ -196,7 +235,56 @@
 		padding: 0;
 		box-sizing: border-box;
 	}
+	:global(.frame) {
+		outline: 1px solid black;
+	}
+	:global(.top) {
+		position: absolute;
+		height: 10%;
+		width: 100%;
+		top: 0px;
+		cursor: crosshair;
 
+		/* outline: 1px solid black; */
+	}
+	:global(.bottom) {
+		position: absolute;
+		height: 10%;
+		width: 100%;
+		bottom: 0px;
+		
+		cursor: crosshair;
+
+		/* outline: 1px solid red; */
+	}
+	:global(.left) {
+		position: absolute;
+		height: 100%;
+		width: 10%;
+		left: 0px;
+		background-size: contain ;
+		cursor: crosshair;
+		/* outline: 1px solid black; */
+	}
+	:global(.right) {
+		position: absolute;
+		height: 100%;
+		width: 10%;
+		right: 0px;
+		background-size: contain ;
+		cursor: crosshair;
+		/* outline: 1px solid black; */
+	}
+	
+	.btnInstr {
+		height: 40%;
+		padding: 0 10px 0 10px;
+		font-weight: bolder;
+		border-radius: 5px;
+		background-color: rgba(248, 244, 9, 0.801);
+		border-style: hidden;
+		
+	}
 	.container {
 		display: flex;
 		flex-direction: column;
@@ -225,7 +313,7 @@
 		background-color: rgba(47, 79, 79, 0.507);
 		/* border: 1px solid black; */
 	}
-
+	
 	.wallContainer {
 		display: flex;
 		justify-content: center;

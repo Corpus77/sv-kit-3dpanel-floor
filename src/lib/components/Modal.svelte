@@ -235,7 +235,7 @@
 			{/if}
 		{/each}
 		<!--! for plintus -->
-		{:else if globalSurface == 'plintusUp' || 'plintusDown'}
+		{:else if globalSurface == 'plintusUp' || 'plintusDown' || 'frame'}
 		{#each plintusArray as item}
 			{#if item.visible}
 				{#each item.imgArr as filename}

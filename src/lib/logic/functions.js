@@ -13,6 +13,7 @@ function styleCommonPanels(toCreate) {
 	toCreate.style.height = panelSize(walls()) + 'px';
 	toCreate.style.backgroundSize = 'contain';
 	toCreate.classList.add('allPanels');
+	toCreate.style.position = 'relative';
 	// ! border for visual check
 	// toCreate.style.border = '1px solid black';
 
@@ -30,8 +31,6 @@ function styleCommonPanels(toCreate) {
 			}
 			counter++;
 		};
-		
-		
 	});
 }
 
