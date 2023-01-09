@@ -22,14 +22,17 @@ function styleCommonPanels(toCreate) {
 		let counter = 2;
 		item.oncontextmenu = function (e) {
 			e.preventDefault();
-
-			if (counter % 2 == 0) {
-				console.log('menu');
-				item.style.transform = 'rotate(90deg)';
-			} else {
-				item.style.transform = 'rotate(0deg)';
-			}
-			counter++;
+			//
+			
+				if (counter % 2 == 0) {
+					console.log('menu');
+					item.style.transform = 'rotate(90deg)';
+				} else {
+					item.style.transform = 'rotate(0deg)';
+				}
+				counter++;
+			
+			//
 		};
 	});
 }

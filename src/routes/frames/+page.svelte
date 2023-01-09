@@ -69,7 +69,7 @@
 								e.target.style.backgroundImage = `url(${url})`;
 								// console.log(e.target);
 							}
-							//FIXME:
+							//FIXME: for frame
 						} else {
 							if (e.target.classList.contains('panel')) {
 								e.target.classList.toggle('frame');
@@ -85,11 +85,17 @@
 									right.classList.add('right');
 									e.target.append(top, bottom, left, right);
 									//
+									let counter = 2;
 									e.target.childNodes.forEach((item) => {
 										item.onclick = (e) => {
-											globalSurface = 'frame';
-											modalVisible = true;
-											side = e.target;
+											if (counter % 2 == 0) {
+												globalSurface = 'frame';
+												modalVisible = true;
+												side = e.target;
+											} else {
+												e.target.style.backgroundImage = 'none';
+											}
+											counter++;
 										};
 									});
 								}
@@ -208,12 +214,12 @@
 				}}
 			/>
 		</div>
-		<button class="btnInstr" on:click={() => instrVisible = !instrVisible}>Инструкция</button>
+		<button class="btnInstr" on:click={() => (instrVisible = !instrVisible)}>Инструкция</button>
 	</header>
 	<div class="wallContainer">
 		<!-- FIXME:  text of instruction-->
 		{#if instrVisible}
-			<Instr instrText = 'dfgdfhdfh'></Instr>
+			<Instr instrText="dfgdfhdfh" />
 		{/if}
 		<div class="wall">
 			{#if plintusUpFlag}
@@ -252,7 +258,7 @@
 		height: 10%;
 		width: 100%;
 		bottom: 0px;
-		
+
 		cursor: crosshair;
 
 		/* outline: 1px solid red; */
@@ -262,7 +268,7 @@
 		height: 100%;
 		width: 10%;
 		left: 0px;
-		background-size: contain ;
+		background-size: contain;
 		cursor: crosshair;
 		/* outline: 1px solid black; */
 	}
@@ -271,11 +277,11 @@
 		height: 100%;
 		width: 10%;
 		right: 0px;
-		background-size: contain ;
+		background-size: contain;
 		cursor: crosshair;
 		/* outline: 1px solid black; */
 	}
-	
+
 	.btnInstr {
 		height: 40%;
 		padding: 0 10px 0 10px;
@@ -283,7 +289,6 @@
 		border-radius: 5px;
 		background-color: rgba(248, 244, 9, 0.801);
 		border-style: hidden;
-		
 	}
 	.container {
 		display: flex;
@@ -313,7 +318,7 @@
 		background-color: rgba(47, 79, 79, 0.507);
 		/* border: 1px solid black; */
 	}
-	
+
 	.wallContainer {
 		display: flex;
 		justify-content: center;
