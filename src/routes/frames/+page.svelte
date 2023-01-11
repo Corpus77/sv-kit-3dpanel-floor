@@ -94,12 +94,13 @@
 												side = e.target;
 											} else {
 												e.target.style.backgroundImage = 'none';
+												modalVisible = false;
 											}
 											counter++;
 										};
 									});
 								}
-								// console.log(e.target);
+								
 							}
 						}
 					}, 100);
@@ -108,7 +109,7 @@
 		} else if (globalSurface == 'frame') {
 			side.style.background = `url('./textures/plintus/${url}')`;
 		}
-		//TODO:
+		
 		else if (fillAllFlag && globalSurface == 'plintusUp') {
 			plintusUpFlag = true;
 			url = event.detail;
@@ -219,7 +220,9 @@
 	<div class="wallContainer">
 		<!-- FIXME:  text of instruction-->
 		{#if instrVisible}
-			<Instr instrText="dfgdfhdfh" />
+			<Instr instrText="1. Кнопка -Навсю стену- позволяет разместить выбранную панель на всю стену
+		  2. Кнопка -Одна панель- позволяет помещать выбранную панель в нужное для вас место путём нажатия правой кнопкой мыши в выбранном месте стены. При двойном нажатии, появляется возможность помещать плинтус на любую сторону данной панели. Для этого наведите курсор на нужную сторону панели (при этом курсор изменится на '+'). Кликните правой кнопкой мыши и выберите нужный плинтус. При повторном нажатии на появившемся плинтусе, он исчезнет.
+			3. -Плинтус вверх- и -Плинтус вниз- добавляют выбранный плинтус соответсвенно вверх и вниз. 4. -Очистить стену- очищает всю стену. При клике левой кнопкой мыши на панели она поворачивается на 45 градусов" />
 		{/if}
 		<div class="wall">
 			{#if plintusUpFlag}
