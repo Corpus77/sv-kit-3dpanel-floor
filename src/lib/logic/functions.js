@@ -108,6 +108,7 @@ function fillPlintus(surface) {
 	}
 }
 
+
 export {
 	removePanels,
 	styleCommonPanels,
@@ -116,5 +117,6 @@ export {
 	initCeilPanelAdd,
 	fillPlintus,
 	btnRemoveActive,
-	btnHeaderActive
+	btnHeaderActive,
+	
 };

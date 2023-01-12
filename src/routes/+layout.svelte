@@ -18,10 +18,10 @@
 <nav>
 	<a href="/">Начало</a>
 	<a href="/floorwalls">Потолок/стены/пол</a>
-	<a href="/onewall"> Одна стена</a>
+	<!-- <a href="/onewall"> Одна стена</a> -->
 	<a href="/twoparts"> Две части стены</a>
 	<a href="/roombrick"> По кирпичику </a>
-	<a href="/frames"> Рамки </a>
+	<a href="/frames"> Плинтус дизайн </a>
 </nav>
 <slot/>
 

@@ -12,17 +12,19 @@
 	import Plintusdown from '$lib/components/Plintusdown.svelte';
 	import Plintusup2 from '../../lib/components/Plintusup2.svelte';
 	import Plintusdown2 from '../../lib/components/Plintusdown2.svelte';
-
+	import Instr from '../../lib/components/Instr.svelte';
 	import {
 		initWallPanelAdd,
 		styleCommonPanels,
 		removePanels,
 		btnHeaderActive,
-		btnRemoveActive
+		btnRemoveActive,
+		
 	} from '$lib/logic/functions';
 
 	//----------------------------------------
 	let modalVisible = false;
+	let instrVisible = false;
 	let fillAllFlag = true;
 	let plintusUpFlag = false;
 	let plintusDownFlag = false;
@@ -39,6 +41,8 @@
 	let wall_2_panels;
 	//----------------------------------
 	let proportionValue = '50';
+	let instruction =
+		'1. Кнопка -На всю стену- позволяет разместить выбранную панель на всю стену 2. Кнопка -Одна панель- позволяет помещать выбранную панель в нужное для вас место путём нажатия правой кнопкой мыши в выбранном месте стены.3. -Плинтус вверх- и -Плинтус вниз- добавляют выбранный плинтус соответсвенно вверх и вниз. 4. -Очистить стену- очищает всю стену. При клике левой кнопкой мыши на панели она поворачивается на 45 градусов. 5.Кнопка -Положение- меняет положение стен вертикально/горизонтально. 6.кнопка -Зубцы- добавляет зубцы на стыке двух стен (возможно только в горизонтальном положении. 7. Ползунок -Пропорция- изменяет соотношение размера стен.';
 	//TODO: Function console flags
 	function consFlags() {
 		console.log('plintusUpFlag = ' + plintusUpFlag);
@@ -156,6 +160,17 @@
 	}
 	//--------------------------------------------
 	onMount(() => {
+		
+		 document.onclick = (e) => {
+		
+			if (
+				!e.target.classList.contains('instr') &&
+				!e.target.classList.contains('instruction') &&
+				!e.target.parentNode.classList.contains('instruction')
+			) {
+				instrVisible = false;
+			}
+		 };
 		// remove classes to toggle
 		teeth_blockRet().classList.remove('teeth_active');
 		walls().forEach((item) => {
@@ -173,18 +188,15 @@
 			teeth_blockRet().classList.remove('teeth_active');
 			//________________________________________
 			if (horizontalFlag) {
-				
 				allPanels().forEach((item) => {
 					item.style.width = (walls()[0].offsetWidth - 3) / 10 + 'px';
 					item.style.height = (walls()[0].offsetWidth - 3) / 10 + 'px';
 				});
 			} else {
-				
 				allPanels().forEach((item) => {
 					item.style.width = panelSize(walls()) + 'px';
 					item.style.height = panelSize(walls()) + 'px';
-				})
-				
+				});
 			}
 		};
 		//-------------------------------------------
@@ -202,7 +214,6 @@
 					item.style.height = panelSize(walls()) + 'px';
 				});
 			} else {
-				
 				allPanels().forEach((item) => {
 					item.style.width = (walls()[0].offsetWidth - 3) / 10 + 'px';
 					item.style.height = (walls()[0].offsetWidth - 3) / 10 + 'px';
@@ -231,7 +242,7 @@
 			/>
 			<!-- TODO:  Plintus section-->
 			<Buttonplintusup
-				buttonText="Плинтус верх"
+				buttonText="Плинтус вверх"
 				on:plintusup={function (event) {
 					if (event.detail.classList.contains('non-activeapp')) {
 						modalVisible = true;
@@ -418,6 +429,12 @@
 				}
 			}}>Зубцы</button
 		>
+		<button
+			class="instr"
+			on:click={() => {
+				instrVisible = !instrVisible;
+			}}>Инструкция</button
+		>
 	</div>
 	<div class="container-wall horizontal">
 		<div class="wall wall_1 wall_horizontal">
@@ -438,6 +455,9 @@
 			{/if}
 		</div>
 	</div>
+	{#if instrVisible}
+		<Instr instrText={instruction} />
+	{/if}
 	{#if modalVisible}
 		<Modal {globalSurface} on:panelChoice={panelChoice} />
 	{/if}
@@ -575,6 +595,6 @@
 	@media only screen and (max-height: 600px) {
 		.btn_wrapper {
 			z-index: 20;
-		}	
+		}
 	}
 </style>

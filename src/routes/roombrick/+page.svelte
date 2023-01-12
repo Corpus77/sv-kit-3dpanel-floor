@@ -10,6 +10,7 @@
 	import Buttonplintusdown from '$lib/components/Buttonplintusdown.svelte';
 	import Plintusup from '$lib/components/Plintusup.svelte';
 	import Plintusdown from '$lib/components/Plintusdown.svelte';
+	import Instr from '../../lib/components/Instr.svelte';
 	let modalVisible = false;
 	let fillAllFlag = true;
 	let plintusUpFlag = false;
@@ -18,9 +19,11 @@
 	let btnHeaderArr;
 	let url = '';
 	let urlWall = './textures/';
+	let instrVisible = false;
+	let instruction = "1. Кнопка -На все кирпичи- позволяет разместить кирпичик из выбранной панели на всю стену 2. Кнопка -Одна панель- позволяет помещать кирпичик из выбранной панели в нужное для вас место путём нажатия правой кнопкой мыши в выбранном месте стены. 3. -Плинтус вверх- и -Плинтус вниз- добавляют выбранный плинтус соответсвенно вверх и вниз. 4. -Очистить стену- очищает всю стену."
 	//_________________________________________________
 
-	//--------------------------------------------------
+	
 	function fillAll() {
 		panel().forEach((item) => {
 			item.style.background = `url(${urlWall}${url}`;
@@ -156,6 +159,9 @@
 				});
 			}}
 		/>
+		<button class="instr"  on:click={()=>{
+			instrVisible = !instrVisible
+		}}>Инструкция</button>
 	</header>
 	<div class="wall">
 		{#if plintusUpFlag}
@@ -165,6 +171,9 @@
 			<Plintusdown />
 		{/if}
 	</div>
+	{#if instrVisible}
+		<Instr instrText = {instruction}></Instr>
+	{/if}
 	{#if modalVisible}
 		<Modal {globalSurface} on:panelChoice={panelChoice} />
 	{/if}
@@ -192,5 +201,12 @@
 		background: lightgrey;
 		box-shadow: 15px 16px 4px black;
 		overflow: hidden;
+	}
+	.instr {
+		background: rgb(85, 77, 195);
+		color:wheat;
+		border-radius: 5px;
+		border-style: none;
+		font-weight: bolder;
 	}
 </style>
