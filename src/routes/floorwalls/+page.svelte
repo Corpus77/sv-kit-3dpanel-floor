@@ -22,6 +22,8 @@
 	import Plintusdown from '$lib/components/Plintusdown.svelte';
 	import Plintusup2 from '../../lib/components/Plintusup2.svelte';
 	import Plintusdown2 from '../../lib/components/Plintusdown2.svelte';
+	import Instrbutton from '../../lib/components/Instrbutton.svelte';
+	import Instr from '../../lib/components/Instr.svelte';
 	import {
 		styleCommonPanels,
 		initWallPanelAdd,
@@ -29,8 +31,10 @@
 		initCeilPanelAdd,
 		removePanels,
 		btnHeaderActive,
-		btnRemoveActive
+		btnRemoveActive,
+		bodyClick
 	} from '$lib/logic/functions';
+	let instrVisible = false;
 	let modalVisible = false;
 	let fillAllFlag = true;
 	let modalPlintusVisible = false;
@@ -43,7 +47,8 @@
 	let url = '';
 	let urlWall = './textures/';
 	let urlFloor = './textures/floor/';
-
+	let instruction =
+		'1. Кнопка -На все стены (потолок, пол)- позволяет разместить выбранную панель (плитку) на все стены (потолок пол) 2. Кнопка -Одна панель- позволяет помещать выбранную панель в нужное для вас место путём нажатия правой кнопкой мыши в выбранном месте стены (потолка, пола).  3.-Плинтус- проявляет окно выбора плинтусов для стен. -Плинтус вверх- и -Плинтус вниз- добавляют выбранный плинтус соответсвенно вверх и вниз данной стены. 4. -Очистить стены (потолок, пол)- очищает все стены (потолок, пол). При клике левой кнопкой мыши на панели (плитке) она поворачивается на 90 градусов ';
 	let wall_1_panels;
 	let wall_2_panels;
 	// TODO: functions to refactor  ---------------------------
@@ -55,7 +60,7 @@
 		console.log('____________________________');
 	}
 	function noModalPlintus() {
-		modalPlintusVisible = false
+		modalPlintusVisible = false;
 	}
 	function allPlintusFalse() {
 		plintusUpFlag = plintusDownFlag = plintusUpFlag2 = plintusDownFlag2 = false;
@@ -189,6 +194,11 @@
 
 	//_______________________________
 	onMount(() => {
+		//non-visible when click on anything but that modal
+		document.onclick = (e) => {
+			instrVisible = bodyClick(e, 'instr', 'instruction');
+			modalPlintusVisible = bodyClick(e, 'callPlintus', 'wallButtons')
+		};
 		btnHeaderArr = document.querySelectorAll('.btn-header');
 
 		//----- initial add panels
@@ -207,11 +217,14 @@
 </script>
 
 <div class="container">
+	<!-- ! InstrVisible -->
+	{#if instrVisible}
+		<Instr instrText={instruction} />
+	{/if}
 	<!-- ! modalPlintusVisible-->
 	{#if modalPlintusVisible}
 		<div class="modalPlintusVisible" transition:slide={{ delay: 100, duration: 500 }}>
-			<div class="wallButtons wall1Buttons"  
-			transition:fade={{ delay: 250, duration: 500 }}>
+			<div class="wallButtons wall1Buttons" transition:fade={{ delay: 250, duration: 500 }}>
 				<p transition:scale={{ delay: 500, duration: 500 }}>Левая стена</p>
 				<Buttonplintusup
 					buttonText="Плинтус верх"
@@ -260,9 +273,9 @@
 					}}
 				/>
 			</div>
-			<div class="wallButtons wall2Buttons"   transition:fade={{ delay: 250, duration: 500 }}>
-				<p transition:scale={{ delay: 500, duration: 500 }} >Правая стена</p>
-				<Buttonplintusup 
+			<div class="wallButtons wall2Buttons" transition:fade={{ delay: 250, duration: 500 }}>
+				<p transition:scale={{ delay: 500, duration: 500 }}>Правая стена</p>
+				<Buttonplintusup
 					buttonText="Плинтус верх"
 					on:plintusup={function (event) {
 						//---
@@ -318,7 +331,7 @@
 				class="callPlintus"
 				on:click={() => {
 					modalPlintusVisible = !modalPlintusVisible;
-					console.log('plintus');
+					
 				}}>Плинтус</button
 			>
 			<div class="buttonWrapper">
@@ -428,6 +441,7 @@
 				/>
 			</div>
 		</div>
+		<Instrbutton bind:instrVisible bgcolor="rgba(248, 244, 9, 0.801)" color="black" />
 	</header>
 
 	<div class="roomContainer">
@@ -470,7 +484,7 @@
 		justify-content: space-between;
 		align-items: center;
 		/* width: 98vw; */
-		height: 92vh;
+		height: 91.3vh;
 		background-color: black;
 		overflow: hidden;
 	}
@@ -617,7 +631,7 @@
 		.modalPlintusVisible {
 			width: 32%;
 			height: 30%;
-			top:20%;
+			top: 20%;
 			left: 1%;
 		}
 	}
@@ -627,7 +641,7 @@
 		}
 		.modalPlintusVisible {
 			width: 55%;
-			top:0.5%;
+			top: 0.5%;
 			left: 40%;
 		}
 	}

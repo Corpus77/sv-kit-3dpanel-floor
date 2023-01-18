@@ -23,15 +23,15 @@ function styleCommonPanels(toCreate) {
 		item.oncontextmenu = function (e) {
 			e.preventDefault();
 			//
-			
-				if (counter % 2 == 0) {
-					console.log('menu');
-					item.style.transform = 'rotate(90deg)';
-				} else {
-					item.style.transform = 'rotate(0deg)';
-				}
-				counter++;
-			
+
+			if (counter % 2 == 0) {
+				console.log('menu');
+				item.style.transform = 'rotate(90deg)';
+			} else {
+				item.style.transform = 'rotate(0deg)';
+			}
+			counter++;
+
 			//
 		};
 	});
@@ -107,7 +107,20 @@ function fillPlintus(surface) {
 		plintus.append(plintusItem);
 	}
 }
-
+//! non-visible when click on anything but that modal. problem with parent when body
+function bodyClick(e, buttonclass, thisClass) {
+	if (
+		!e.target.classList.contains(buttonclass) &&
+		!e.target.classList.contains(thisClass) &&
+		!e.target.parentNode.classList.contains(thisClass)
+	) {
+		console.log(e.target.parentNode);
+		return false;
+	} else {
+		
+		return true;
+	}
+}
 
 export {
 	removePanels,
@@ -118,5 +131,5 @@ export {
 	fillPlintus,
 	btnRemoveActive,
 	btnHeaderActive,
-	
+	bodyClick
 };

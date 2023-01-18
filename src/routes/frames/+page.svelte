@@ -11,12 +11,14 @@
 	import Plintusup from '$lib/components/Plintusup.svelte';
 	import Plintusdown from '$lib/components/Plintusdown.svelte';
 	import Instr from '../../lib/components/Instr.svelte';
+	import Instrbutton from '../../lib/components/Instrbutton.svelte';
 	import {
 		initWallPanelAdd,
 		styleCommonPanels,
 		removePanels,
 		btnRemoveActive,
-		btnHeaderActive
+		btnHeaderActive,
+		bodyClick
 	} from '$lib/logic/functions';
 	//----------------------------------------
 	let modalVisible = false;
@@ -33,7 +35,7 @@
 	let url = '';
 	let urlWall = './textures/';
 
-	let instruction = "1. Кнопка -На всю стену- позволяет разместить выбранную панель на всю стену 2. Кнопка -Одна панель- позволяет помещать выбранную панель в нужное для вас место путём нажатия правой кнопкой мыши в выбранном месте стены. При двойном нажатии, появляется возможность помещать плинтус на любую сторону данной панели. Для этого наведите курсор на нужную сторону панели (при этом курсор изменится на '+'). Кликните правой кнопкой мыши и выберите нужный плинтус. При повторном нажатии на появившемся плинтусе, он исчезнет. 3. -Плинтус вверх- и -Плинтус вниз- добавляют выбранный плинтус соответсвенно вверх и вниз. 4. -Очистить стену- очищает всю стену. При клике левой кнопкой мыши на панели она поворачивается на 45 градусов"
+	let instruction = "1. Кнопка -На всю стену- позволяет разместить выбранную панель на всю стену 2. Кнопка -Одна панель- позволяет помещать выбранную панель в нужное для вас место путём нажатия правой кнопкой мыши в выбранном месте стены. При двойном нажатии, появляется возможность помещать плинтус на любую сторону данной панели. Для этого наведите курсор на нужную сторону панели (при этом курсор изменится на '+'). Кликните правой кнопкой мыши и выберите нужный плинтус. При повторном нажатии на появившемся плинтусе, он исчезнет. 3. -Плинтус вверх- и -Плинтус вниз- добавляют выбранный плинтус соответсвенно вверх и вниз. 4. -Очистить стену- очищает всю стену. При клике левой кнопкой мыши на панели она поворачивается на 90 градусов"
 	//----------------------------------
 	function addPanel(wallsArg) {
 		wallsArg.forEach((item) => {
@@ -136,6 +138,10 @@
 
 	//-----------------------------------------
 	onMount(() => {
+		document.onclick = (e) => {
+			instrVisible = bodyClick(e, 'instr', 'instruction');
+			
+		};
 		btnHeaderArr = document.querySelectorAll('.btn-header');
 
 		//----- initial add panels
@@ -216,10 +222,11 @@
 				}}
 			/>
 		</div>
-		<button class="btnInstr" on:click={() => (instrVisible = !instrVisible)}>Инструкция</button>
+		
+		<Instrbutton bind:instrVisible bgcolor = 'rgba(248, 244, 9, 0.801)' color = 'black'></Instrbutton>
 	</header>
 	<div class="wallContainer">
-		<!-- FIXME:  text of instruction-->
+	
 		{#if instrVisible}
 			<Instr instrText= {instruction} />
 		{/if}
@@ -284,14 +291,7 @@
 		/* outline: 1px solid black; */
 	}
 
-	.btnInstr {
-		height: 40%;
-		padding: 0 10px 0 10px;
-		font-weight: bolder;
-		border-radius: 5px;
-		background-color: rgba(248, 244, 9, 0.801);
-		border-style: hidden;
-	}
+	
 	.container {
 		display: flex;
 		flex-direction: column;
@@ -304,8 +304,9 @@
 	}
 	header {
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-evenly;
 		align-items: center;
+		padding: 10px;
 		width: 100%;
 		height: 10%;
 		background-color: rgba(60, 249, 57, 0.507);

@@ -11,6 +11,8 @@
 	import Plintusup from '$lib/components/Plintusup.svelte';
 	import Plintusdown from '$lib/components/Plintusdown.svelte';
 	import Instr from '../../lib/components/Instr.svelte';
+	import Instrbutton from '../../lib/components/Instrbutton.svelte';
+	import {bodyClick} from '$lib/logic/functions'
 	let modalVisible = false;
 	let fillAllFlag = true;
 	let plintusUpFlag = false;
@@ -71,6 +73,10 @@
 
 	//______________________________________________________
 	onMount(() => {
+		document.onclick = (e) => {
+			instrVisible = bodyClick(e, 'instr', 'instruction');
+			
+		};
 		btnHeaderArr = document.querySelectorAll('.btn-header');
 		// add bricks to the wall
 		for (let i = 0; i < 400; i++) {
@@ -159,9 +165,8 @@
 				});
 			}}
 		/>
-		<button class="instr"  on:click={()=>{
-			instrVisible = !instrVisible
-		}}>Инструкция</button>
+		<Instrbutton bind:instrVisible bgcolor = 'rgb(85, 77, 195)' color = 'wheat'></Instrbutton>
+		
 	</header>
 	<div class="wall">
 		{#if plintusUpFlag}
@@ -202,11 +207,5 @@
 		box-shadow: 15px 16px 4px black;
 		overflow: hidden;
 	}
-	.instr {
-		background: rgb(85, 77, 195);
-		color:wheat;
-		border-radius: 5px;
-		border-style: none;
-		font-weight: bolder;
-	}
+	
 </style>

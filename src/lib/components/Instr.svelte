@@ -1,5 +1,5 @@
 <script>
-	import { blur, fly, slide } from 'svelte/transition';
+	import { blur, fly, slide, scale } from 'svelte/transition';
 	import { linear } from 'svelte/easing';
 	export let instrText = '';
 </script>
@@ -7,7 +7,7 @@
 <div
 	class="instruction"
 	in:fly={{ delay: 10, duration: 300, x: -500, opacity: 1, easing: linear }}
-	out:blur={{ delay: 10 , duration: 600, opacity: 1, easing: linear, amount: 10 }}
+	out:scale={{ delay: 10, duration: 400, opacity: 0, start: 0, easing: linear }}
 >
 	<h1 transition:slide={{ delay: 50, duration: 500 }}>Инструкция</h1>
 	<p transition:slide={{ delay: 150, duration: 500 }}>{instrText}</p>

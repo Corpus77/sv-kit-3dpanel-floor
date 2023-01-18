@@ -13,16 +13,19 @@
 	import Plintusup2 from '../../lib/components/Plintusup2.svelte';
 	import Plintusdown2 from '../../lib/components/Plintusdown2.svelte';
 	import Instr from '../../lib/components/Instr.svelte';
+	import Instrbutton from '$lib/components/Instrbutton.svelte'
 	import {
 		initWallPanelAdd,
 		styleCommonPanels,
 		removePanels,
 		btnHeaderActive,
 		btnRemoveActive,
-		
+		bodyClick
 	} from '$lib/logic/functions';
+	
 
 	//----------------------------------------
+	
 	let modalVisible = false;
 	let instrVisible = false;
 	let fillAllFlag = true;
@@ -42,7 +45,7 @@
 	//----------------------------------
 	let proportionValue = '50';
 	let instruction =
-		'1. Кнопка -На всю стену- позволяет разместить выбранную панель на всю стену 2. Кнопка -Одна панель- позволяет помещать выбранную панель в нужное для вас место путём нажатия правой кнопкой мыши в выбранном месте стены.3. -Плинтус вверх- и -Плинтус вниз- добавляют выбранный плинтус соответсвенно вверх и вниз. 4. -Очистить стену- очищает всю стену. При клике левой кнопкой мыши на панели она поворачивается на 45 градусов. 5.Кнопка -Положение- меняет положение стен вертикально/горизонтально. 6.кнопка -Зубцы- добавляет зубцы на стыке двух стен (возможно только в горизонтальном положении. 7. Ползунок -Пропорция- изменяет соотношение размера стен.';
+		'1. Кнопка -На всю стену- позволяет разместить выбранную панель на всю стену 2. Кнопка -Одна панель- позволяет помещать выбранную панель в нужное для вас место путём нажатия правой кнопкой мыши в выбранном месте стены.3. -Плинтус вверх- и -Плинтус вниз- добавляют выбранный плинтус соответсвенно вверх и вниз. 4. -Очистить стену- очищает всю стену. При клике левой кнопкой мыши на панели она поворачивается на 90 градусов. 5.Кнопка -Положение- меняет положение стен вертикально/горизонтально. 6.кнопка -Зубцы- добавляет зубцы на стыке двух стен (возможно только в горизонтальном положении. 7. Ползунок -Пропорция- изменяет соотношение размера стен.';
 	//TODO: Function console flags
 	function consFlags() {
 		console.log('plintusUpFlag = ' + plintusUpFlag);
@@ -51,6 +54,7 @@
 		console.log('plintusDownFlag2 = ' + plintusDownFlag2);
 		console.log('____________________________');
 	}
+
 	//__________________________________________
 	function wallSeperateVars() {
 		wall_1_panels = Array.from(document.getElementsByClassName('wall_1')[0].children);
@@ -160,17 +164,10 @@
 	}
 	//--------------------------------------------
 	onMount(() => {
-		
-		 document.onclick = (e) => {
-		
-			if (
-				!e.target.classList.contains('instr') &&
-				!e.target.classList.contains('instruction') &&
-				!e.target.parentNode.classList.contains('instruction')
-			) {
-				instrVisible = false;
-			}
-		 };
+		document.onclick = (e) => {
+			instrVisible = bodyClick(e, 'instr', 'instruction');
+			
+		};
 		// remove classes to toggle
 		teeth_blockRet().classList.remove('teeth_active');
 		walls().forEach((item) => {
@@ -429,12 +426,8 @@
 				}
 			}}>Зубцы</button
 		>
-		<button
-			class="instr"
-			on:click={() => {
-				instrVisible = !instrVisible;
-			}}>Инструкция</button
-		>
+		
+		<Instrbutton bind:instrVisible bgcolor = 'wheat' color = 'black'></Instrbutton>
 	</div>
 	<div class="container-wall horizontal">
 		<div class="wall wall_1 wall_horizontal">
