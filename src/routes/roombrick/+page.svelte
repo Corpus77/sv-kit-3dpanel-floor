@@ -99,7 +99,8 @@
 				}
 			}
 		}
-	});
+	}
+	);
 </script>
 
 <div class="container">

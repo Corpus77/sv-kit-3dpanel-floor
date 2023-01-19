@@ -22,6 +22,7 @@
 	<a href="/twoparts"> Две части стены</a>
 	<a href="/roombrick"> По кирпичику </a>
 	<a href="/frames"> Плинтус дизайн </a>
+	<a href="/laminat"> . </a>
 </nav>
 <slot/>
 

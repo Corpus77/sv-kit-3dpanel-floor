@@ -114,7 +114,7 @@ function bodyClick(e, buttonclass, thisClass) {
 		!e.target.classList.contains(thisClass) &&
 		!e.target.parentNode.classList.contains(thisClass)
 	) {
-		console.log(e.target.parentNode);
+		
 		return false;
 	} else {
 		
