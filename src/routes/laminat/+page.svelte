@@ -4,7 +4,7 @@
 	import Buttonone from '$lib/components/Buttonone.svelte';
 	import Buttonclear from '$lib/components/Buttonclear.svelte';
 	import Modal from '$lib/components/Modal.svelte';
-	import { btnHeaderActive } from '$lib/logic/functions';
+	import { btnHeaderActive, removePanels } from '$lib/logic/functions';
 	import { floor, panel } from '$lib/logic/retSurfaces.js';
 	let counter = 2;
 	let btnHeaderArr;
@@ -15,7 +15,7 @@
 	}
 	let url = '';
 	let urlWall = './textures/';
-	
+
 	function panelMove() {
 		return document.querySelector('.panel').offsetHeight / 2;
 	}
@@ -48,25 +48,11 @@
 		modalVisible = false;
 		fillAllFlag = false;
 	}
-	function removeBrick() {
-		if (panel()) {
-			let panelArray = document.querySelectorAll('.panel');
-			for (let i = 0; i < panel().length - 1; i++) {
-				//panel()[i].remove();
-				panelArray[i].remove();
-			}
-			
-			setTimeout(()=>{
-				console.log('panel().length = ' + panel().length);
-			})
-			
-		}
-	}
+
 	function initBricks(surface) {
-		
-		for (let i = 0; i < 90; i++) {
+		for (let i = 0; i < 115; i++) {
 			let brick = document.createElement('div');
-			brick.className = 'panel';
+			brick.classList.add('panel');
 			brick.style.position = 'relative';
 			brick.style.minWidth = 3 + 'vw';
 			brick.style.height = 29 + 'vh';
@@ -76,11 +62,11 @@
 			surface[0].appendChild(brick);
 		}
 	}
-	function moveParityColumns(moveUnit) {
-		for (let item = 0; item < panel().length-1; item++) {
-			if (item % 2 == 0) {
+	function moveParityColumns(moveUnit, direction, parity) {
+		for (let item = 0; item < panel().length - 1; item++) {
+			if (item % parity == 0) {
+				panel()[item].style[direction] = moveUnit + 'px';
 				
-				panel()[item].style.top = panelMove() + 'px';
 			}
 		}
 	}
@@ -91,11 +77,10 @@
 		btnHeaderArr = document.querySelectorAll('.btn-header');
 
 		// add bricks to the wall
-		removeBrick();
+
 		setTimeout(() => {
 			initBricks(floor());
-		},500)
-
+		}, 500);
 
 		let angle = document.querySelector('#angle');
 
@@ -137,17 +122,13 @@
 			class="parityMove"
 			on:click={() => {
 				if (counter % 2 == 0) {
-					moveParityColumns(panelMove());
+					moveParityColumns(panelMove(), 'top', 2);
 					console.log('rra');
 				} else {
-					removeBrick();
-					setTimeout(() => {
-						initBricks(floor());
-					},500)
-					
+					moveParityColumns((panelMove()/-0.5), 'top', 2);
 				}
 				counter++;
-			}}>Сдвиг</button
+			}}>Сдвиг вниз</button
 		>
 
 		<input type="range" name="" id="angle" min="0" max="50" value="35" />
