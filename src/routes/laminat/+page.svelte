@@ -6,7 +6,7 @@
 	import Modal from '$lib/components/Modal.svelte';
 	import { btnHeaderActive, removePanels } from '$lib/logic/functions';
 	import { floor, panel } from '$lib/logic/retSurfaces.js';
-	let counter = 2;
+
 	let btnHeaderArr;
 	let globalSurface = 'floor';
 	let modalVisible = false;
@@ -15,10 +15,19 @@
 	}
 	let url = '';
 	let urlWall = './textures/';
-
-	function panelMove() {
-		return document.querySelector('.panel').offsetHeight / 2;
+	let upDown = 'вверх ';
+	let leftRight = 'влево';
+	function panelMove(size) {
+		return document.querySelector('.panel')[size] / 2;
 	}
+	function counter() {
+		let i = 2;
+		return function () {
+			return i++;
+		};
+	}
+	let counter1 = counter();
+	let counter2 = counter();
 	//__________________________________________________
 	function fillAll() {
 		panel().forEach((item) => {
@@ -56,17 +65,17 @@
 			brick.style.position = 'relative';
 			brick.style.minWidth = 3 + 'vw';
 			brick.style.height = 29 + 'vh';
-			brick.style.border = '1px solid rgba(0,200,200,1)';
+			brick.style.border = '1px solid rgba(200,200,200,0.5)';
 			brick.style.overflow = 'hidden';
-
+			brick.style.transition = '0.5s';
 			surface[0].appendChild(brick);
 		}
 	}
-	function moveParityColumns(moveUnit, direction, parity) {
-		for (let item = 0; item < panel().length - 1; item++) {
+	function moveParityColumns(moveUnit, direction, parity, cycleStart, cycleEnd) {
+		for (let item = cycleStart; item < cycleEnd; item++) {
+			//panel().length - 1
 			if (item % parity == 0) {
 				panel()[item].style[direction] = moveUnit + 'px';
-				
 			}
 		}
 	}
@@ -121,17 +130,41 @@
 		<button
 			class="parityMove"
 			on:click={() => {
-				if (counter % 2 == 0) {
-					moveParityColumns(panelMove(), 'top', 2);
-					console.log('rra');
+				if (counter1() % 2 == 0) {
+					moveParityColumns(-panelMove('offsetHeight'), 'top', 2, 0, panel().length - 1);
+					upDown = 'вниз\u00A0';
+					//console.log('rra');
 				} else {
-					moveParityColumns((panelMove()/-0.5), 'top', 2);
+					moveParityColumns(0, 'top', 2, 0, panel().length - 1);
+					upDown = 'вверх';
 				}
-				counter++;
-			}}>Сдвиг вниз</button
+			}}>Сдвиг {upDown}</button
+		>
+		<button
+			class="parityMove"
+			on:click={() => {
+				if (counter2() % 2 == 0) {
+					let rowLength = Math.floor(floor()[0].offsetWidth / panel()[0].offsetWidth);
+					moveParityColumns(-panelMove('offsetWidth'), 'left', 1, 0, rowLength);
+
+					moveParityColumns(
+						-panelMove('offsetWidth'),
+						'left',
+						1,
+						rowLength + rowLength,
+						rowLength * 3
+					);
+					leftRight = 'вправо';
+				} else {
+					let rowLength = Math.floor(floor()[0].offsetWidth / panel()[0].offsetWidth);
+					moveParityColumns(0, 'left', 1, 0, rowLength);
+					moveParityColumns(0, 'left', 1, rowLength + rowLength, rowLength * 3);
+					leftRight = 'влево';
+				}
+			}}>Сдвиг {leftRight}</button
 		>
 
-		<input type="range" name="" id="angle" min="0" max="50" value="35" />
+		<input type="range" name="" id="angle" min="0" max="50" value="35" class="range" />
 	</header>
 	<div class="floorContainer">
 		<div class="floor" />
@@ -159,9 +192,9 @@
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
-		width: 80%;
+		width: 100%;
 		height: 10%;
-		background-color: honeydew;
+		background-color: rgb(161, 249, 161);
 	}
 	.floorContainer {
 		display: flex;
@@ -187,8 +220,61 @@
 		transform: rotateX(35deg);
 		width: 90%;
 		height: 100%;
+		background: lightgray;
 		overflow: hidden;
 		border: 1px solid black;
 		box-shadow: 5px 5px 4px black;
+	}
+	.parityMove {
+		position: relative;
+		width: 8em;
+		padding: 1px;
+		font-weight: bold;
+		border-style: double;
+		border-radius: 5px;
+		box-shadow: 2px 2px 1px;
+		overflow: hidden;
+	}
+	.parityMove:hover {
+		background-color: rgba(108, 100, 100, 0.326);
+	}
+	.parityMove:active {
+		box-shadow: 0 0 0;
+		transform: translateY(2px);
+		transition: 0.5s;
+	}
+	.parityMove:after {
+		content: '';
+		background: rgba(108, 100, 100, 0.526);
+		display: block;
+		position: absolute;
+		padding-top: 300%;
+		padding-left: 350%;
+		margin-left: -20px !important;
+		margin-top: -120%;
+		opacity: 0;
+		transition: all 0.5s;
+	}
+	.parityMove:active:after {
+		padding: 0;
+		margin: 0;
+		opacity: 1;
+		transition: 0s;
+	}
+	.range {
+		appearance: none;
+		background: rgb(36, 0, 35);
+		background: linear-gradient(
+			90deg,
+			
+			rgba(5, 75, 80, 1) 27%,
+			rgba(121, 9, 58, 1) 52%,
+			rgba(53, 194, 71, 1) 78%,
+			rgba(0, 212, 255, 1) 100%
+		);
+		height: 15%;
+		/* border: 1px solid black; */
+		border-style: ridge;
+		border-radius: 5px;
 	}
 </style>
