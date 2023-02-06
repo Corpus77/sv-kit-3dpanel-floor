@@ -12,6 +12,8 @@
 	import Plintusdown from '$lib/components/Plintusdown.svelte';
 	import Instr from '../../lib/components/Instr.svelte';
 	import Instrbutton from '../../lib/components/Instrbutton.svelte';
+	import Buttonmoveleft from '$lib/components/Buttonmoveleft.svelte';
+	import Buttonmoveup from '$lib/components/Buttonmoveup.svelte';
 	import {
 		initWallPanelAdd,
 		styleCommonPanels,
@@ -35,7 +37,8 @@
 	let url = '';
 	let urlWall = './textures/';
 
-	let instruction = "1. Кнопка -На всю стену- позволяет разместить выбранную панель на всю стену 2. Кнопка -Одна панель- позволяет помещать выбранную панель в нужное для вас место путём нажатия правой кнопкой мыши в выбранном месте стены. При двойном нажатии, появляется возможность помещать плинтус на любую сторону данной панели. Для этого наведите курсор на нужную сторону панели (при этом курсор изменится на '+'). Кликните правой кнопкой мыши и выберите нужный плинтус. При повторном нажатии на появившемся плинтусе, он исчезнет. 3. -Плинтус вверх- и -Плинтус вниз- добавляют выбранный плинтус соответсвенно вверх и вниз. 4. -Очистить стену- очищает всю стену. При клике левой кнопкой мыши на панели она поворачивается на 90 градусов"
+	let instruction =
+		"1. Кнопка -На всю стену- позволяет разместить выбранную панель на всю стену 2. Кнопка -Одна панель- позволяет помещать выбранную панель в нужное для вас место путём нажатия правой кнопкой мыши в выбранном месте стены. При двойном нажатии, появляется возможность помещать плинтус на любую сторону данной панели. Для этого наведите курсор на нужную сторону панели (при этом курсор изменится на '+'). Кликните правой кнопкой мыши и выберите нужный плинтус. При повторном нажатии на появившемся плинтусе, он исчезнет. 3. -Плинтус вверх- и -Плинтус вниз- добавляют выбранный плинтус соответсвенно вверх и вниз. 4. -Очистить стену- очищает всю стену. При клике левой кнопкой мыши на панели она поворачивается на 90 градусов";
 	//----------------------------------
 	function addPanel(wallsArg) {
 		wallsArg.forEach((item) => {
@@ -103,7 +106,6 @@
 										};
 									});
 								}
-								
 							}
 						}
 					}, 100);
@@ -111,9 +113,7 @@
 			});
 		} else if (globalSurface == 'frame') {
 			side.style.background = `url('./textures/plintus/${url}')`;
-		}
-		
-		else if (fillAllFlag && globalSurface == 'plintusUp') {
+		} else if (fillAllFlag && globalSurface == 'plintusUp') {
 			plintusUpFlag = true;
 			url = event.detail;
 			setTimeout(() => {
@@ -140,7 +140,6 @@
 	onMount(() => {
 		document.onclick = (e) => {
 			instrVisible = bodyClick(e, 'instr', 'instruction');
-			
 		};
 		btnHeaderArr = document.querySelectorAll('.btn-header');
 
@@ -221,14 +220,15 @@
 					plintusDownFlag = plintusUpFlag = false;
 				}}
 			/>
+			<!--! <Buttonmoveleft surface={walls} />
+			<Buttonmoveup /> -->
 		</div>
-		
-		<Instrbutton bind:instrVisible bgcolor = 'rgba(248, 244, 9, 0.801)' color = 'black'></Instrbutton>
+
+		<Instrbutton bind:instrVisible bgcolor="rgba(248, 244, 9, 0.801)" color="black" />
 	</header>
 	<div class="wallContainer">
-	
 		{#if instrVisible}
-			<Instr instrText= {instruction} />
+			<Instr instrText={instruction} />
 		{/if}
 		<div class="wall">
 			{#if plintusUpFlag}
@@ -291,7 +291,6 @@
 		/* outline: 1px solid black; */
 	}
 
-	
 	.container {
 		display: flex;
 		flex-direction: column;

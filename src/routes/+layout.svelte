@@ -1,20 +1,22 @@
 <script>
-	import {onMount} from "svelte"
+	import { onMount } from 'svelte';
 
 	onMount(() => {
 		let links = document.querySelectorAll('a');
 		links.forEach((item) => {
-			item.style.color ="black"
-			item.onclick = function() {
+			item.style.color = 'black';
+			item.onclick = function () {
 				links.forEach((item) => {
-					item.style.color ="black"
-				})
+					item.style.color = 'black';
+					
+				});
 				this.style.color = 'red';
-			}
-			
-		})
-	})
+				
+			};
+		});
+	});
 </script>
+
 <nav>
 	<a href="/">Начало</a>
 	<a href="/floorwalls">Потолок/стены/пол</a>
@@ -22,9 +24,9 @@
 	<a href="/twoparts"> Две части стены</a>
 	<a href="/roombrick"> По кирпичику </a>
 	<a href="/frames"> Плинтус дизайн </a>
-	<a href="/laminat"> . </a>
+	<a href="/laminat"> Сам.клей. ламинат </a>
 </nav>
-<slot/>
+<slot />
 
 <style>
 	* {
@@ -36,20 +38,23 @@
 		display: flex;
 		justify-content: space-around;
 		align-items: center;
-		
+
 		height: 6vh;
 		gap: 1%;
 		background: linear-gradient(to right, #ccccb2, #a5a523, #ccccb2);
 	}
 	a {
 		text-decoration: none;
+
 		font-size: 2vw;
+	}
+	a:active {
+		transform: translateY(3px);
+		text-shadow: 2px 2px 2px rgb(51, 255, 0);
 	}
 	@media only screen and (max-width: 500px) {
 		a {
-			font-size: .7em;
+			font-size: 0.7em;
 		}
 	}
-	
-	
 </style>

@@ -1,0 +1,61 @@
+<script>
+	import { moveParityColumns, panelMove } from '$lib/logic/functions.js';
+	import { panel } from '$lib/logic/retsurfaces.js';
+	let upDown = 'вверх';
+	let counter = 2;
+</script>
+
+<button
+	class="parityMove"
+	on:click={() => {
+		if (counter % 2 == 0) {
+			moveParityColumns(panel(), -panelMove('offsetHeight'), 'top', 2, 0, panel().length - 1);
+			upDown = 'вниз\u00A0';
+			
+		} else {
+			moveParityColumns(panel(), 0, 'top', 2, 0, panel().length - 1);
+			upDown = 'вверх';
+		}
+    counter++;
+	}}>Сдвиг {upDown}</button
+>
+
+<style>
+	.parityMove {
+		position: relative;
+		width: 8em;
+		min-height: 25%;
+		padding: 1px;
+		font-weight: bold;
+		border-style: double;
+		border-radius: 5px;
+		box-shadow: 2px 2px 1px rgb(107, 97, 97);
+		overflow: hidden;
+	}
+	.parityMove:hover {
+		background-color: rgba(108, 100, 100, 0.326);
+	}
+	.parityMove:active {
+		box-shadow: 0 0 0;
+		transform: translateY(2px);
+		transition: 0.5s;
+	}
+	.parityMove:after {
+		content: '';
+		background: rgba(108, 100, 100, 0.526);
+		display: block;
+		position: absolute;
+		padding-top: 300%;
+		padding-left: 350%;
+		margin-left: -20px !important;
+		margin-top: -120%;
+		opacity: 0;
+		transition: all 0.5s;
+	}
+	.parityMove:active:after {
+		padding: 0;
+		margin: 0;
+		opacity: 1;
+		transition: 0s;
+	}
+</style>

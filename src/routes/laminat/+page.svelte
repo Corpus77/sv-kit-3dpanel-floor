@@ -4,31 +4,25 @@
 	import Buttonone from '$lib/components/Buttonone.svelte';
 	import Buttonclear from '$lib/components/Buttonclear.svelte';
 	import Modal from '$lib/components/Modal.svelte';
-	import { btnHeaderActive, removePanels } from '$lib/logic/functions';
+	import Buttonmoveleft from '$lib/components/Buttonmoveleft.svelte';
+	import Buttonmoveup from '$lib/components/Buttonmoveup.svelte';
+	import {
+		btnHeaderActive,
+		panelMove,
+		moveParityColumns,
+		removePanels
+	} from '$lib/logic/functions';
 	import { floor, panel } from '$lib/logic/retSurfaces.js';
 
 	let btnHeaderArr;
-	let globalSurface = 'floor';
+	let globalSurface = 'laminat';
 	let modalVisible = false;
 	let fillAllFlag = false;
 	{
 	}
 	let url = '';
 	let urlWall = './textures/';
-	let upDown = 'вверх ';
-	let leftRight = 'влево';
-	function panelMove(size) {
-		return document.querySelector('.panel')[size] / 2;
-	}
-	function counter() {
-		let i = 2;
-		return function () {
-			return i++;
-		};
-	}
-	let counter1 = counter();
-	let counter2 = counter();
-	//__________________________________________________
+	
 	function fillAll() {
 		panel().forEach((item) => {
 			item.style.background = `url(${urlWall}${url}`;
@@ -40,10 +34,10 @@
 	}
 	function panelChoice(event) {
 		url = event.detail;
-		if (fillAllFlag && globalSurface == 'floor') {
+		if (fillAllFlag && globalSurface == 'laminat' ) {
 			fillAll(floor());
 			url = event.detail;
-		} else if (!fillAllFlag && globalSurface == 'floor') {
+		} else if (!fillAllFlag && globalSurface == 'laminat' ) {
 			floor().forEach((item) => {
 				item.onclick = function (e) {
 					url = urlWall + event.detail;
@@ -71,18 +65,12 @@
 			surface[0].appendChild(brick);
 		}
 	}
-	function moveParityColumns(moveUnit, direction, parity, cycleStart, cycleEnd) {
-		for (let item = cycleStart; item < cycleEnd; item++) {
-			//panel().length - 1
-			if (item % parity == 0) {
-				panel()[item].style[direction] = moveUnit + 'px';
-			}
-		}
-	}
+
 	onMount(() => {
 		// window.onresize = () => {
 		// 	moveParityColumns(panelMove());
 		// };
+		
 		btnHeaderArr = document.querySelectorAll('.btn-header');
 
 		// add bricks to the wall
@@ -127,43 +115,9 @@
 				btnHeaderActive(event.detail, modalVisible, btnHeaderArr);
 			}}
 		/>
-		<button
-			class="parityMove"
-			on:click={() => {
-				if (counter1() % 2 == 0) {
-					moveParityColumns(-panelMove('offsetHeight'), 'top', 2, 0, panel().length - 1);
-					upDown = 'вниз\u00A0';
-					//console.log('rra');
-				} else {
-					moveParityColumns(0, 'top', 2, 0, panel().length - 1);
-					upDown = 'вверх';
-				}
-			}}>Сдвиг {upDown}</button
-		>
-		<button
-			class="parityMove"
-			on:click={() => {
-				if (counter2() % 2 == 0) {
-					let rowLength = Math.floor(floor()[0].offsetWidth / panel()[0].offsetWidth);
-					moveParityColumns(-panelMove('offsetWidth'), 'left', 1, 0, rowLength);
 
-					moveParityColumns(
-						-panelMove('offsetWidth'),
-						'left',
-						1,
-						rowLength + rowLength,
-						rowLength * 3
-					);
-					leftRight = 'вправо';
-				} else {
-					let rowLength = Math.floor(floor()[0].offsetWidth / panel()[0].offsetWidth);
-					moveParityColumns(0, 'left', 1, 0, rowLength);
-					moveParityColumns(0, 'left', 1, rowLength + rowLength, rowLength * 3);
-					leftRight = 'влево';
-				}
-			}}>Сдвиг {leftRight}</button
-		>
-
+		<Buttonmoveleft surface={floor} />
+		<Buttonmoveup />
 		<input type="range" name="" id="angle" min="0" max="50" value="35" class="range" />
 	</header>
 	<div class="floorContainer">
@@ -228,11 +182,12 @@
 	.parityMove {
 		position: relative;
 		width: 8em;
+		min-height: 25%;
 		padding: 1px;
 		font-weight: bold;
 		border-style: double;
 		border-radius: 5px;
-		box-shadow: 2px 2px 1px;
+		box-shadow: 2px 2px 1px rgb(107, 97, 97);
 		overflow: hidden;
 	}
 	.parityMove:hover {
@@ -266,15 +221,14 @@
 		background: rgb(36, 0, 35);
 		background: linear-gradient(
 			90deg,
-			
-			rgba(5, 75, 80, 1) 27%,
-			rgba(121, 9, 58, 1) 52%,
-			rgba(53, 194, 71, 1) 78%,
+			rgb(18, 227, 241) 27%,
+			/* rgb(31, 80, 212) 52%, */ rgb(15, 245, 149) 78%,
 			rgba(0, 212, 255, 1) 100%
 		);
-		height: 15%;
+		height: 10%;
 		/* border: 1px solid black; */
-		border-style: ridge;
+		border-style: none;
 		border-radius: 5px;
+		box-shadow: 2px 2px 3px;
 	}
 </style>

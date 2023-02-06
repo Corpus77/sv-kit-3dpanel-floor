@@ -186,6 +186,9 @@
 </div>
 
 <style>
+	header {
+		min-height: 10%;
+	}
 	.container {
 		display: flex;
 		flex-direction: column;

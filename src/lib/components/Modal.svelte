@@ -16,7 +16,7 @@
 		filenamesVinilWall
 	} from '../filenames.js';
 	import { filenamesPuzzles, filenamesVinil, filenamesPuzzlesButton } from '../filenamesfloor';
-	import {filenamesPlintus} from '../filenamesplintus'
+	import { filenamesPlintus } from '../filenamesplintus';
 	export let globalSurface;
 	// -------------------------------------------------
 	function active(button, typePanel, surfaceArray) {
@@ -114,6 +114,14 @@
 			imgArr: filenamesVinil
 		}
 	];
+	let laminatArray = [
+		{
+			type: 'vinil',
+			visible: false,
+			title: 'Виниловая плитка',
+			imgArr: filenamesVinilWall
+		}
+	];
 	let plintusArray = [
 		{
 			type: 'gluePlintus',
@@ -121,7 +129,7 @@
 			title: 'Самоклеющийся плинтус',
 			imgArr: filenamesPlintus
 		}
-	]
+	];
 </script>
 
 <div class="container" transition:slide={{ delay: 100, duration: 500 }}>
@@ -144,6 +152,18 @@
 					class="btn non-active"
 					on:click={(e) => {
 						active(e.target, item, floorArray);
+						item.visible = !item.visible;
+					}}
+					>{item.title}
+				</button>
+			{/each}
+			<!--! for laminat -->
+			{:else if globalSurface == 'laminat'}
+			{#each laminatArray as item, index}
+				<button
+					class="btn non-active"
+					on:click={(e) => {
+						active(e.target, item, laminatArray);
 						item.visible = !item.visible;
 					}}
 					>{item.title}
@@ -215,6 +235,26 @@
 				{/each}
 			{/if}
 		{/each}
+		<!--! For laminat  -->
+	{:else if globalSurface == 'laminat'}
+		{#each laminatArray as item}
+			{#if item.visible}
+				{#each item.imgArr as filename}
+					<!-- svelte-ignore a11y-click-events-have-key-events -->
+					<div
+						transition:scale={{ delay: 200, duration: 500, easing: linear }}
+						class="divImg"
+						on:click={() => {
+							panelChoice(filename.url);
+						}}
+					>
+						<img src="./textures/floor/{filename.url}" alt="" loading="lazy" />
+						<span class="title">{filename.title}</span>
+						<span class="size">{filename.size} mm</span>
+					</div>
+				{/each}
+			{/if}
+		{/each}
 	{:else if globalSurface == 'ceil'}
 		{#each wallArray as item}
 			{#if item.visible}
@@ -235,7 +275,7 @@
 			{/if}
 		{/each}
 		<!--! for plintus -->
-		{:else if globalSurface == 'plintusUp' || 'plintusDown' || 'frame'}
+	{:else if globalSurface == 'plintusUp' || 'plintusDown' || 'frame'}
 		{#each plintusArray as item}
 			{#if item.visible}
 				{#each item.imgArr as filename}

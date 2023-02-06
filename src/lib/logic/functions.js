@@ -114,11 +114,19 @@ function bodyClick(e, buttonclass, thisClass) {
 		!e.target.classList.contains(thisClass) &&
 		!e.target.parentNode.classList.contains(thisClass)
 	) {
-		
 		return false;
 	} else {
-		
 		return true;
+	}
+}
+function panelMove(size) {
+	return document.querySelector('.panel')[size] / 2;
+}
+function moveParityColumns(surface, moveUnit, direction, parity, cycleStart, cycleEnd) {
+	for (let item = cycleStart; item < cycleEnd; item++) {
+		if (item % parity == 0) {
+			surface[item].style[direction] = moveUnit + 'px';
+		}
 	}
 }
 
@@ -131,5 +139,7 @@ export {
 	fillPlintus,
 	btnRemoveActive,
 	btnHeaderActive,
-	bodyClick
+	bodyClick,
+	panelMove,
+	moveParityColumns
 };
