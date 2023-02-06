@@ -179,43 +179,10 @@
 		border: 1px solid black;
 		box-shadow: 5px 5px 4px black;
 	}
-	.parityMove {
-		position: relative;
-		width: 8em;
-		min-height: 25%;
-		padding: 1px;
-		font-weight: bold;
-		border-style: double;
-		border-radius: 5px;
-		box-shadow: 2px 2px 1px rgb(107, 97, 97);
-		overflow: hidden;
-	}
-	.parityMove:hover {
-		background-color: rgba(108, 100, 100, 0.326);
-	}
-	.parityMove:active {
-		box-shadow: 0 0 0;
-		transform: translateY(2px);
-		transition: 0.5s;
-	}
-	.parityMove:after {
-		content: '';
-		background: rgba(108, 100, 100, 0.526);
-		display: block;
-		position: absolute;
-		padding-top: 300%;
-		padding-left: 350%;
-		margin-left: -20px !important;
-		margin-top: -120%;
-		opacity: 0;
-		transition: all 0.5s;
-	}
-	.parityMove:active:after {
-		padding: 0;
-		margin: 0;
-		opacity: 1;
-		transition: 0s;
-	}
+	
+	
+	
+	
 	.range {
 		appearance: none;
 		background: rgb(36, 0, 35);
