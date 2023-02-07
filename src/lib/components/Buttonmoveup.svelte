@@ -1,6 +1,6 @@
 <script>
-	import { moveParityColumns, panelMove } from '$lib/logic/functions.js';
-	import { panel } from '$lib/logic/retsurfaces.js';
+	import { moveParityColumns, panelMove } from '../../lib/logic/functions.js';
+	import { panel } from '../../lib/logic/retsurfaces.js';
 	let upDown = 'вверх';
 	let counter = 2;
 </script>
