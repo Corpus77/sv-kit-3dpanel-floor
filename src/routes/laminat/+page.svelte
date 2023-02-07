@@ -1,4 +1,5 @@
 <script>
+	
 	import { onMount } from 'svelte';
 	import Buttonall from '$lib/components/Buttonall.svelte';
 	import Buttonone from '$lib/components/Buttonone.svelte';
@@ -116,8 +117,8 @@
 			}}
 		/>
 
-		<Buttonmoveleft surface={floor} />
-		<Buttonmoveup />
+		<Buttonmoveleft surface={floor} {moveParityColumns}  {panelMove}  {panel} />
+		<Buttonmoveup {moveParityColumns}  {panelMove}  {panel} />
 		<input type="range" name="" id="angle" min="0" max="50" value="35" class="range" />
 	</header>
 	<div class="floorContainer">

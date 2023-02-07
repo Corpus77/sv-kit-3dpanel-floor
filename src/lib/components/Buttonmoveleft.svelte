@@ -1,8 +1,10 @@
 <script>
-	import { moveParityColumns, panelMove } from '$lib/logic/functions.js';
-	import { panel, floor } from '$lib/logic/retsurfaces.js';
+	
 	export let surface;
 	let leftRight = 'влево';
+	export let  moveParityColumns;
+	export let panelMove;
+	export let panel;
 	let counter = 2;
 </script>
 
