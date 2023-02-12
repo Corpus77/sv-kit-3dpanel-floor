@@ -52,9 +52,14 @@
 		transform: translateY(3px);
 		text-shadow: 2px 2px 2px rgb(51, 255, 0);
 	}
-	@media only screen and (max-width: 500px) {
+	@media only screen and (max-width: 480px) {
 		a {
 			font-size: 0.7em;
+		}
+	}
+	@media only screen and (max-height: 440px) {
+		a {
+			font-size: 0.8em;
 		}
 	}
 </style>
