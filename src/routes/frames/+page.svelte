@@ -340,4 +340,14 @@
 
 		overflow: hidden;
 	}
+	@media only screen and (max-height: 440px) {
+		.buttonWrapper {
+			height: 100%;
+		}
+	}
+	@media only screen and (max-width: 480px) {
+		.buttonWrapper {
+			height: 90%;
+		}
+	}
 </style>
