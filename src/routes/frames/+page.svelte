@@ -315,7 +315,7 @@
 		display: flex;
 		justify-content: space-evenly;
 		width: 70%;
-		height: 40%;
+		height: 60%;
 		box-shadow: 3px 3px 5px;
 		background-color: rgba(47, 79, 79, 0.507);
 		/* border: 1px solid black; */
@@ -342,12 +342,12 @@
 	}
 	@media only screen and (max-height: 440px) {
 		.buttonWrapper {
-			height: 100%;
+			height: 180%;
 		}
 	}
 	@media only screen and (max-width: 480px) {
 		.buttonWrapper {
-			height: 90%;
+			height: 80%;
 		}
 	}
 </style>
