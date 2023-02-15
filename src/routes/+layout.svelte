@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { slide, fade, fly } from 'svelte/transition';
+	import {linear} from 'svelte/easing'
 	let linksVisible = false;
 	let title = '';
 	function burgerClick() {
@@ -35,8 +36,8 @@
 	{#if linksVisible}
 		<div
 			class="menu"
-			in:slide={{ delay: 100, duration: 500 }}
-			out:slide={{ delay: 100, duration: 1000 }}
+			in:slide={{ delay: 100, duration: 500, easing: linear }}
+			out:slide={{ delay: 100, duration: 1000, easing: linear }}
 		>
 			<a href="/floorwalls" transition:fly={{ delay: 0, x: 250, duration: 250 }}
 				>Потолок,стены,пол</a
@@ -91,22 +92,25 @@
 		height: 50vh;
 		background-color: rgba(165, 165, 35, 0.878);
 		padding: 5px;
-		right: 20px;
-		top: 20px;
+		right: 2vw;
+		top: 4vh;
 		z-index: 100;
 		box-shadow: -3px 3px 3px;
 		border: 1px ridge black;
 	}
 	.title {
 		font-size: 2.5vw;
-		margin-left: 35%;
+		margin-left: 5%;
 		font-family: 'Courier New', Courier, monospace;
 		font-weight: bolder;
 		color: rgb(130, 36, 2);
 	}
 	@media only screen and (max-width: 480px) {
 		a {
-			font-size: 0.7em;
+			font-size: 1em;
+		}
+		.title {
+			font-size: 1.5em;
 		}
 	}
 	@media only screen and (max-height: 440px) {

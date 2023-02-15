@@ -518,7 +518,8 @@
 	.buttonWrapper {
 		display: flex;
 		width: 99%;
-
+		height: 20%;
+		align-items: stretch;
 		justify-content: space-around;
 	}
 	.modalPlintusVisible {
@@ -550,6 +551,7 @@
 		border: none;
 		border-radius: 4px;
 		font-weight: bold;
+		font-size: 100%;
 		background: rgb(178, 174, 174);
 	}
 
@@ -628,6 +630,9 @@
 		.roomContainer {
 			width: 70%;
 		}
+		header {
+			min-height: 20%;
+		}
 		.modalPlintusVisible {
 			width: 32%;
 			height: 30%;
@@ -638,6 +643,7 @@
 	@media only screen and (max-width: 480px) {
 		.buttonWrapper {
 			flex-direction: column;
+			min-height: 50%;
 		}
 		.modalPlintusVisible {
 			width: 55%;

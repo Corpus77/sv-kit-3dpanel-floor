@@ -44,6 +44,7 @@
     button {
       font-size: .7em;
       font-weight:lighter;
+      min-height: auto;
     }
     
   }

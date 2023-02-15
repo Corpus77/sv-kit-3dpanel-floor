@@ -482,7 +482,8 @@
 	}
 	.header {
 		display: flex;
-		justify-content: space-around;
+		justify-content:space-evenly;
+	
 		align-items: center;
 		flex-wrap: wrap;
 		width: 90vw;
@@ -495,8 +496,12 @@
 	.btn_wrapper {
 		display: flex;
 		flex-direction: column;
+		justify-content: space-around;
+		align-items: stretch;
 		gap: 5px;
-		padding: 5px;
+		padding-left: 5px;
+		padding-right: 5px;
+		min-height: 90%;
 		height: auto;
 		box-shadow: 2px 2px 2px;
 		background-color: rgb(104, 103, 103);
@@ -509,7 +514,7 @@
 	button {
 		padding: 0.2%;
 		font-weight: bolder;
-
+		font-size: 100%;
 		letter-spacing: 0.1em;
 		margin: 0.2em;
 		z-index: 10;
@@ -583,6 +588,9 @@
 		}
 		p {
 			font-size: 0.7em;
+		}
+		.btn_wrapper {
+			min-height: auto;
 		}
 	}
 	@media only screen and (max-height: 600px) {
