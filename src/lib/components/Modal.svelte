@@ -2,6 +2,8 @@
 	import { slide, scale } from 'svelte/transition';
 	import { linear } from 'svelte/easing';
 	import { createEventDispatcher } from 'svelte';
+	// import { wallArray, floorArray, laminatArray, plintusArray }
+	//  from '../typesArrays.js';
 	import {
 		filenamesBrick,
 		filenamesDecBrick,
@@ -39,7 +41,7 @@
 		dispatch('panelChoice', url);
 	};
 
-	//  Array of object`s panels for walls
+	// //  Array of object`s panels for walls
 	let wallArray = [
 		{
 			type: 'simpleBrick',

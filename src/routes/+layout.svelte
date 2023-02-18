@@ -48,6 +48,7 @@
 			<a href="/frames" transition:fly={{ delay: 0, x: 25,y:25, duration: 250 }}> Плинтус дизайн </a>
 			<a href="/laminat" transition:fly={{ delay: 0, x: 25,y:25, duration: 250 }}> Самоклеющийся ламинат </a>
 			<a href="/" transition:fly={{ delay: 0, x: 250, duration: 250 }}>Начало</a>
+			<a href="/kitchen" transition:fly={{ delay: 0, x: 25,y:25, duration: 250 }}> Кухня (в разработке) </a>
 		</div>
 	{/if}
 
@@ -66,6 +67,7 @@
 		justify-content: flex-start;
 		align-items: center;
 		padding-left: 1%;
+		width: 100%;
 		height: 6vh;
 		gap: 2%;
 		background: linear-gradient(to right, #ccccb2, #a5a523, #ccccb2);
