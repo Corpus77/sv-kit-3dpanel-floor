@@ -495,7 +495,122 @@ const filenamesVinilWall = [
 		url: 'greystripeswood.webp',
 		size: '914x152',
 		title: 'Серое полосатое дерево'
-	}
+	},
+	{
+		url: 'brick1.jpg',
+		size: '300x300',
+		title: 'Кирпич 1'
+	},
+	{
+		url: 'brick2.jpg',
+		size: '300x300',
+		title: 'Кирпич 2'
+	},
+	{
+		url: 'brick3.jpg',
+		size: '300x300',
+		title: 'Кирпич 3'
+	},
+	{
+		url: 'brick4.jpg',
+		size: '300x300',
+		title: 'Шестиугольники'
+	},
+	{
+		url: 'brick5.jpg',
+		size: '300x300',
+		title: 'Керамика'
+	},
+	{
+		url: 'brick6.jpg',
+		size: '300x300',
+		title: 'Кирпич 6'
+	},
+	{
+		url: 'brick7.jpg',
+		size: '300x300',
+		title: 'Кирпич 7'
+	},
+	{
+		url: 'brick8.jpg',
+		size: '300x300',
+		title: 'Кирпич 8'
+	},
+	{
+		url: 'brick9.jpg',
+		size: '300x300',
+		title: 'Кирпич 9'
+	},
+	{
+		url: 'brick10.jpg',
+		size: '300x300',
+		title: 'Кирпич 10'
+	},
+	{
+		url: 'orn1.jpg',
+		size: '300x300',
+		title: 'Орнамент 2'
+	},
+	{
+		url: 'orn2.jpg',
+		size: '300x300',
+		title: 'Орнамент 2'
+	},
+	{
+		url: 'orn3.jpg',
+		size: '300x300',
+		title: 'Орнамент 3'
+	},
+	{
+		url: 'orn4.jpg',
+		size: '300x300',
+		title: 'Орнамент 4'
+	},
+	{
+		url: 'orn5.jpg',
+		size: '300x300',
+		title: 'Орнамент 5'
+	},
+	{
+		url: 'orn6.jpg',
+		size: '300x300',
+		title: 'Орнамент 6'
+	},
+	{
+		url: 'orn7.jpg',
+		size: '300x300',
+		title: 'Орнамент 7'
+	},
+	{
+		url: 'orn8.jpg',
+		size: '300x300',
+		title: 'Орнамент 8'
+	},
+	{
+		url: 'orn9.jpg',
+		size: '300x300',
+		title: 'Орнамент 9'
+	},
+	{
+		url: 'orn10.jpg',
+		size: '300x300',
+		title: 'Орнамент 10'
+	},
+	{
+		url: 'orn11.jpg',
+		size: '300x300',
+		title: 'Орнамент 11'
+	},
+	{
+		url: 'orn13.jpg',
+		size: '300x300',
+		title: 'Орнамент 13'
+	},
+	{
+		url: 'orn14.jpg',
+		size: '300x300',
+		title: 'Орнамент 14'
+	},
 ];
 export { filenamesBrick };
 export { filenamesDecBrick };

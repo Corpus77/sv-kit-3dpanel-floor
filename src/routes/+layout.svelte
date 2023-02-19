@@ -47,8 +47,8 @@
 			<a href="/roombrick" transition:fly={{ delay: 0, x: 25,y:25, duration: 250 }}> По кирпичику </a>
 			<a href="/frames" transition:fly={{ delay: 0, x: 25,y:25, duration: 250 }}> Плинтус дизайн </a>
 			<a href="/laminat" transition:fly={{ delay: 0, x: 25,y:25, duration: 250 }}> Самоклеющийся ламинат </a>
+			<a href="/kitchen" transition:fly={{ delay: 0, x: 25,y:25, duration: 250 }}> Кухня </a>
 			<a href="/" transition:fly={{ delay: 0, x: 250, duration: 250 }}>Начало</a>
-			<a href="/kitchen" transition:fly={{ delay: 0, x: 25,y:25, duration: 250 }}> Кухня (в разработке) </a>
 		</div>
 	{/if}
 
@@ -63,6 +63,7 @@
 		box-sizing: border-box;
 	}
 	nav {
+		position: relative;
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
@@ -94,8 +95,8 @@
 		height: 50vh;
 		background-color: rgba(165, 165, 35, 0.878);
 		padding: 5px;
-		right: 2vw;
-		top: 4vh;
+		left: 1vw;
+		top: 6vh;
 		z-index: 100;
 		box-shadow: -3px 3px 3px;
 		border: 1px ridge black;

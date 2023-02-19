@@ -18,7 +18,7 @@
 <style>
   button {
     font-weight: bolder;
-    min-height: 25%;
+    min-height: 30%;
     color: rgb(233, 138, 138);
     background-color: rgb(56, 52, 52);
     border-radius: 5px;

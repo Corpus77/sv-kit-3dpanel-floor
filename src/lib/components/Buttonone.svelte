@@ -19,7 +19,7 @@
   button {
     font-weight: bolder;
     color: rgb(186, 235, 97);
-    min-height: 25%;
+    min-height: 30%;
     background-color: rgb(56, 52, 52);
     border-radius: 5px;
     border: 1px solid wheat;
