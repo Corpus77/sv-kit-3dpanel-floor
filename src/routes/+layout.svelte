@@ -39,16 +39,16 @@
 			in:slide={{ delay: 100, duration: 500, easing: linear }}
 			out:slide={{ delay: 100, duration: 1000, easing: linear }}
 		>
-			<a href="/floorwalls" transition:fly={{ delay: 0, x: 250, duration: 250 }}
-				>Потолок,стены,пол</a
-			>
-			<!-- <a href="/onewall"> Одна стена</a> -->
-			<a href="/twoparts" transition:fly={{ delay: 0, x: 25,y:25, duration: 250 }}> Две части стены</a>
-			<a href="/roombrick" transition:fly={{ delay: 0, x: 25,y:25, duration: 250 }}> По кирпичику </a>
-			<a href="/frames" transition:fly={{ delay: 0, x: 25,y:25, duration: 250 }}> Плинтус дизайн </a>
-			<a href="/laminat" transition:fly={{ delay: 0, x: 25,y:25, duration: 250 }}> Самоклеющийся ламинат </a>
-			<a href="/kitchen" transition:fly={{ delay: 0, x: 25,y:25, duration: 250 }}> Кухня </a>
-			<a href="/" transition:fly={{ delay: 0, x: 250, duration: 250 }}>Начало</a>
+		<a href="/" transition:fly={{ delay: 0, x: 250, duration: 250 }}>Начало</a>
+		<a href="/frames" transition:fly={{ delay: 0, x: 25,y:25, duration: 250 }}> Плинтус дизайн </a>
+		<!-- <a href="/onewall"> Одна стена</a> -->
+		<a href="/twoparts" transition:fly={{ delay: 0, x: 25,y:25, duration: 250 }}> Две части стены</a>
+		<a href="/roombrick" transition:fly={{ delay: 0, x: 25,y:25, duration: 250 }}> По кирпичику </a>
+		<a href="/laminat" transition:fly={{ delay: 0, x: 25,y:25, duration: 250 }}> Самоклеющийся ламинат </a>
+		<a href="/kitchen" transition:fly={{ delay: 0, x: 25,y:25, duration: 250 }}> Кухня </a>
+		<a href="/floorwalls" transition:fly={{ delay: 0, x: 250, duration: 250 }}
+			>Потолок,стены,пол</a
+		>
 		</div>
 	{/if}
 
@@ -100,6 +100,7 @@
 		z-index: 100;
 		box-shadow: -3px 3px 3px;
 		border: 1px ridge black;
+		border-radius: 20% 15% / 10% 40%;
 	}
 	.title {
 		font-size: 2.5vw;

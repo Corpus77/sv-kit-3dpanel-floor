@@ -16,7 +16,7 @@
 		return document.querySelector('.fartuk');
 	}
 	function fartukSize() {
-		return fartuk().offsetHeight / 2 + 'px';
+		return fartuk().offsetHeight / 2 - 1 + 'px';
 	}
 	function panelChoice(event) {
 		url = event.detail;
@@ -30,6 +30,14 @@
 		console.log(url);
 	}
 	onMount(() => {
+		let rotateFlag = true;
+		document.body.onresize = function () {
+			document.querySelectorAll('.panel').forEach((item) => {
+				item.style.minWidth = fartukSize();
+				item.style.minHeight = fartukSize();
+				console.log();
+			});
+		};
 		surface = document.querySelector('.kitchenContainer');
 		surface.onclick = function (e) {
 			e.target.style.backgroundImage = `url(./textures/${url})`;
@@ -37,13 +45,24 @@
 		surface.ondblclick = function (e) {
 			e.target.style.backgroundImage = 'none';
 		};
-		fartuk();
-		for (let i = 0; i < 20; i++) {
+		surface.oncontextmenu = function (e) {
+			e.preventDefault();
+			if (rotateFlag) {
+				e.target.style.transform = 'rotate(90deg)';
+				rotateFlag = false;
+			} else {
+				e.target.style.transform = 'rotate(0deg)';
+				rotateFlag = true;
+			}
+		};
+		for (let i = 0; i < 30; i++) {
 			const panel = document.createElement('div');
 			panel.classList.add('panel');
 			panel.style.backgroundSize = 'contain';
 			panel.style.minWidth = fartukSize();
-			panel.style.height = fartukSize();
+			panel.style.minHeight = fartukSize();
+			// panel.style.position = 'relative';
+			panel.style.transition = '1s';
 			// panel.style.border = '1px solid red';
 			fartuk().append(panel);
 		}
@@ -57,9 +76,6 @@
 			on:fillAll={(e) => {
 				modalVisible = !modalVisible;
 				fillAllFlag = true;
-				// fartuk().childNodes.forEach((item) => {
-				//   item.style.backgroundImage = `url(./textures/${url})`;
-				// })
 			}}
 		/>
 		<Buttonclear
@@ -149,7 +165,6 @@
 		z-index: 10;
 	}
 	.kitchenContainer {
-		
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -201,9 +216,12 @@
 
 	.fartuk {
 		display: flex;
+		flex-direction: column;
 		flex-wrap: wrap;
 		width: 100%;
 		height: 40%;
+		background-size: 6px 6px;
 		background: grey;
+		overflow: hidden;
 	}
 </style>
