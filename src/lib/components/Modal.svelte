@@ -15,7 +15,8 @@
 		filenamesWood,
 		filenamesVintage,
 		filenamesCeil,
-		filenamesVinilWall
+		filenamesVinilWall,
+		
 	} from '../filenames.js';
 	import { filenamesPuzzles, filenamesVinil, filenamesPuzzlesButton } from '../filenamesfloor';
 	import { filenamesPlintus } from '../filenamesplintus';
