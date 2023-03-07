@@ -71,8 +71,7 @@
 		// window.onresize = () => {
 		// 	moveParityColumns(panelMove());
 		// };
-		let getBatt = navigator.getBattery().then((battery) => {console.log(battery);
-		console.log(navigator.clipboard)});
+		
 		btnHeaderArr = document.querySelectorAll('.btn-header');
 
 		// add bricks to the wall
