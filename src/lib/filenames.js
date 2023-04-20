@@ -1,4 +1,6 @@
 let filenamesBrick = [
+	{ url: 'graphit.jpg', size: '770x700', title: 'Графитный кирпич 5мм' },
+	{ url: 'chocolate.jpg', size: '770x700', title: 'Шоколадный кирпич 5мм' },
 	{ url: '3blue.jpg', size: '770x700', title: 'Голубой кирпич 3мм' },
 	{ url: '3miata.jpg', size: '770x700', title: 'Мятный кирпич 3мм' },
 	{ url: '3rose.jpg', size: '770x700', title: 'Розовый кирпич 3мм' },
@@ -64,7 +66,9 @@ let filenamesBrick = [
 	{ url: '7yellow.jpg', size: '770x700', title: 'Бежевый кирпич 7мм' }
 ];
 let filenamesDecBrick = [
-	
+	{ url: 'bigleaves.jpg', size: '770x700', title: 'Большие листья 5мм' },
+	{ url: 'egyptrose.jpg', size: '700x700', title: 'Египет розовый 5мм' },
+	{ url: 'egyptwhite.jpg', size: '700x700', title: 'Египет белый 5мм' },
 	{ url: '5greenmix.jpg', size: '770x700', title: 'Зелёный микс 5мм' },
 	{ url: '4rosemix.jpg', size: '770x700', title: 'Розовый микс 4мм' },
 	{ url: '4seamix.jpg', size: '770x700', title: 'Морской микс 4мм' },
@@ -85,6 +89,26 @@ let filenamesDecBrick = [
 	{ url: 'klinkerred.webp', size: '770x700', title: 'Клинкер красный 6мм' },
 	{ url: 'klinkervred.jpg', size: '770x700', title: 'Клинкер очень красный 5мм' },
 	{
+		url: 'loft.jpg',
+		size: '770x700',
+		title: 'Лофт 5мм'
+	},
+	{
+		url: 'plant.jpg',
+		size: '770x700',
+		title: 'Заводской кирпич 5мм'
+	},
+	{
+		url: 'stone1.jpg',
+		size: '770x700',
+		title: 'Камень 5мм'
+	},
+	{
+		url: 'wall.jpg',
+		size: '770x700',
+		title: 'Облицовка 5мм'
+	},
+	{
 		url: 'newbrownsand4.webp',
 		size: '770x700',
 		title: 'Коричневый песчаник 4мм'
@@ -102,6 +126,12 @@ let filenamesDecBrick = [
 		size: '770x700',
 		title: 'Бежево-серый песчаник 6мм'
 	},
+	{ url: 'greydec.jpg', size: '700x700', title: 'Серый декор 5мм' },
+	{ url: 'decbrown.jpg', size: '700x700', title: 'Коричневый декор 5мм' },
+	{ url: 'decblack.jpg', size: '700x700', title: 'Черный декор 5мм' },
+	{ url: 'decwhite.jpg', size: '700x700', title: 'Белый декор 5мм' },
+	{ url: 'silverdec.jpg', size: '700x700', title: 'Серебристый декор 5мм' },
+	{ url: 'minired.jpg', size: '770x700', title: 'Мини кирпич 5мм' },
 	{ url: '5roseflowers.jpg', size: '770x700', title: 'Розовые цветы 5мм' },
 	{ url: 'blueflowers.jpg', size: '770x700', title: 'Голубые цветы 4мм' },
 	{ url: 'bluestar.jpg', size: '770x700', title: 'Голубые звёзды 3мм' },
@@ -143,6 +173,11 @@ let filenamesDecBrick = [
 ];
 let filenamesEk = [
 	{
+		url: 'america.jpg',
+		size: '770x700',
+		title: 'Америка 5мм'
+	},
+	{
 		url: 'ekbejbrown.jpg',
 		size: '770x700',
 		title: 'Екатиринославский бежево-коричневый 5мм'
@@ -159,7 +194,8 @@ let filenamesEk = [
 		size: '770x700',
 		title: 'Екатиринославский синий 5мм'
 	},
-	{ url: 'ekred.jpg', size: '770x700', title: 'Екатиринославский красный 5мм' },
+	{ url: 'ekred.jpg', size: '770x700', title: 'Екатиринославский коричневый 5мм' },
+	{ url: 'ekred1.jpg', size: '770x700', title: 'Екатиринославский красный 5мм' },
 	{
 		url: 'ekbrightmat.jpeg',
 		size: '770x700',
@@ -182,7 +218,8 @@ let filenamesKladka = [
 	{ url: 'klsilver.jpg', size: '770x700', title: 'Кладка серебряная 7мм' },
 	{ url: 'klwhite.jpg', size: '770x700', title: 'Кладка белая 7мм' },
 	{ url: 'klyellow.jpg', size: '770x700', title: 'Кладка желтая 7мм' },
-	{ url: 'klyell.webp', size: '770x700', title: 'Кладка желтая мраморная 7мм' }
+	{ url: 'klyell.webp', size: '770x700', title: 'Кладка желтая мраморная 7мм' },
+	{ url: 'silverkl.jpg', size: '700x700', title: 'Кладка желтая мраморная 5мм' }
 ];
 let filenamesMramor = [
 	{
@@ -366,6 +403,7 @@ let filenamesWood = [
 	{ url: 'woodmodern.jpg', size: '770x700', title: 'Модерн 5мм' }
 ];
 let filenamesVintage = [
+	
 	{ url: 'blueroses.webp', size: '700x700', title: 'Розы на голубом 5мм' },
 	{ url: 'greenroses.webp', size: '700x700', title: 'Розы на зеленом 5мм' },
 	{ url: 'grayroses.webp', size: '700x700', title: 'Розы на сером 5мм' },
@@ -386,6 +424,12 @@ let filenamesVintage = [
 	{ url: 'vintagerose.jpg', size: '700x700', title: 'Розовый винтаж 5мм' }
 ];
 let filenamesCeil = [
+	{ url: 'decstone.jpg', size: '700x700', title: 'Декор камень 6мм' },
+	{ url: 'rosevenzel.jpg', size: '700x700', title: 'Розовый вензель 5мм' },
+	{ url: 'whitevenzel.jpg', size: '700x700', title: 'Белый вензель 5мм' },
+	{ url: 'grafitgora.jpg', size: '700x700', title: 'Графит гора 5мм' },
+	{ url: 'whitegora.jpg', size: '700x700', title: 'Белая гора 5мм' },
+	{ url: 'brmirror.jpg', size: '700x700', title: 'Розы на голубом 5мм' },
 	{ url: 'pot4conus.jpg', size: '700x700', title: 'Потолочная белая роза 5мм' },
 	{
 		url: 'potbigornament.jpg',
@@ -480,6 +524,11 @@ let filenamesCeil = [
 		size: '700x700',
 		title: 'Потолочная плетение темная 5мм'
 	},
+	{
+		url: 'pletbrown.jpg',
+		size: '700x700',
+		title: 'Потолочная плетение темная 5мм'
+	},
 	{ url: 'potstar.jpg', size: '700x700', title: 'Потолочная ромашка 5мм' },
 	{
 		url: 'potstaryellow.jpg',
@@ -505,6 +554,11 @@ let filenamesCeil = [
 		url: 'potornamentgold.jpg',
 		size: '700x700',
 		title: 'Потолочная орнамент золотая 5мм'
+	},
+	{
+		url: 'ornrose.jpg',
+		size: '700x700',
+		title: 'Потолочная орнамент розовая 5мм'
 	},
 	{
 		url: 'potornamentsilver.jpg',
