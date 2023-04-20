@@ -186,6 +186,71 @@ let filenamesKladka = [
 ];
 let filenamesMramor = [
 	{
+		url: 'mrgreywhite.jpg',
+		size: '770x700',
+		title: 'Мрамор бело-серый 5мм'
+	},
+	{
+		url: 'mrrose.jpg',
+		size: '770x700',
+		title: 'Мрамор розовый 5мм'
+	},
+	{
+		url: 'mrheven.jpg',
+		size: '770x700',
+		title: 'Мрамор небесный 5мм'
+	},
+	{
+		url: 'mrcloud.jpg',
+		size: '770x700',
+		title: 'Мрамор облака 5мм'
+	},
+	{
+		url: 'mrhevenvenzel.jpg',
+		size: '770x700',
+		title: 'Мрамор небесные узоры 5мм'
+	},
+	{
+		url: 'mrdarkbrown.jpg',
+		size: '770x700',
+		title: 'Мрамор темно-коричневый 5мм'
+	},
+	{
+		url: 'mryellowwhite.jpg',
+		size: '770x700',
+		title: 'Мрамор желто-белый 5мм'
+	},
+	{
+		url: 'mrwhitebrown.jpg',
+		size: '770x700',
+		title: 'Мрамор бело-коричневый 5мм'
+	},
+	{
+		url: 'mrlightbej.jpg',
+		size: '770x700',
+		title: 'Мрамор светлый беж 5мм'
+	},
+	{
+		url: 'mrbrownwhite.jpg',
+		size: '770x700',
+		title: 'Мрамор коричнево-белый 5мм'
+	},
+	{
+		url: 'mrcapuccino.jpg',
+		size: '770x700',
+		title: 'Мрамор капучино 5мм'
+	},
+	{
+		url: 'greystone.jpg',
+		size: '770x700',
+		title: 'Мрамор серый камень 5мм'
+	},
+	{
+		url: 'mrcoldbej.jpg',
+		size: '770x700',
+		title: 'Мрамор холодный беж 5мм'
+	},
+	{
 		url: 'brown_mramor.jpg',
 		size: '770x700',
 		title: 'Мрамор светло коричневый 5мм'
@@ -258,6 +323,24 @@ let filenamesStone = [
 	{ url: 'stonewhite.jpg', size: '700x700', title: 'Белый камень 6мм' }
 ];
 let filenamesWood = [
+	{ url: 'woodagat.jpg', size: '770x700', title: 'Агат 5мм' },
+	{ url: 'woodyasen.jpg', size: '770x700', title: 'Ясень 5мм' },
+	{ url: 'woodsosna.jpg', size: '770x700', title: 'Сосна 5мм' },
+	{ url: 'woodlazur.jpg', size: '700x700', title: 'Лазурное дерево 5мм' },
+	{ url: 'woodblue.jpg', size: '700x700', title: 'Голубое дерево 4мм' },
+	{ url: 'woodlightouk.jpg', size: '700x700', title: 'Светлый дуб 5мм' },
+	{ url: 'woodoakdark.jpg', size: '700x700', title: 'Темный дуб 7мм' },
+	{ url: 'woodolhadark.jpg', size: '700x700', title: 'Ольха 5мм' },
+	{ url: 'woodredoak.jpg', size: '700x700', title: 'Красное дерево 7мм' },
+	{ url: 'woodredouk.jpg', size: '700x700', title: 'Красное дуб 4мм' },
+	{ url: 'woodzebra.jpg', size: '700x700', title: 'Дерево под зебру 7мм' },
+	{ url: 'woodgrafit.jpg', size: '700x700', title: 'Дерево под графит 4мм' },
+	{ url: 'woodcaramel.jpg', size: '700x700', title: 'Дерево под карамель 4мм' },
+	{ url: 'woodbej.jpg', size: '700x700', title: 'Бежевое дерево 4мм' },
+	{ url: 'woodsand.jpg', size: '700x700', title: 'Песочное дерево 4мм' },
+	{ url: 'woodyel.jpg', size: '700x700', title: 'Желтое дерево 4мм' },
+	{ url: 'whitewood.jpg', size: '700x700', title: 'Белое дерево 6мм' },
+	{ url: 'woodgold.jpg', size: '700x700', title: 'Золотистое дерево 7мм' },
 	{ url: 'woodbrown.jpg', size: '700x700', title: 'Коричневое дерево 5мм' },
 	{ url: 'woodbrownblue.jpg', size: '700x700', title: 'Синее дерево 5мм' },
 	{
@@ -269,7 +352,7 @@ let filenamesWood = [
 	{ url: 'youngtree4.webp', size: '770x700', title: 'Молодое дерево 4мм' },
 	{ url: 'woodcolor.jpg', size: '700x700', title: 'Бежево-голубое 5мм' },
 	{ url: 'woodflower.jpg', size: '700x700', title: 'Цветущее дерево 5мм' },
-	{ url: 'woodgold.jpg', size: '700x700', title: 'Золотистое дерево 7мм' },
+	
 	{
 		url: 'woodgreybrown.jpg',
 		size: '700x700',
@@ -277,21 +360,10 @@ let filenamesWood = [
 	},
 	{ url: 'rosetree4.webp', size: '770x700', title: 'Розовый микс' },
 	{ url: 'woodmiata.jpg', size: '700x700', title: 'Мятное дерево 5мм' },
-	{ url: 'woodlazur.jpg', size: '700x700', title: 'Лазурное дерево 5мм' },
-	{ url: 'woodblue.jpg', size: '700x700', title: 'Голубое дерево 4мм' },
-	{ url: 'woodlightouk.jpg', size: '700x700', title: 'Светлый дуб 5мм' },
-	{ url: 'woodoakdark.jpg', size: '700x700', title: 'Темный дуб 7мм' },
-	{ url: 'woodolhadark.jpg', size: '700x700', title: 'Ольха 5мм' },
-	{ url: 'woodredoak.jpg', size: '700x700', title: 'Красное дерево 7мм' },
-	{ url: 'woodzebra.jpg', size: '700x700', title: 'Дерево под зебру 7мм' },
-	{ url: 'woodgrafit.jpg', size: '700x700', title: 'Дерево под графит 4мм' },
-	{ url: 'woodcaramel.jpg', size: '700x700', title: 'Дерево под карамель 4мм' },
-	{ url: 'woodbej.jpg', size: '700x700', title: 'Бежевое дерево 4мм' },
-	{ url: 'woodsand.jpg', size: '700x700', title: 'Песочное дерево 4мм' },
-	{ url: 'woodyel.jpg', size: '700x700', title: 'Желтое дерево 4мм' },
-	{ url: 'whitewood.jpg', size: '700x700', title: 'Белое дерево 6мм' },
+	
 	{ url: '5brus.jpg', size: '770x700', title: 'Брус 5мм' },
-	{ url: 'woodcoffe.jpg', size: '770x700', title: 'Кофе 4мм' }
+	{ url: 'woodcoffe.jpg', size: '770x700', title: 'Кофе 4мм' },
+	{ url: 'woodmodern.jpg', size: '770x700', title: 'Модерн 5мм' }
 ];
 let filenamesVintage = [
 	{ url: 'blueroses.webp', size: '700x700', title: 'Розы на голубом 5мм' },
