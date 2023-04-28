@@ -169,6 +169,11 @@ let filenamesDecBrick = [
 		url: 'whitebrick_different.jpg',
 		size: '700x700',
 		title: 'Белый кирпич декор 5мм'
+	},
+	{
+		url: 'probka.jpg',
+		size: '700x770',
+		title: 'Пробка 5мм'
 	}
 ];
 let filenamesEk = [
@@ -324,6 +329,7 @@ let filenamesMramor = [
 ];
 let filenamesBambook = [
 	{ url: 'bamboocapuchino.jpg', size: '700x700', title: 'Бамбук капучино 8мм' },
+	{ url: 'bambflowers.jpg', size: '700x700', title: 'Бамбук цветы 8мм' },
 	{ url: 'bamboogrey.jpg', size: '700x700', title: 'Бамбук серый 8мм' },
 	{
 		url: 'bamboogreyred.jpg',
@@ -426,6 +432,7 @@ let filenamesVintage = [
 let filenamesCeil = [
 	{ url: 'decstone.jpg', size: '700x700', title: 'Декор камень 6мм' },
 	{ url: 'rosevenzel.jpg', size: '700x700', title: 'Розовый вензель 5мм' },
+	{ url: 'rosegold.jpg', size: '700x700', title: 'Розовый снег 5мм' },
 	{ url: 'whitevenzel.jpg', size: '700x700', title: 'Белый вензель 5мм' },
 	{ url: 'grafitgora.jpg', size: '700x700', title: 'Графит гора 5мм' },
 	{ url: 'whitegora.jpg', size: '700x700', title: 'Белая гора 5мм' },
