@@ -164,6 +164,8 @@
 			addPanel(surface);
 		}
 	}
+	console.log();
+	
 	//----------------------------------------------
 
 	function addPanel(wallsArg) {
@@ -336,7 +338,8 @@
 				}}>Плинтус</button
 			>
 			<div class="buttonWrapper">
-				<Buttonall
+				<Buttonall 
+				
 					buttonText="На все стены"
 					on:fillAll={(event) => {
 						modalVisible = !modalVisible;
@@ -472,6 +475,7 @@
 </div>
 
 <style>
+	
 	* {
 		padding: 0;
 		margin: 0;
@@ -501,6 +505,7 @@
 		height: auto;
 		gap: 0.5em;
 		background-color: rgb(56, 52, 52);
+		z-index: 10;
 	}
 	.wallHeader,
 	.floorHeader,
@@ -520,7 +525,7 @@
 		display: flex;
 		width: 99%;
 		height: 20%;
-		align-items: stretch;
+		align-items: baseline;
 		justify-content: space-around;
 	}
 	.modalPlintusVisible {
@@ -634,6 +639,15 @@
 		header {
 			min-height: 20%;
 		}
+		.callPlintus {
+			font-size: .7em;
+		}
+		.buttonWrapper {
+			margin: 0;
+			padding: 0;
+			align-items:flex-start;
+			font-size: .9em;
+		}
 		.modalPlintusVisible {
 			width: 32%;
 			height: 30%;
@@ -650,6 +664,9 @@
 			width: 55%;
 			top: 0.5%;
 			left: 40%;
+		}
+		.callPlintus {
+			font-size: .6em;
 		}
 	}
 </style>

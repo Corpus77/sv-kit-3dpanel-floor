@@ -50,6 +50,9 @@
   }
   @media only screen and (max-height: 440px) {
     button {
+      margin: 0;
+      padding: 0;
+      
       font-size: .7em;
       font-weight:lighter;
     }

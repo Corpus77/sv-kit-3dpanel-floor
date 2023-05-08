@@ -26,4 +26,16 @@
 		font-weight: bolder;
 		font-size: 100%;
 	}
+	@media only screen and (max-height: 440px) {
+		.instr {
+			font-size: .6em;
+			
+		}
+	}
+	@media only screen and (max-width: 480px) {
+		.instr {
+			font-size: .6em;
+			
+		}
+	}
 </style>
