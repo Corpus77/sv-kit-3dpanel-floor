@@ -373,6 +373,7 @@ let filenamesWood = [
 	{ url: 'woodblue.jpg', size: '700x700', title: 'Голубое дерево 4мм' },
 	{ url: 'woodlightouk.jpg', size: '700x700', title: 'Светлый дуб 5мм' },
 	{ url: 'woodoakdark.jpg', size: '700x700', title: 'Темный дуб 7мм' },
+	{ url: 'woodoakdarkbrown.jpg', size: '700x700', title: 'Темно-коричневый дуб 5мм' },
 	{ url: 'woodolhadark.jpg', size: '700x700', title: 'Ольха 5мм' },
 	{ url: 'woodredoak.jpg', size: '700x700', title: 'Красное дерево 7мм' },
 	{ url: 'woodredouk.jpg', size: '700x700', title: 'Красное дуб 4мм' },
