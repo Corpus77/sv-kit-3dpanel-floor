@@ -396,6 +396,7 @@ let filenamesWood = [
 	{ url: 'youngtree4.webp', size: '770x700', title: 'Молодое дерево 4мм' },
 	{ url: 'woodcolor.jpg', size: '700x700', title: 'Бежево-голубое 5мм' },
 	{ url: 'woodflower.jpg', size: '700x700', title: 'Цветущее дерево 5мм' },
+	{ url: 'woodflower2.jpg', size: '700x700', title: 'Цветущее дерево 2 4мм' },
 	
 	{
 		url: 'woodgreybrown.jpg',
