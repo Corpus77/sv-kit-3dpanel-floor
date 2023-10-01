@@ -66,9 +66,10 @@ let filenamesBrick = [
 	{ url: '7yellow.jpg', size: '770x700', title: 'Бежевый кирпич 7мм' }
 ];
 let filenamesDecBrick = [
-	{ url: 'bigleaves.jpg', size: '770x700', title: 'Большие листья 5мм' },
-	{ url: 'egyptrose.jpg', size: '700x700', title: 'Египет розовый 5мм' },
-	{ url: 'egyptwhite.jpg', size: '700x700', title: 'Египет белый 5мм' },
+	
+	
+	{ url: 'cashemir.jpg', size: '770x700', title: 'Кашемир 5мм' },
+	{ url: 'caleidoscop.jpg', size: '770x700', title: 'Калейдоскоп 5мм' },
 	{ url: '5greenmix.jpg', size: '770x700', title: 'Зелёный микс 5мм' },
 	{ url: '4rosemix.jpg', size: '770x700', title: 'Розовый микс 4мм' },
 	{ url: '4seamix.jpg', size: '770x700', title: 'Морской микс 4мм' },
@@ -114,8 +115,11 @@ let filenamesDecBrick = [
 		title: 'Коричневый песчаник 4мм'
 	},
 	{ url: 'stonesand.jpg', size: '770x700', title: 'Песчаник 6мм' },
+	{ url: 'stonesandnew.jpg', size: '770x700', title: 'Песчаник новый 6мм' },
 	{ url: 'stonesandgrey.jpg', size: '770x700', title: 'Серый песчаник 6мм' },
 	{ url: 'stonesandmat.jpeg', size: '770x700', title: 'Песчаник матовый 6мм' },
+	{ url: 'stonesandizumrud.jpg', size: '770x700', title: 'Песчаник изумруд 6мм' },
+	{ url: 'stonesandbej.jpg', size: '770x700', title: 'Песчаник бежевый 3мм' },
 	{
 		url: 'stonesandgreydark.jpg',
 		size: '770x700',
@@ -127,6 +131,7 @@ let filenamesDecBrick = [
 		title: 'Бежево-серый песчаник 6мм'
 	},
 	{ url: 'greydec.jpg', size: '700x700', title: 'Серый декор 5мм' },
+	{ url: 'brickdec.jpg', size: '770x700', title: 'Серый декор кирпич 5мм' },
 	{ url: 'decbrown.jpg', size: '700x700', title: 'Коричневый декор 5мм' },
 	{ url: 'decblack.jpg', size: '700x700', title: 'Черный декор 5мм' },
 	{ url: 'decwhite.jpg', size: '700x700', title: 'Белый декор 5мм' },
@@ -136,6 +141,7 @@ let filenamesDecBrick = [
 	{ url: 'blueflowers.jpg', size: '770x700', title: 'Голубые цветы 4мм' },
 	{ url: 'bluestar.jpg', size: '770x700', title: 'Голубые звёзды 3мм' },
 	{ url: 'whitestar.jpg', size: '770x700', title: ' Звёзды 3мм' },
+	{ url: 'bigstar.jpg', size: '770x700', title: 'Большие звёзды 5мм' },
 	{ url: 'firewood4.webp', size: '700x700', title: 'Огненное дерево 4мм' },
 	{ url: '5scale.jpg', size: '770x700', title: 'Луска 5мм' },
 	{ url: 'st.webp', size: '770x700', title: 'Разноцветные полоски 6мм' },
@@ -170,6 +176,10 @@ let filenamesDecBrick = [
 		size: '700x700',
 		title: 'Белый кирпич декор 5мм'
 	},
+	{ url: 'egyptrose.jpg', size: '700x700', title: 'Египет розовый 5мм' },
+	{ url: 'egyptyellow.jpg', size: '700x700', title: 'Египет жёлтый 5мм' },
+	{ url: 'egyptwhite.jpg', size: '700x700', title: 'Египет белый 5мм' },
+	{ url: 'bigleaves.jpg', size: '770x700', title: 'Большие листья 5мм' },
 	{
 		url: 'probka.jpg',
 		size: '700x770',
@@ -177,6 +187,16 @@ let filenamesDecBrick = [
 	}
 ];
 let filenamesEk = [
+	{
+		url: 'ek.jpg',
+		size: '770x700',
+		title: 'Екатеринославский 5мм'
+	},
+	{
+		url: 'ekscandinavia.jpg',
+		size: '770x700',
+		title: 'Скандинавия 5мм'
+	},
 	{
 		url: 'america.jpg',
 		size: '770x700',
@@ -350,6 +370,7 @@ let filenamesBambook = [
 let filenamesStone = [
 	{ url: 'stone.jpg', size: '770x700', title: 'Камень 6мм' },
 	{ url: 'stoneblack.jpeg', size: '770x700', title: 'Черный камень 5мм' },
+	{ url: 'stonewhiteblack.jpg', size: '770x700', title: 'Черно-белый камень 5мм' },
 	{ url: 'stonemat.jpeg', size: '770x700', title: 'Матовый камень 7мм' },
 	{
 		url: 'stoneblackwhite.jpg',
@@ -366,19 +387,23 @@ let filenamesStone = [
 	{ url: 'stonewhite.jpg', size: '700x700', title: 'Белый камень 6мм' }
 ];
 let filenamesWood = [
-	{ url: 'woodagat.jpg', size: '770x700', title: 'Агат 5мм' },
+	
 	{ url: 'woodyasen.jpg', size: '770x700', title: 'Ясень 5мм' },
 	{ url: 'woodsosna.jpg', size: '770x700', title: 'Сосна 5мм' },
-	{ url: 'woodlazur.jpg', size: '700x700', title: 'Лазурное дерево 5мм' },
-	{ url: 'woodblue.jpg', size: '700x700', title: 'Голубое дерево 4мм' },
+	
+	{ url: 'woodgreyoak.jpg', size: '700x700', title: 'Серый дуб 5мм' },
 	{ url: 'woodlightouk.jpg', size: '700x700', title: 'Светлый дуб 5мм' },
 	{ url: 'woodoakdark.jpg', size: '700x700', title: 'Темный дуб 7мм' },
+	{ url: 'woodbrownoak.jpg', size: '700x700', title: 'Темный дуб 4мм' },
 	{ url: 'woodoakdarkbrown.jpg', size: '700x700', title: 'Темно-коричневый дуб 5мм' },
+	{ url: 'woodredouk.jpg', size: '700x700', title: 'Красный дуб 4мм' },
 	{ url: 'woodolhadark.jpg', size: '700x700', title: 'Ольха 5мм' },
 	{ url: 'woodredoak.jpg', size: '700x700', title: 'Красное дерево 7мм' },
-	{ url: 'woodredouk.jpg', size: '700x700', title: 'Красное дуб 4мм' },
 	{ url: 'woodzebra.jpg', size: '700x700', title: 'Дерево под зебру 7мм' },
 	{ url: 'woodgrafit.jpg', size: '700x700', title: 'Дерево под графит 4мм' },
+	{ url: 'woodlazur.jpg', size: '700x700', title: 'Лазурное дерево 5мм' },
+	{ url: 'woodrose.jpg', size: '700x700', title: 'Розовое дерево 4мм' },
+	{ url: 'woodblue.jpg', size: '700x700', title: 'Голубое дерево 4мм' },
 	{ url: 'woodcaramel.jpg', size: '700x700', title: 'Дерево под карамель 4мм' },
 	{ url: 'woodbej.jpg', size: '700x700', title: 'Бежевое дерево 4мм' },
 	{ url: 'woodsand.jpg', size: '700x700', title: 'Песочное дерево 4мм' },
@@ -408,7 +433,8 @@ let filenamesWood = [
 	
 	{ url: '5brus.jpg', size: '770x700', title: 'Брус 5мм' },
 	{ url: 'woodcoffe.jpg', size: '770x700', title: 'Кофе 4мм' },
-	{ url: 'woodmodern.jpg', size: '770x700', title: 'Модерн 5мм' }
+	{ url: 'woodmodern.jpg', size: '770x700', title: 'Модерн 5мм' },
+	{ url: 'woodagat.jpg', size: '770x700', title: 'Агат 5мм' }
 ];
 let filenamesVintage = [
 	
@@ -534,11 +560,17 @@ let filenamesCeil = [
 		title: 'Потолочная плетение темная 5мм'
 	},
 	{
+		url: 'potdarksquare.jpg',
+		size: '700x700',
+		title: 'Потолочная тёмный квадрат 5мм'
+	},
+	{
 		url: 'pletbrown.jpg',
 		size: '700x700',
 		title: 'Потолочная плетение темная 5мм'
 	},
 	{ url: 'potstar.jpg', size: '700x700', title: 'Потолочная ромашка 5мм' },
+	
 	{
 		url: 'potstaryellow.jpg',
 		size: '700x700',
