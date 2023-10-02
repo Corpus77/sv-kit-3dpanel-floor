@@ -67,7 +67,7 @@ let filenamesBrick = [
 ];
 let filenamesDecBrick = [
 	
-	
+	{ url: 'woodmodern.jpg', size: '770x700', title: 'Модерн 5мм' },
 	{ url: 'cashemir.jpg', size: '770x700', title: 'Кашемир 5мм' },
 	{ url: 'caleidoscop.jpg', size: '770x700', title: 'Калейдоскоп 5мм' },
 	{ url: '5greenmix.jpg', size: '770x700', title: 'Зелёный микс 5мм' },
@@ -89,6 +89,8 @@ let filenamesDecBrick = [
 	},
 	{ url: 'klinkerred.webp', size: '770x700', title: 'Клинкер красный 6мм' },
 	{ url: 'klinkervred.jpg', size: '770x700', title: 'Клинкер очень красный 5мм' },
+	{ url: 'decdesert.jpg', size: '770x700', title: 'Кирпич пустыня 5мм' },
+	{ url: 'woodagat.jpg', size: '770x700', title: 'Агат 5мм' },
 	{
 		url: 'loft.jpg',
 		size: '770x700',
@@ -159,7 +161,7 @@ let filenamesDecBrick = [
 	{ url: '5graffity1.jpg', size: '770x700', title: 'Кирпич с граффити1 5мм' },
 	{ url: 'blockwhite.jpg', size: '770x600', title: 'Белые блоки 5мм' },
 	{ url: 'blockblue.jpg', size: '770x600', title: 'Голубые блоки 5мм' },
-	{ url: 'blockwhite.jpg', size: '770x700', title: 'Кирпич с граффити2 5мм' },
+	
 	{ url: '5tornwhite.jpeg', size: '770x700', title: 'Рваный белый кирпич 5мм' },
 	{
 		url: 'brokenwhitebrick5.webp',
@@ -176,10 +178,21 @@ let filenamesDecBrick = [
 		size: '700x700',
 		title: 'Белый кирпич декор 5мм'
 	},
+	{ url: 'decmarocco.jpg', size: '700x700', title: 'Кирпич марокко 5мм' },
 	{ url: 'egyptrose.jpg', size: '700x700', title: 'Египет розовый 5мм' },
 	{ url: 'egyptyellow.jpg', size: '700x700', title: 'Египет жёлтый 5мм' },
 	{ url: 'egyptwhite.jpg', size: '700x700', title: 'Египет белый 5мм' },
+	{ url: 'contrast1.jpg', size: '680x680', title: 'Контраст-1 4мм' },
+	{ url: 'contrast2.jpg', size: '680x680', title: 'Контраст-2 4мм' },
+	{ url: 'contrast3.jpg', size: '680x680', title: 'Контраст-3 4мм' },
+	{ url: 'contrast4.jpg', size: '680x680', title: 'Контраст-4 4мм' },
+	{ url: 'contrast5.jpg', size: '680x680', title: 'Контраст-5 4мм' },
+	{ url: 'contrast6.jpg', size: '680x680', title: 'Контраст-6 4мм' },
+	{ url: 'contrast7.jpg', size: '680x680', title: 'Контраст-7 4мм' },
 	{ url: 'bigleaves.jpg', size: '770x700', title: 'Большие листья 5мм' },
+	{ url: 'automnleaves.jpg', size: '770x700', title: 'Осенние листья 5мм' },
+	{ url: 'decgardenleaves.jpg', size: '770x700', title: 'Садовые листья 5мм' },
+	{ url: 'decnews.jpg', size: '770x700', title: 'Новости 5мм' },
 	{
 		url: 'probka.jpg',
 		size: '700x770',
@@ -191,6 +204,11 @@ let filenamesEk = [
 		url: 'ek.jpg',
 		size: '770x700',
 		title: 'Екатеринославский 5мм'
+	},
+	{
+		url: 'eksea.jpg',
+		size: '770x700',
+		title: 'Екатеринославский море 5мм'
 	},
 	{
 		url: 'ekscandinavia.jpg',
@@ -243,8 +261,9 @@ let filenamesKladka = [
 	{ url: 'klsilver.jpg', size: '770x700', title: 'Кладка серебряная 7мм' },
 	{ url: 'klwhite.jpg', size: '770x700', title: 'Кладка белая 7мм' },
 	{ url: 'klyellow.jpg', size: '770x700', title: 'Кладка желтая 7мм' },
+	{ url: 'kladkacoffeemilk.jpg', size: '770x700', title: 'Кладка кофе с молоком 5мм' },
 	{ url: 'klyell.webp', size: '770x700', title: 'Кладка желтая мраморная 7мм' },
-	{ url: 'silverkl.jpg', size: '700x700', title: 'Кладка желтая мраморная 5мм' }
+	{ url: 'silverkl.jpg', size: '700x700', title: 'Кладка бамбук 5мм' }
 ];
 let filenamesMramor = [
 	{
@@ -432,9 +451,10 @@ let filenamesWood = [
 	{ url: 'woodmiata.jpg', size: '700x700', title: 'Мятное дерево 5мм' },
 	
 	{ url: '5brus.jpg', size: '770x700', title: 'Брус 5мм' },
+	{ url: 'woodsoti.jpg', size: '770x700', title: 'Соты 5мм' },
 	{ url: 'woodcoffe.jpg', size: '770x700', title: 'Кофе 4мм' },
 	{ url: 'woodmodern.jpg', size: '770x700', title: 'Модерн 5мм' },
-	{ url: 'woodagat.jpg', size: '770x700', title: 'Агат 5мм' }
+	
 ];
 let filenamesVintage = [
 	
@@ -560,15 +580,26 @@ let filenamesCeil = [
 		title: 'Потолочная плетение темная 5мм'
 	},
 	{
+		url: 'potpletgold.jpg',
+		size: '700x700',
+		title: 'Потолочная плетение золотая 5мм'
+	},
+	{
+		url: 'pletbrown.jpg',
+		size: '700x700',
+		title: 'Потолочная плетение коричневая 5мм'
+	},
+	{
 		url: 'potdarksquare.jpg',
 		size: '700x700',
 		title: 'Потолочная тёмный квадрат 5мм'
 	},
 	{
-		url: 'pletbrown.jpg',
+		url: 'potgoldsquare.jpg',
 		size: '700x700',
-		title: 'Потолочная плетение темная 5мм'
+		title: 'Потолочная золотой квадрат 5мм'
 	},
+	
 	{ url: 'potstar.jpg', size: '700x700', title: 'Потолочная ромашка 5мм' },
 	
 	{
