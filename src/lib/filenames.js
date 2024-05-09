@@ -201,6 +201,11 @@ let filenamesDecBrick = [
 ];
 let filenamesEk = [
 	{
+		url: 'ekbej.jpg',
+		size: '770x700',
+		title: 'Екатеринославский бежевый 5мм'
+	},
+	{
 		url: 'ek.jpg',
 		size: '770x700',
 		title: 'Екатеринославский 5мм'
@@ -249,7 +254,12 @@ let filenamesEk = [
 		url: 'ekviolet.jpg',
 		size: '770x700',
 		title: 'Екатиринославский фиолетовый 5мм'
-	}
+	},
+	{
+		url: 'ekgrafit.jpg',
+		size: '770x700',
+		title: 'Екатиринославский графитовый 3мм'
+	},
 ];
 let filenamesKladka = [
 	{ url: 'klrose.jpg', size: '770x700', title: 'Кладка розовая 4мм' },
@@ -320,6 +330,11 @@ let filenamesMramor = [
 		url: 'mrcapuccino.jpg',
 		size: '770x700',
 		title: 'Мрамор капучино 5мм'
+	},
+	{
+		url: 'mrespresso.jpg',
+		size: '770x700',
+		title: 'Мрамор еспрессо 5мм'
 	},
 	{
 		url: 'greystone.jpg',
@@ -407,7 +422,8 @@ let filenamesStone = [
 ];
 let filenamesWood = [
 	
-	{ url: 'woodyasen.jpg', size: '770x700', title: 'Ясень 5мм' },
+	{ url: 'woodyasen.jpg', size: '700x700', title: 'Ясень 5мм' },
+	{ url: 'woodold.jpg', size: '770x700', title: 'Под старину 3мм' },
 	{ url: 'woodsosna.jpg', size: '770x700', title: 'Сосна 5мм' },
 	
 	{ url: 'woodgreyoak.jpg', size: '700x700', title: 'Серый дуб 5мм' },
