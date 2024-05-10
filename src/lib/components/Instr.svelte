@@ -28,7 +28,7 @@
 		background-color: chocolate;
 		border-radius: 8px;
 		box-shadow: 5px 5px 4px;
-		z-index: 10;
+		z-index: 100;
 		overflow: auto;
 	}
 	.instruction > p {
