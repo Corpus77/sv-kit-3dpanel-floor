@@ -474,6 +474,7 @@ let filenamesWood = [
 ];
 let filenamesVintage = [
 	
+	{ url: 'feather.jpg', size: '700x770', title: 'Перья 4мм' },
 	{ url: 'blueroses.webp', size: '700x700', title: 'Розы на голубом 5мм' },
 	{ url: 'greenroses.webp', size: '700x700', title: 'Розы на зеленом 5мм' },
 	{ url: 'grayroses.webp', size: '700x700', title: 'Розы на сером 5мм' },
