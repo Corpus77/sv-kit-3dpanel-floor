@@ -123,6 +123,11 @@ let filenamesDecBrick = [
 	{ url: 'stonesandizumrud.jpg', size: '770x700', title: 'Песчаник изумруд 6мм' },
 	{ url: 'stonesandbej.jpg', size: '770x700', title: 'Песчаник бежевый 3мм' },
 	{
+		url: 'stonesandgreygreen.jpg',
+		size: '770x700',
+		title: 'Серo-зелёный песчаник 3мм'
+	},
+	{
 		url: 'stonesandgreydark.jpg',
 		size: '770x700',
 		title: 'Серый песчаник темный 5мм'
@@ -141,6 +146,7 @@ let filenamesDecBrick = [
 	{ url: 'minired.jpg', size: '770x700', title: 'Мини кирпич 5мм' },
 	{ url: '5roseflowers.jpg', size: '770x700', title: 'Розовые цветы 5мм' },
 	{ url: 'blueflowers.jpg', size: '770x700', title: 'Голубые цветы 4мм' },
+	{ url: 'roseflowers.jpg', size: '770x700', title: 'Розовые цветы 4мм' },
 	{ url: 'bluestar.jpg', size: '770x700', title: 'Голубые звёзды 3мм' },
 	{ url: 'whitestar.jpg', size: '770x700', title: ' Звёзды 3мм' },
 	{ url: 'bigstar.jpg', size: '770x700', title: 'Большие звёзды 5мм' },
@@ -276,6 +282,11 @@ let filenamesKladka = [
 	{ url: 'silverkl.jpg', size: '700x700', title: 'Кладка бамбук 5мм' }
 ];
 let filenamesMramor = [
+	{
+		url: 'mrgraygreen.jpg',
+		size: '770x700',
+		title: 'Мрамор серо-зелёный 4мм'
+	},
 	{
 		url: 'mrgreywhite.jpg',
 		size: '770x700',
@@ -474,6 +485,17 @@ let filenamesWood = [
 ];
 let filenamesVintage = [
 	
+	{ url: 'rombgray1.jpg', size: '700x770', title: 'Серый ромб  4мм' },
+	{ url: 'rombbrown.jpg', size: '700x770', title: 'Коричневый ромб 4мм' },
+	{ url: 'rombblue.jpg', size: '700x770', title: 'Cиний ромб 4мм' },
+	{ url: 'rombgray.jpg', size: '700x770', title: 'Серый ромб 4мм' },
+	{ url: 'papongreen.jpg', size: '700x770', title: 'Папоротник на зеленом 4мм' },
+	{ url: 'papongray.jpg', size: '700x770', title: 'Папоротник на сером 4мм' },
+	{ url: 'paponbege.jpg', size: '700x770', title: 'Папоротник на бежевом 4мм' },
+	{ url: 'paponwhite.jpg', size: '700x770', title: 'Папоротник на белом 4мм' },
+	{ url: 'mozorange.jpg', size: '700x770', title: 'Оранжевая мозаика 4мм' },
+	{ url: 'mozgreen.jpg', size: '700x770', title: 'Зелёная мозаика 4мм' },
+	{ url: 'orngreenbrown.jpg', size: '700x770', title: 'Коричнево-зелёный орнамент 4мм' },
 	{ url: 'feather.jpg', size: '700x770', title: 'Перья 4мм' },
 	{ url: 'blueroses.webp', size: '700x700', title: 'Розы на голубом 5мм' },
 	{ url: 'greenroses.webp', size: '700x700', title: 'Розы на зеленом 5мм' },
