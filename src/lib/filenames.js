@@ -404,7 +404,7 @@ let filenamesMramor = [
 let filenamesBambook = [
 	{ url: 'bamboocapuchino.jpg', size: '700x700', title: 'Бамбук капучино 8мм' },
 	{ url: 'bambflowers.jpg', size: '700x700', title: 'Бамбук цветы 8мм' },
-	{ url: 'bambblack.jpg', size: '500x500', title: 'Бамбук чёрный 5мм' },
+	{ url: 'bambblack.jpg', size: '500x500', title: 'Бамбук черный 5мм' },
 	{ url: 'bambwood.jpg', size: '500x500', title: 'Бамбук дерево 5мм' },
 	{ url: 'bambwoodgold.jpg', size: '500x500', title: 'Бамбук дерево золото 5мм' },
 	{ url: 'bambookoak.jpg', size: '500x500', title: 'Бамбук дуб 5мм' },
