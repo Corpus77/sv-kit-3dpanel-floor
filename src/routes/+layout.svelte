@@ -29,7 +29,7 @@
 
 <nav>
 	
-	<span>Click to open menu =></span>
+	<span> <b>Меню</b> <b>&RightArrow;</b></span>
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<img src="./burger.png" alt="" on:click={burgerClick} title = 'Menu' />
 	

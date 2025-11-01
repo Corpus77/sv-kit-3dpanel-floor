@@ -68,6 +68,10 @@ let filenamesBrick = [
 let filenamesDecBrick = [
 	
 	{ url: 'woodmodern.jpg', size: '770x700', title: 'Модерн 5мм' },
+	{ url: 'brickvin.jpg', size: '770x700', title: 'Кирпич виноград 3мм' },
+	{ url: 'brickpluch.jpg', size: '770x700', title: 'Кирпич плющ 3мм' },
+	{ url: 'bricktrop.jpg', size: '770x700', title: 'Кирпич тропики 3мм' },
+	{ url: 'brickmag.jpg', size: '770x700', title: 'Кирпич магнолия 3мм' },
 	{ url: 'cashemir.jpg', size: '770x700', title: 'Кашемир 5мм' },
 	{ url: 'caleidoscop.jpg', size: '770x700', title: 'Калейдоскоп 5мм' },
 	{ url: '5greenmix.jpg', size: '770x700', title: 'Зелёный микс 5мм' },
@@ -215,6 +219,11 @@ let filenamesEk = [
 		url: 'ek.jpg',
 		size: '770x700',
 		title: 'Екатеринославский 5мм'
+	},
+	{
+		url: 'sandabr.jpg',
+		size: '770x700',
+		title: 'Песчанник абрикос 3мм'
 	},
 	{
 		url: 'eksea.jpg',
@@ -395,6 +404,10 @@ let filenamesMramor = [
 let filenamesBambook = [
 	{ url: 'bamboocapuchino.jpg', size: '700x700', title: 'Бамбук капучино 8мм' },
 	{ url: 'bambflowers.jpg', size: '700x700', title: 'Бамбук цветы 8мм' },
+	{ url: 'bambblack.jpg', size: '500x500', title: 'Бамбук чёрный 5мм' },
+	{ url: 'bambwood.jpg', size: '500x500', title: 'Бамбук дерево 5мм' },
+	{ url: 'bambwoodgold.jpg', size: '500x500', title: 'Бамбук дерево золото 5мм' },
+	{ url: 'bambookoak.jpg', size: '500x500', title: 'Бамбук дуб 5мм' },
 	{ url: 'bamboogrey.jpg', size: '700x700', title: 'Бамбук серый 8мм' },
 	{
 		url: 'bamboogreyred.jpg',

@@ -62,13 +62,20 @@
 {/if}
 
 <style>
+	*, 
+	html, 
+	body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 	.root {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		background-color: grey;
 		gap: 3vw;
-		height: 94vh;
+		height: 91vh;
 	}
 	.imgContainer {
 		cursor: pointer;
